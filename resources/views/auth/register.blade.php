@@ -61,6 +61,17 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="tipo_usuario" class="col-md-4 col-form-label text-md-right">Rol Del Usuario:</label>
+                            <div class="col-md-6">
+                              <select id="tipo_usuario" class="form-control" name="tipo_usuario">
+                                <option value="1" selected>Administrador</option>
+                                <option value="2">Talleristas</option>
+                                <option value="3">Recursos Humanos</option>
+                              </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

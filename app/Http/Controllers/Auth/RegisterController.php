@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tipo_usuario' => ['required', 'string'],
         ]);
     }
 
@@ -68,6 +69,17 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'tipo_usuario' => $data['tipo_usuario']
         ]);
+    }
+
+    public function redirectPath()
+    {
+      if(Auth()->user()->tipo_usuario == 1)
+      {
+        return '/Administrador/inicio';
+      }
+
+      return '/';
     }
 }

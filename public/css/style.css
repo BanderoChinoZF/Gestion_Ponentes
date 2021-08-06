@@ -1,0 +1,14 @@
+
+.floating-button {
+    right: 44% !important;
+    bottom: 5% !important;
+}
+
+.floating-button .btn:focus{
+    box-shadow: none;
+}
+
+.floating-button .dropdown-menu.show div {
+    animation: fadeInUp;
+    animation-duration: 0.5s;
+}

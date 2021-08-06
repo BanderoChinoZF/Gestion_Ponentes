@@ -15,6 +15,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    {{ auth::user()->tipo_usuario; }}
+
                 </div>
             </div>
         </div>
