@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Datos;
+
 class AdminController extends Controller
 {
     /**
@@ -23,6 +25,25 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('Administrador.inicio');
+        //$empleados = Datos::orderBy('id_empleado','ASC')->paginate(15);
+
+        $empleados = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->paginate(15);
+
+        $empleados_a = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
+
+        return view('Administrador.inicio')->with('empleados',$empleados)->with('empleados_a',$empleados_a);
     }
+
+    //------------------------------------------------------------------------------------------------------------
+    
 }

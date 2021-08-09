@@ -98,10 +98,28 @@
                             </tr>
                           </thead>
                           <tbody id="contenido_asistieron">
+                            @foreach ($empleados_a as $a)
+                              <tr>
+                                  <td>{{ $a->id_empleado }}</td>
+                                  <td>{{ $a->nombre_completo }}</td>
+                                  <td>{{ $a->ubicacion }}</td>
+                                  <td>{{ $a->departamento }}</td>
+                                  <td>
+                                  
+                                    @if($a->idsesion != 0)
+                                      <td scope="col"><span class="badge bg-success">Con Asistencia</span></td>
+                                    @endif
+
+                                  </td>
+                              </tr>
+
+                            @endforeach
 
                           </tbody>
-
                         </table>
+
+                        {!! $empleados_a->render() !!}
+
                       </div>
                       <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                         <table class="table table-striped table-hover" id="tabla_no_asistieron">
@@ -115,9 +133,28 @@
                             </tr>
                           </thead>
                           <tbody id="contenido_no_asistieron">
+                          @foreach ($empleados as $e)
+                            <tr>
+                                <td>{{ $e->id_empleado }}</td>
+                                <td>{{ $e->nombre_completo }}</td>
+                                <td>{{ $e->ubicacion }}</td>
+                                <td>{{ $e->departamento }}</td>
+                                <td>
+                                
+                                  @if($e->idsesion == 0)
+                                    <td scope="col"><span class="badge bg-danger">Sin Asistencia</span></td>
+                                  @endif
+
+                                </td>
+                            </tr>
+
+                            @endforeach 
 
                           </tbody>
                         </table>
+
+                        {!! $empleados->render() !!}
+
                       </div>
                     </div>
                     <!-- Pills content -->
@@ -130,21 +167,6 @@
     </div>
 </div>
 
-
-<div class="dropup position-fixed floating-button">
-    <button class="btn rounded-circle bg-primary py-2 mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-plus-lg text-white"></i>
-    </button>
-    <button class="btn rounded-circle bg-primary py-2 mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-plus-lg text-white"></i>
-    </button>
-    <button class="btn rounded-circle bg-primary py-2 mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-plus-lg text-white"></i>
-    </button>
-    <button class="btn rounded-circle bg-primary py-2 mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-plus-lg text-white"></i>
-    </button>
-</div>
 
   <br>
   <br>

@@ -100,7 +100,7 @@ function tabla(datos){
       </tr>
       `;
     }else {
-
+      //EN CASO DE QUE SE DEBA RELLENAR LA TABLA DE NO ASISTENTES
     }
   }
 }

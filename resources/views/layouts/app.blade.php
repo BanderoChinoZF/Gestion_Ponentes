@@ -37,90 +37,159 @@
 
 
 </head>
-<body onload="obtenerDatos()">
+<body>
     <div id="app">
 
-      <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-          <!-- Container wrapper -->
-          <div class="container-fluid">
-              <!-- Toggle button -->
-              <button
-              class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#navbarCenteredExample"
-              aria-controls="navbarCenteredExample"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              >
-              <i class="fas fa-bars"></i>
-              </button>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarCenteredExample"
+                aria-controls="navbarCenteredExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <i class="fas fa-bars"></i>
+                </button>
 
-              <!-- Collapsible wrapper -->
-              <div
-              class="collapse navbar-collapse justify-content-center"
-              id="navbarCenteredExample"
-              >
-              <a class="navbar-brand" href="#">
-                  <img
-                      src="/img/logo-gestion.jpeg"
-                      class="me-2"
-                      height="50"
-                      alt=""
-                      loading="lazy"
-                  />
-                  <small>Fresnillo</small>
-              </a>
-              <!-- Right Side Of Navbar -->
-              <ul class="navbar-nav ml-auto">
-                  <!-- Authentication Links -->
-                  @guest
-                      <!-- @if (Route::has('login'))
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                          </li>
-                      @endif
+                <!-- Collapsible wrapper -->
+                <div
+                class="collapse navbar-collapse justify-content-center"
+                id="navbarCenteredExample"
+                >
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="/img/logo-gestion.jpeg"
+                        class="me-2"
+                        height="50"
+                        alt=""
+                        loading="lazy"
+                    />
+                    <small>Fresnillo</small>
+                </a>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <!-- @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
 
-                      @if (Route::has('register'))
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                          </li>
-                      @endif -->
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif -->
 
-                  @else
+                    @else
 
-                      <li class="nav-item dropdown">
-                          <a
-                              class="nav-link dropdown-toggle"
-                              href="#"
-                              id="navbarDropdownMenuLink"
-                              role="button"
-                              data-mdb-toggle="dropdown"
-                              aria-expanded="false"
-                              v-pre
-                          >{{ Auth::user()->name }}</a>
-                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li>
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
-                                      onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();">
-                                      Cerrar Sesión
-                                  </a>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false"
+                                v-pre
+                            >{{ Auth::user()->name }}</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Cerrar Sesión
+                                    </a>
 
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                      @csrf
-                                  </form>
-                              </li>
-                            </ul>
-                      </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                                </ul>
+                        </li>
 
-                  @endguest
-              </ul>
-              </div>
-              <!-- Collapsible wrapper -->
-          </div>
-          <!-- Container wrapper -->
-      </nav>
+                    @endguest
+                </ul>
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        
+
+        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarCenteredExample"
+                aria-controls="navbarCenteredExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div
+                class="collapse navbar-collapse justify-content-center"
+                id="navbarCenteredExample"
+                >
+                <!-- Left links -->
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <!-- Navbar dropdown -->
+                    <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Dropdown
+                    </a>
+                    <!-- Dropdown menu -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                        <a class="dropdown-item" href="#">Action</a>
+                        </li>
+                        <li>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+                        >Disabled</a
+                    >
+                    </li>
+                </ul>
+                <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+            </nav>
 
       <main class="py-4">
           @yield('content')
