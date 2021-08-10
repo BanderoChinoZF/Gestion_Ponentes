@@ -68,14 +68,14 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-            'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(15);
+            'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(12);
 
         return view('Administrador.sesiones')->with('sesion',$sesion)->with('sesiones',$sesiones);
-        // return view('Administrador.sesiones')->with('sesion',$sesion)->with('sesiones',$sesiones);
     }
 
     public function showSesion($id)
     {
+        
         $sesion = SesionesModel::select(
             'idsesion',
             'fecha',
@@ -83,7 +83,31 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-            'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
+            'imagen',
+            'comentario1',
+            'comentario2',
+            'comentario3',
+            'comentario4',
+            'preg1resp1',
+            'preg1resp2',
+            'preg1resp3',
+            'preg1resp4',
+            'preg1resp5',
+            'preg2resp1',
+            'preg2resp2',
+            'preg2resp3',
+            'preg2resp4',
+            'preg2resp5',
+            'preg3resp1',
+            'preg3resp2',
+            'preg3resp3',
+            'preg3resp4',
+            'preg3resp5',
+            'preg4resp1',
+            'preg4resp2',
+            'preg4resp3',
+            'preg4resp4',
+            'preg4resp5')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
         $sesion = $sesion[0];
         return view('Administrador.sesion',compact('sesion'));
     }

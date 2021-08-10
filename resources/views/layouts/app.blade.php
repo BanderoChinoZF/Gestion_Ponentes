@@ -153,7 +153,7 @@
                     <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ request()->routeIs('Administrador.sesiones')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.sesiones') }}">Sesiones</a>
+                        <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.sesiones.index') }}">Sesiones</a>
                     </li>
                     <!-- Navbar dropdown -->
                     {{-- <li class="nav-item dropdown">
