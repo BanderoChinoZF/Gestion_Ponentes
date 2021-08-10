@@ -31,7 +31,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Administrador.inicio');
 
 Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones');
+Route::get('/Administrador/sesiones/{id}', [AdminController::class, 'showSesion'])->name('Administrador.showSesion');
 Route::post('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesion');
+
 
 //
 Route::get('/Tallerista/inicio', [App\Http\Controllers\TalleristaController::class, 'index'])->name('Tallerista.inicio');
