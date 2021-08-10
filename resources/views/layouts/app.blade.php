@@ -35,6 +35,9 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
+    {{-- tailwind --}}
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -147,13 +150,13 @@
                 <!-- Left links -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                        <a class="{{ request()->routeIs('Administrador.sesiones')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.sesiones') }}">Sesiones</a>
                     </li>
                     <!-- Navbar dropdown -->
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
                         href="#"
@@ -177,12 +180,12 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                         </li>
                     </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
                         >Disabled</a
                     >
-                    </li>
+                    </li> --}}
                 </ul>
                 <!-- Left links -->
                 </div>

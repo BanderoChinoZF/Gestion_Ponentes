@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,10 @@ Route::get('/prueba', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //
-Route::get('/Administrador/inicio', [App\Http\Controllers\AdminController::class, 'index'])->name('Administrador.inicio');
+Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Administrador.inicio');
+
+Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones');
+Route::post('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesion');
 
 //
 Route::get('/Tallerista/inicio', [App\Http\Controllers\TalleristaController::class, 'index'])->name('Tallerista.inicio');
