@@ -11,8 +11,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                  <div class="row text-center">
-                    <h5 class="text-center">Buscar Asistente</h5>
+                  <div class="card-body font-bold text-lg text-center text-center">
+                    <h5>Buscar Asistente</h5>
                   </div>
                   <div class="row">
                     <div class="col-md-4">
@@ -21,7 +21,7 @@
                       <input type="text" id="input_asistente" class="form-control">
                     </div>
                     <div class="col-md-3">
-                      <button type="button" class="btn btn-primary" onclick="obtenerAsistente()">Buscar</button>
+                      <button type="button" class="btn text-light" onclick="obtenerAsistente()" style="background-color: #da2c4e;">Buscar</button>
                     </div>
                     <div class="col-md-2">
                     </div>

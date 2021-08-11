@@ -9,10 +9,6 @@
 
     <title>Fresnillo ::: Gestion De Sesiones</title>
 
-    <!-- Estilos Propios CSS -->
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -28,22 +24,24 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
     rel="stylesheet"
     />
-
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-
+    
     {{-- tailwind --}}
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-
+    <!-- Estilos Propios CSS -->
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #da2c4e">
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Toggle button -->
@@ -72,7 +70,7 @@
                         alt=""
                         loading="lazy"
                     />
-                    <small>Fresnillo</small>
+                    <small class="text-bold text-light">Fresnillo</small>
                 </a>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -94,7 +92,7 @@
 
                         <li class="nav-item dropdown">
                             <a
-                                class="nav-link dropdown-toggle"
+                                class="nav-link dropdown-toggle text-bold text-light"
                                 href="#"
                                 id="navbarDropdownMenuLink"
                                 role="button"
@@ -150,10 +148,10 @@
                 <!-- Left links -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
+                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active':'nav-link' }}" aria-current="page" href="{{ route('Administrador.sesiones.index') }}">Sesiones</a>
+                        <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.sesiones.index') }}">Sesiones</a>
                     </li>
                     <!-- Navbar dropdown -->
                     {{-- <li class="nav-item dropdown">

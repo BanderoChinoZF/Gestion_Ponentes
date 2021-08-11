@@ -2,6 +2,7 @@
 @section('content')
   
 <div class="card">
+  <a href="{{ route('Administrador.sesiones.index')}}" class="btn"> GO BACK</a>
     <div class="card-header text-center">
         <div class="card-title">Sesion {{$sesion->idsesion}} </div>
         <div class="card-subtitle">Tallerista: {{$sesion->tallerista}} </div>

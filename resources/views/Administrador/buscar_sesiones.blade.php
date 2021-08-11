@@ -9,7 +9,8 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h2>Sesiones del tallerista ZZZZ</h2>
+            <a href="{{ route('Administrador.sesiones.index')}}" class="btn"> GO BACK</a>
+            <h2 class="font-sans text-3xl font-bold">Sesiones de el(la) tallerista {{$tallerista->nombre_tallerista}}</h2>
         </div>
         <div class="card-body">
             {{-- cards --}}

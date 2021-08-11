@@ -149,15 +149,17 @@ class AdminController extends Controller
     public function buscar($tallerista){
 
         $resultados = SesionesModel::select(
-                'idsesion',
-                'fecha',
-                'status',
-                'tallerista.nombre_tallerista AS tallerista',
-                'num_asistentes',
-                'tiposesion',
-                'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(6);
+            'idsesion',
+            'fecha',
+            'status',
+            'tallerista.nombre_tallerista AS tallerista',
+            'num_asistentes',
+            'tiposesion',
+            'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(6);
+
+        $tallerista = Tallerista::find($tallerista);
         
-        return view('Administrador.buscar_sesiones')->with('resultados',$resultados);
+        return view('Administrador.buscar_sesiones')->with('resultados',$resultados)->with('tallerista',$tallerista);
     }
 
 
