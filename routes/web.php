@@ -32,7 +32,7 @@ Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Ad
 
 Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones.index');
 Route::get('/Administrador/sesiones/{id}', [AdminController::class, 'showSesion'])->name('Administrador.sesiones.showSesion');
-Route::post('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones.sesion');
+Route::get('/Administrador/sesiones/buscar/{tallerista}', [AdminController::class, 'buscar'])->name('Administrador.sesiones.buscar');
 
 
 //

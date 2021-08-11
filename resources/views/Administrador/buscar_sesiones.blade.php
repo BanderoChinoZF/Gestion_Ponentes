@@ -2,20 +2,19 @@
 
 @section('content')
 
-<br>
-<br>
+<h1>
+    ------
+</h1>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="card">
-        <div class="card-header text-center">
-          <h1> Sesiones </h1>
+    <div class="card">
+        <div class="card-header">
+            <h2>Sesiones del tallerista ZZZZ</h2>
         </div>
         <div class="card-body">
-          {{-- cards --}}
+            {{-- cards --}}
           <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach ($sesiones as $a)
+            @foreach ($resultados as $a)
               <div class="col">
                 <div class="card h-100">
                   {{-- <img src="{{ $a->idsesion }}" class="card-img-top" alt="Sesion sin imagen"> --}}
@@ -32,39 +31,13 @@
               </div>
             @endforeach
           </div>
-          <br><br><br>
+          {{$resultados->links()}}
           {{-- cards --}}
         </div>
-        <div class="card-footer">
-          {{$sesiones->links()}}
-        </div>
-      </div>
     </div>
-    <div class="col col-lg-2">
-      <div class="card">
-        <div class="card-header bg-dark text-light">
-          Talleristas
-        </div>
-        @foreach ($talleristas as $tallerista)
-        <div class="card-header">
-          <a href="{{ route('Administrador.sesiones.buscar',$tallerista->id)}}">
-            {{$tallerista->nombre_tallerista}}
-          </a>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
+
 </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+
 
 @endsection

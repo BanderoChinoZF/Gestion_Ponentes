@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TalleristaModel extends Model
+class Respuesta extends Model
 {
-    // use HasFactory;
+    use HasFactory;
+
     //AQUI SE DECLARA EL NOMBRE DE LA TABLA QUE ESTA EN MySQL
-    protected $table = 'tallerista';
+    protected $table = 'respuesta';
 
     //DECLARAMOS LA LLAVE PRIMARIA DE LA TABLA.
     protected $primarykey = 'id';
@@ -18,5 +19,4 @@ class TalleristaModel extends Model
 
     //AQUI LOS ELEMENTOS DE LA TABLA.
     protected $guarded = [];
-
 }

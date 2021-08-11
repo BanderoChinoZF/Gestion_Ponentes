@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Datos;
+use App\Models\Pregunta;
+use App\Models\Respuesta;
 use App\Models\SesionesModel;
+use App\Models\Tallerista;
 
 class AdminController extends Controller
 {
@@ -45,23 +48,11 @@ class AdminController extends Controller
         return view('Administrador.inicio')->with('empleados',$empleados)->with('empleados_a',$empleados_a);
     }
 
-    public function sesiones(Request $request)
-    {
-        if($request->idsesion){
-            $id = $request->idsesion;
-            $sesion = SesionesModel::select(
-                'idsesion',
-                'fecha',
-                'status',
-                'tallerista.nombre_tallerista AS tallerista',
-                'num_asistentes',
-                'tiposesion',
-                'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
-        }else{
-            $sesion = null;
-        }
+    public function sesiones(){
 
-        $sesiones = SesionesModel::select(
+        $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
+
+        $resultados = SesionesModel::select(
             'idsesion',
             'fecha',
             'status',
@@ -70,12 +61,33 @@ class AdminController extends Controller
             'tiposesion',
             'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(12);
 
-        return view('Administrador.sesiones')->with('sesion',$sesion)->with('sesiones',$sesiones);
+        // if($request->tallerista){
+        //     $busqueda = $request->tallerista;
+        //     $tallerista = '%'.$busqueda.'%';
+        //     $resultados = SesionesModel::select(
+        //         'idsesion',
+        //         'fecha',
+        //         'status',
+        //         'tallerista.nombre_tallerista AS tallerista',
+        //         'num_asistentes',
+        //         'tiposesion',
+        //         'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.nombre_tallerista','like',$tallerista)->paginate(3);
+        // }elseif($request->idsesion){
+        //     $busqueda = $request->idsesion;
+        //     $resultados = SesionesModel::select(
+        //         'idsesion',
+        //         'fecha',
+        //         'status',
+        //         'tallerista.nombre_tallerista AS tallerista',
+        //         'num_asistentes',
+        //         'tiposesion',
+        //         'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$busqueda)->get();
+        // }
+
+        return view('Administrador.sesiones')->with('sesiones',$resultados)->with('talleristas',$talleristas)->with('busqueda',$resultados);
     }
 
-    public function showSesion($id)
-    {
-        
+    public function showSesion($id){
         $sesion = SesionesModel::select(
             'idsesion',
             'fecha',
@@ -87,29 +99,65 @@ class AdminController extends Controller
             'comentario1',
             'comentario2',
             'comentario3',
-            'comentario4',
-            'preg1resp1',
-            'preg1resp2',
-            'preg1resp3',
-            'preg1resp4',
-            'preg1resp5',
-            'preg2resp1',
-            'preg2resp2',
-            'preg2resp3',
-            'preg2resp4',
-            'preg2resp5',
-            'preg3resp1',
-            'preg3resp2',
-            'preg3resp3',
-            'preg3resp4',
-            'preg3resp5',
-            'preg4resp1',
-            'preg4resp2',
-            'preg4resp3',
-            'preg4resp4',
-            'preg4resp5')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
+            'comentario4')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
+
+        $datas1 = SesionesModel::select(
+            'preg1resp1 AS respuesta_1',
+            'preg1resp2 AS respuesta_2',
+            'preg1resp3 AS respuesta_3',
+            'preg1resp4 AS respuesta_4',
+            'preg1resp5 AS respuesta_5')->where('idsesion',$id)->get();
+            
+        $datas2 = SesionesModel::select(
+            'preg2resp1 AS respuesta_1',
+            'preg2resp2 AS respuesta_2',
+            'preg2resp3 AS respuesta_3',
+            'preg2resp4 AS respuesta_4',
+            'preg2resp5 AS respuesta_5')->where('idsesion',$id)->get();
+        
+        $datas3 = SesionesModel::select(
+            'preg3resp1 AS respuesta_1',
+            'preg3resp2 AS respuesta_2',
+            'preg3resp3 AS respuesta_3',
+            'preg3resp4 AS respuesta_4',
+            'preg3resp5 AS respuesta_5')->where('idsesion',$id)->get();
+
+        $datas4 = SesionesModel::select(
+            'preg4resp1 AS respuesta_1',
+            'preg4resp2 AS respuesta_2',
+            'preg4resp3 AS respuesta_3',
+            'preg4resp4 AS respuesta_4',
+            'preg4resp5 AS respuesta_5')->where('idsesion',$id)->get();
+
+        $preguntas = Pregunta::all();
+        $respuestas = Respuesta::all();
+
+        $data1 = $datas1[0];
+        $data2 = $datas2[0];
+        $data3 = $datas3[0];
+        $data4 = $datas4[0];
+
         $sesion = $sesion[0];
-        return view('Administrador.sesion',compact('sesion'));
+        
+        return view('Administrador.sesion',compact('sesion'))
+        ->with('data1',$data1)
+        ->with('data2',$data2)
+        ->with('data3',$data3)
+        ->with('data4',$data4)->with('preguntas',$preguntas)->with('respuestas',$respuestas);
+    }
+
+    public function buscar($tallerista){
+
+        $resultados = SesionesModel::select(
+                'idsesion',
+                'fecha',
+                'status',
+                'tallerista.nombre_tallerista AS tallerista',
+                'num_asistentes',
+                'tiposesion',
+                'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(6);
+        
+        return view('Administrador.buscar_sesiones')->with('resultados',$resultados);
     }
 
 
