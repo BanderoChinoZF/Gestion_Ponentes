@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    
+
+    <style>
+        #sesiones{
+            font-family: 'Courier New', Courier, monospace;
+            border-collapse: collapse;
+            width: 100;
+        }
+
+        #sesiones td, #sesiones th{
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #sesiones th{
+            padding-bottom: 12px;
+            padding-top: 12px;
+            text-align: left;
+            /* background-color: #da2c4e; */
+            background-color: black;
+            color: #ddd 
+        }
+
+        .caption{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            border-collapse: collapse;
+            width: 300;
+            /* background-color:#da2c4e; */
+            padding: 30px;
+        }
+    </style>
+
+    <title>Exportar a PDF</title>
+</head>
+<body>
+    <table  id="sesiones">
+        <caption class="caption">Lista de sesiones</caption>
+        <thead>
+            <tr>
+                <th>Id sesion</th>
+                <th>fecha</th>
+                <th>status</th>
+                <th>tallerista</th>
+                <th>num_asistentes</th>
+                <th>tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+                            <tr>
+                    
+                    <td>1</td>
+                    <td>28/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>2</td>
+                    <td>27/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>9</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>3</td>
+                    <td>28/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>4</td>
+                    <td>28/07/2021</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>15</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>5</td>
+                    <td>27/07/2021</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>6</td>
+                    <td>02/08/21</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>19</td>
+                    <td>pendiente</td>
+                </tr>
+                            <tr>
+                    
+                    <td>7</td>
+                    <td>02/08/21</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>7</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>8</td>
+                    <td>04/08/21</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>9</td>
+                    <td>2021/08/04</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>10</td>
+                    <td>2021/08/04</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>11</td>
+                    <td>2021/08/04</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>12</td>
+                    <td>2021/08/04</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>Empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>13</td>
+                    <td>2021/08/05</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>Sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>14</td>
+                    <td>2021/08/06</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>15</td>
+                    <td>2021/08/09</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>16</td>
+                    <td>2021/08/09</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                                        <tr>
+                    
+                    <td>1</td>
+                    <td>28/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>2</td>
+                    <td>27/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>9</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>3</td>
+                    <td>28/07/2021</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>4</td>
+                    <td>28/07/2021</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>15</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>5</td>
+                    <td>27/07/2021</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>6</td>
+                    <td>02/08/21</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>19</td>
+                    <td>pendiente</td>
+                </tr>
+                            <tr>
+                    
+                    <td>7</td>
+                    <td>02/08/21</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>7</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>8</td>
+                    <td>04/08/21</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>9</td>
+                    <td>2021/08/04</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>10</td>
+                    <td>2021/08/04</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>11</td>
+                    <td>2021/08/04</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>12</td>
+                    <td>2021/08/04</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>Empleado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>13</td>
+                    <td>2021/08/05</td>
+                    <td>terminado</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>Sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>14</td>
+                    <td>2021/08/06</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>15</td>
+                    <td>2021/08/09</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                            <tr>
+                    
+                    <td>16</td>
+                    <td>2021/08/09</td>
+                    <td>pendiente</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>sindicalizado</td>
+                </tr>
+                    </tbody>
+    </table>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

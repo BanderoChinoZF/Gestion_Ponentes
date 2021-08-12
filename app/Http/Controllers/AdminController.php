@@ -9,6 +9,10 @@ use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\SesionesModel;
 use App\Models\Tallerista;
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SesionesExport;
 
 class AdminController extends Controller
 {
@@ -162,7 +166,40 @@ class AdminController extends Controller
         return view('Administrador.buscar_sesiones')->with('resultados',$resultados)->with('tallerista',$tallerista);
     }
 
+    public function exportpdf(){
+        
+        $resultados = SesionesModel::select(
+        'idsesion',
+        'fecha',
+        'status',
+        'tallerista.nombre_tallerista AS tallerista',
+        'num_asistentes',
+        'tiposesion',
+        'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->get();
 
+
+        return view('Administrador.exportar-pdf', compact('resultados'));
+    }
+
+    public function descargarpdf(){
+        
+        $resultados = SesionesModel::select(
+        'idsesion',
+        'fecha',
+        'status',
+        'tallerista.nombre_tallerista AS tallerista',
+        'num_asistentes',
+        'tiposesion',
+        'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->get();
+
+        $pdf = PDF::loadView('Administrador.exportar-pdf',compact('resultados'));
+
+        return $pdf->download('sesiones.pdf');
+    }
+
+    public function exportarExcel(){
+        return Excel::download(new SesionesExport, 'sesiones.xlsx');
+    }
     //------------------------------------------------------------------------------------------------------------
     
 }

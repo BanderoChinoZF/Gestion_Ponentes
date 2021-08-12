@@ -40,7 +40,6 @@
 </head>
 <body>
     <div id="app">
-
         <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #da2c4e">
             <!-- Container wrapper -->
             <div class="container-fluid">
@@ -64,9 +63,10 @@
                 >
                 <a class="navbar-brand" href="#">
                     <img
-                        src="/img/logo-gestion.jpeg"
+                        src="{{ asset('img/logo-gestion-sinfondo.png')}}"
                         class="me-2"
-                        height="50"
+                        height="40"
+                        width="40"
                         alt=""
                         loading="lazy"
                     />
@@ -115,6 +115,73 @@
                                 </ul>
                         </li>
 
+                        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+                            <!-- Container wrapper -->
+                            <div class="container-fluid">
+                                <!-- Toggle button -->
+                                <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-mdb-toggle="collapse"
+                                data-mdb-target="#navbarCenteredExample"
+                                aria-controls="navbarCenteredExample"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                                >
+                                <i class="fas fa-bars"></i>
+                                </button>
+                
+                                <!-- Collapsible wrapper -->
+                                <div
+                                class="collapse navbar-collapse justify-content-center"
+                                id="navbarCenteredExample"
+                                >
+                                <!-- Left links -->
+                                <ul class="navbar-nav mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.sesiones.index') }}">Sesiones</a>
+                                    </li>
+                                    <!-- Navbar dropdown -->
+                                    {{-- <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="navbarDropdown"
+                                        role="button"
+                                        data-mdb-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Dropdown
+                                    </a>
+                                    <!-- Dropdown menu -->
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        </li>
+                                        <li>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        </li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        </li>
+                                    </ul>
+                                    </li> --}}
+                                    {{-- <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+                                        >Disabled</a
+                                    >
+                                    </li> --}}
+                                </ul>
+                                <!-- Left links -->
+                                </div>
+                                <!-- Collapsible wrapper -->
+                            </div>
+                            <!-- Container wrapper -->
+                        </nav>
                     @endguest
                 </ul>
                 </div>
@@ -123,82 +190,12 @@
             <!-- Container wrapper -->
         </nav>
         
-
-        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
-            <!-- Container wrapper -->
-            <div class="container-fluid">
-                <!-- Toggle button -->
-                <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarCenteredExample"
-                aria-controls="navbarCenteredExample"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                >
-                <i class="fas fa-bars"></i>
-                </button>
-
-                <!-- Collapsible wrapper -->
-                <div
-                class="collapse navbar-collapse justify-content-center"
-                id="navbarCenteredExample"
-                >
-                <!-- Left links -->
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.inicio') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-lg gap-0 hover:bg-red-500" aria-current="page" href="{{ route('Administrador.sesiones.index') }}">Sesiones</a>
-                    </li>
-                    <!-- Navbar dropdown -->
-                    {{-- <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-mdb-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        Dropdown
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                        <a class="dropdown-item" href="#">Action</a>
-                        </li>
-                        <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-                        >Disabled</a
-                    >
-                    </li> --}}
-                </ul>
-                <!-- Left links -->
-                </div>
-                <!-- Collapsible wrapper -->
-            </div>
-            <!-- Container wrapper -->
-            </nav>
-
-      <main class="py-4">
-          @yield('content')
-      </main>
-
+        <main>
+            @yield('content')
+        </main>
     </div>
 
-    <br><br><br>
+
     <footer class="bg-light text-center text-white">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

@@ -33,6 +33,10 @@ Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Ad
 Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones.index');
 Route::get('/Administrador/sesiones/{id}', [AdminController::class, 'showSesion'])->name('Administrador.sesiones.showSesion');
 Route::get('/Administrador/sesiones/buscar/{tallerista}', [AdminController::class, 'buscar'])->name('Administrador.sesiones.buscar');
+    // Rutas para exportación a PDF y Excel
+Route::get('/Administrador/sesiones/exportar/pdf', [AdminController::class, 'exportpdf'])->name('Administrador.sesiones.pdf');
+Route::get('/Administrador/sesiones/descargar/pdf', [AdminController::class, 'descargarpdf'])->name('Administrador.sesiones.pdf.download');
+Route::get('/Administrador/sesiones/descargar/excel', [AdminController::class, 'exportarExcel'])->name('Administrador.sesiones.excel.download');
 
 
 //

@@ -165,6 +165,12 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-md-8 col-lg-9 col-xl-10 d-flex justify-content-end p-4">
+      <div class="btn-group" role="group">
+        <a href="{{ route('Administrador.sesiones.pdf.download') }}" class="btn" style="background-color: #da2c4e"> PDF </a>
+        <a href="{{ route('Administrador.sesiones.excel.download') }}" class="btn" style="background-color: aqua"> Excel</a>
+      </div>
+    </div>
 </div>
 
 

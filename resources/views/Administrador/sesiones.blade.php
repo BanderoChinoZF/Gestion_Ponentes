@@ -2,29 +2,26 @@
 
 @section('content')
 
-<br>
-<br>
-
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="card">
+    <div class="col-12 col-md-8 col-lg-9 col-xl-10 p-1 p-lg-4">
+      <div class="card p-1 p-lg-4">
         <div class="card-header text-center font-sans text-xl font-bold">
           SESIONES
         </div>
         <div class="card-body">
           {{-- cards --}}
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             @foreach ($sesiones as $a)
               <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 p-0">
                   {{-- <img src="{{ $a->imagen }}" class="card-img-top" alt=""> --}}
                   <img src="{{ asset('img/sin_imagen.png') }}" class="card-img-top" alt="Sesion sin imagen">
                   <div class="card-body">
                     <h5 class="card-title"><strong>Sesi&oacute;n</strong> {{ $a->idsesion }}</h5>
-                    <p class="card-text"> <strong>Tallerista</strong> {{ $a->tallerista }}</p>
+                    <strong>Tallerista</strong> {{ $a->tallerista }}
+                    <small class="text-muted">{{ $a->fecha }}</small>
                   </div>
-                  <small class="text-muted">{{ $a->fecha }}</small>
                   <div class="card-footer">
                     <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block" style="background-color: #da2c4e"> detalles</a>
                   </div>
@@ -40,8 +37,9 @@
         </div>
       </div>
     </div>
-    <div class="col col-lg-2">
-      <div class="card">
+  
+    <div class="col col-md-4 col-lg-3 col-xl-2 p-1 p-lg-4">
+      <div class="card p-0 p-md-2">
         <div class="card-header text-light text-center" style="background-color: #da2c4e;">
           <h2 class="font-sans text-lg"> Talleristas </h2>
         </div>
@@ -55,6 +53,12 @@
       </div>
     </div>
   </div>
-</div>
 
+  <div class="col-12 col-md-8 col-lg-9 col-xl-10 d-flex justify-content-end p-4">
+    <div class="btn-group" role="group">
+      <a href="{{ route('Administrador.sesiones.pdf.download') }}" class="btn" style="background-color: #da2c4e"> PDF </a>
+      <a href="{{ route('Administrador.sesiones.excel.download') }}" class="btn" style="background-color: aqua"> Excel</a>
+    </div>
+  </div>
+</div>
 @endsection
