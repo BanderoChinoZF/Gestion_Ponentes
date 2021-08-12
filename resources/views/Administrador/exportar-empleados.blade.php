@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        #sesiones{
+        #tabla{
             font-family: 'Courier New', Courier, monospace;
             border-collapse: collapse;
             width: 100;
         }
 
-        #sesiones td, #sesiones th{
+        #tabla td, #tabla th{
             border: 1px solid #ddd;
             padding: 8px;
         }
 
-        #sesiones th{
+        #tabla th{
             padding-bottom: 12px;
             padding-top: 12px;
             text-align: left;
@@ -37,31 +37,27 @@
         }
     </style>
 
-    {{-- <title>Exportar a PDF</title> --}}
+    {{-- <title>Exportar a Excel</title> --}}
 </head>
 <body>
-    <table  id="sesiones">
-        <caption class="caption">Lista de sesiones</caption>
+    <table  id="tabla">
+        <caption class="caption">Datos</caption>
         <thead>
             <tr>
-                <th>Id sesion</th>
-                <th>Fecha</th>
-                <th>Estatus</th>
-                <th>Tallerista</th>
-                <th>N&uacute;mero de<br>asistentes</th>
-                <th>Tipo</th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Ubicaci&oacute;n</th>
+                <th>Departamento</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($resultados as $item)
                 <tr>
                     {{-- <th scope="row">{{$item->idsesion}}</th> --}}
-                    <td>{{$item->idsesion}}</td>
-                    <td>{{$item->fecha}}</td>
-                    <td>{{$item->status}}</td>
-                    <td>{{$item->tallerista}}</td>
-                    <td>{{$item->num_asistentes}}</td>
-                    <td>{{$item->tiposesion}}</td>
+                    <td>{{$item->id_empleado}}</td>
+                    <td>{{$item->nombre_completo}}</td>
+                    <td>{{$item->ubicacion}}</td>
+                    <td>{{$item->departamento}}</td>
                 </tr>
             @endforeach
         </tbody>

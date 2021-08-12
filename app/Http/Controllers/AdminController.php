@@ -13,6 +13,7 @@ use App\Models\Tallerista;
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SesionesExport;
+use App\Exports\DatosExport;
 
 class AdminController extends Controller
 {
@@ -52,6 +53,38 @@ class AdminController extends Controller
         return view('Administrador.inicio')->with('empleados',$empleados)->with('empleados_a',$empleados_a);
     }
 
+    // Muestra el diseño que tendra la tabla al ser exportada
+    public function exportarEmpleados(){
+        $resultados = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
+
+        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
+
+        return view('Administrador.exportar-empleados',compact('resultados'));
+    }
+    //Descargar el archivo pdf
+    public function datosPdf(){
+        $resultados = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
+
+        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
+
+        return $pdf->download('empleados.pdf');
+    }
+
+    //Descargar el archivo excel de empleados 
+    public function datosExcel(){
+        return Excel::download(new DatosExport, 'datos.xlsx');
+    }
+
     public function sesiones(){
 
         $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
@@ -65,28 +98,6 @@ class AdminController extends Controller
             'tiposesion',
             'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(12);
 
-        // if($request->tallerista){
-        //     $busqueda = $request->tallerista;
-        //     $tallerista = '%'.$busqueda.'%';
-        //     $resultados = SesionesModel::select(
-        //         'idsesion',
-        //         'fecha',
-        //         'status',
-        //         'tallerista.nombre_tallerista AS tallerista',
-        //         'num_asistentes',
-        //         'tiposesion',
-        //         'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.nombre_tallerista','like',$tallerista)->paginate(3);
-        // }elseif($request->idsesion){
-        //     $busqueda = $request->idsesion;
-        //     $resultados = SesionesModel::select(
-        //         'idsesion',
-        //         'fecha',
-        //         'status',
-        //         'tallerista.nombre_tallerista AS tallerista',
-        //         'num_asistentes',
-        //         'tiposesion',
-        //         'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$busqueda)->get();
-        // }
 
         return view('Administrador.sesiones')->with('sesiones',$resultados)->with('talleristas',$talleristas)->with('busqueda',$resultados);
     }
@@ -159,7 +170,7 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-            'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(6);
+            'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(8);
 
         $tallerista = Tallerista::find($tallerista);
         

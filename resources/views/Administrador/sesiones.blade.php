@@ -15,7 +15,7 @@
             @foreach ($sesiones as $a)
               <div class="col">
                 <div class="card h-100 p-0">
-                  {{-- <img src="{{ $a->imagen }}" class="card-img-top" alt=""> --}}
+                  {{-- Se coloca la imagen sin imagen por default --}}
                   <img src="{{ asset('img/sin_imagen.png') }}" class="card-img-top" alt="Sesion sin imagen">
                   <div class="card-body">
                     <h5 class="card-title"><strong>Sesi&oacute;n</strong> {{ $a->idsesion }}</h5>

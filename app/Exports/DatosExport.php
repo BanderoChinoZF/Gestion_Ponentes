@@ -3,17 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Datos;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class DatosExport implements FromCollection
+class DatosExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return Datos::all();
+        return view('Administrador.exportar-empleados', [
+            'resultados' => Datos::select(
+                'id_empleado',
+                'nombre_completo',
+                'ubicacion',
+                'departamento',
+                'idsesion')->orderBy('id_empleado','ASC')->get()
+        ]);
     }
 }

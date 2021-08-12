@@ -29,12 +29,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //
 Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Administrador.inicio');
+Route::get('/Administrador/inicio/exportar/empleados', [AdminController::class, 'exportarEmpleados'])->name('Administrador.inicio.exportar');
+Route::get('/Administrador/inicio/descargar/pdf', [AdminController::class, 'datosPdf'])->name('Administrador.inicio.pdf');
+Route::get('/Administrador/inicio/descargar/excel', [AdminController::class, 'datosExcel'])->name('Administrador.inicio.excel');
 
 Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones.index');
 Route::get('/Administrador/sesiones/{id}', [AdminController::class, 'showSesion'])->name('Administrador.sesiones.showSesion');
 Route::get('/Administrador/sesiones/buscar/{tallerista}', [AdminController::class, 'buscar'])->name('Administrador.sesiones.buscar');
     // Rutas para exportación a PDF y Excel
-Route::get('/Administrador/sesiones/exportar/pdf', [AdminController::class, 'exportpdf'])->name('Administrador.sesiones.pdf');
+Route::get('/Administrador/sesiones/exportar/sesiones', [AdminController::class, 'exportpdf'])->name('Administrador.sesiones.pdf');
 Route::get('/Administrador/sesiones/descargar/pdf', [AdminController::class, 'descargarpdf'])->name('Administrador.sesiones.pdf.download');
 Route::get('/Administrador/sesiones/descargar/excel', [AdminController::class, 'exportarExcel'])->name('Administrador.sesiones.excel.download');
 
