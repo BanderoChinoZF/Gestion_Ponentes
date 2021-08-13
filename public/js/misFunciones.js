@@ -1,4 +1,3 @@
-
 //DECLARAMOS NUESTRAS FUNCION QUE CARGARA LOS DATOS
 //EN CUANTO SE CARGE LA PAGINA
 
@@ -47,8 +46,8 @@ function unaTablaAsistente(datos){
         <th scope="row">${datos.id_empleado}</th>
         <td scope="col">${datos.nombre_completo}</td>
         <td scope="col">${datos.ubicacion}</td>
-        <td scope="col">${datos.departamento}</td>
-        <td scope="col"><span class="badge bg-success">Con Asistencia</span></td>
+        <td scope="col" class="d-none d-md-table-cell">${datos.departamento}</td>
+        <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-success">Con Asistencia</span></td>
       </tr>
     `;
 
@@ -58,8 +57,8 @@ function unaTablaAsistente(datos){
         <th scope="row">${datos.id_empleado}</th>
         <td scope="col">${datos.nombre_completo}</td>
         <td scope="col">${datos.ubicacion}</td>
-        <td scope="col">${datos.departamento}</td>
-        <td scope="col"><span class="badge bg-danger">Sin Asistencia</span></td>
+        <td scope="col" class="d-none d-md-table-cell">${datos.departamento}</td>
+        <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-danger">Sin Asistencia</span></td>
       </tr>
     `;
 
@@ -95,8 +94,8 @@ function tabla(datos){
         <th scope="row">${asistente.id_empleado}</th>
         <td scope="col">${asistente.nombre_completo}</td>
         <td scope="col">${asistente.ubicacion}</td>
-        <td scope="col">${asistente.departamento}</td>
-        <td scope="col">${asistente.idsesion}</td>
+        <td scope="col" class="d-none d-md-table-cell">${asistente.departamento}</td>
+        <td scope="col" class="d-none d-md-table-cell">${asistente.idsesion}</td>
       </tr>
       `;
     }else {

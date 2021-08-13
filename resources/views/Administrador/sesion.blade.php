@@ -2,12 +2,16 @@
 @section('content')
   
 <div class="card p-1 p-md-4">
-  <div class="card-header p-0">
-    <div >
-      <a href="{{ route('Administrador.sesiones.index')}}" class="btn"> GO BACK</a>
+  <div class="card-header row p-0">
+    <div class=" col-3">
+      <a href="{{ route('Administrador.sesiones.index')}}" 
+        class="btn btn-small text-sm normal-case text-light" 
+        style="background-color: #da2c4e; border-radius: 15px;">
+        Volver
+      </a>
     </div>
-    <div class="text-center">Sesion {{$sesion->idsesion}} </div>
-    <div class="text-center">Tallerista: {{$sesion->tallerista}} </div>
+    <div class="text-center text-lg font-bold col-6 col-lg-3">Sesion {{$sesion->idsesion}} </div>
+    <div class="text-center col-12 col-sm-6 text-lg font-bold">Tallerista: {{$sesion->tallerista}} </div>
   </div>
   <div class="card-body">
     <div class="row">

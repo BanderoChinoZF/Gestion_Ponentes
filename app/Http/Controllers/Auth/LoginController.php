@@ -23,6 +23,7 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
+
       if(Auth()->user()->tipo_usuario == 1)
       {
         return '/Administrador/inicio';

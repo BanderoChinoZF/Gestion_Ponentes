@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-<br>
 <!--
     you can substitue the span of reauth email for a input with the email and
     include the remember me checkbox
@@ -33,16 +31,15 @@
                     @enderror
 
                     @if (Route::has('password.request'))
-                        <div class="forgot">
+                        {{-- <div class="forgot">
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('¿Olvidaste tu contraseña?') }}
                             </a>
-                        </div>
-
+                        </div> --}}
                     @endif
 
                     <div class="space">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Iniciar Sesion</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" style="background-color: #da2c4e; border-radius: 15px;">Iniciar Sesion</button>
                     </div>
                 </form><!-- /form -->
         </div><!-- /card-container -->

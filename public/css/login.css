@@ -245,11 +245,11 @@ table.dataTable thead .sorting_desc_disabled {
   transition: all 0.218s;
 }
 
-.btn.btn-signin:hover,
+/* .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
   background-color: rgb(12, 97, 33);
-}
+} */
 
 .forgot-password {
   color: rgb(104, 145, 162);
@@ -267,7 +267,7 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 .color-base:hover{
-  background-color: rgb(238, 203, 46) !important;
+  background-color: rgb(88, 6, 13) !important;
 }
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------*/
