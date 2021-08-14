@@ -120,8 +120,8 @@
                     <th scope="col">ID Empleado</th>
                     <th scope="col">Nombre Empleado</th>
                     <th scope="col">Ubicación</th>
-                    <th scope="col">Departamento</th>
-                    <th scope="col">Status</th>
+                    <th scope="col" class="d-none d-md-table-cell">Departamento</th>
+                    <th scope="col" class="d-none d-md-table-cell">Status</th>
                   </tr>
                 </thead>
                 <tbody id="contenido_no_asistieron">

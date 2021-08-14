@@ -23,19 +23,21 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-
-      if(Auth()->user()->tipo_usuario == 1)
-      {
-        return '/Administrador/inicio';
-      }else if(Auth()->user()->tipo_usuario == 2)
-      {
-        return '/Tallerista/inicio';
-      }else if(Auth()->user()->tipo_usuario == 3)
-      {
-        return '/RecursosHumanos/inicio';
+      if( Auth()->user() ){
+        if(Auth()->user()->tipo_usuario == 1)
+        {
+          return '/Administrador/inicio';
+        }else if(Auth()->user()->tipo_usuario == 2)
+        {
+          return '/Tallerista/inicio';
+        }else if(Auth()->user()->tipo_usuario == 3)
+        {
+          return '/RecursosHumanos/inicio';
+        }
       }
 
       return '/';
+      
     }
 
 

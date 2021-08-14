@@ -3,15 +3,18 @@
 @section('content')
 
 <div class="container p-2 p-lg-4">
-  <div class="card-header row p-0">
-    <div class=" col-3">
-      <a href="{{ route('Administrador.sesiones.index')}}" 
-        class="btn btn-small text-sm normal-case text-light" 
-        style="background-color: #da2c4e; border-radius: 15px;">
-        Volver
-      </a>
+  <div class="card-header p-0">
+    <div class="row col-10">
+      <div class="col-5 col-md-3 col-lg-2">
+        <a href="{{ route('Administrador.sesiones.index')}}" 
+          class="btn btn-small text-sm normal-case text-light" 
+          style="background-color: #da2c4e; border-radius: 15px;">
+          <i class="fas fa-caret-left"></i>
+          Volver
+        </a>
+      </div>
     </div>
-    <div class="text-center text-lg font-bold col-6">Sesiones de el(la) tallerista {{$tallerista->nombre_tallerista}} </div>
+    <div class="text-center text-lg font-bold col-12 col-md-6 col-lg-8">Sesiones de el(la) tallerista {{$tallerista->nombre_tallerista}} </div>
     {{-- <div class="text-center col-12 col-sm-6 text-lg font-bold">Tallerista: {{$sesion->tallerista}} </div> --}}
   </div>
   <div class="card-body">

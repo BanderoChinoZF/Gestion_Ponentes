@@ -147,6 +147,13 @@ class AdminController extends Controller
         $preguntas = Pregunta::all();
         $respuestas = Respuesta::all();
 
+        $asistentes = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion',$id)->orderBy('id_empleado','ASC')->get();
+
         $data1 = $datas1[0];
         $data2 = $datas2[0];
         $data3 = $datas3[0];
@@ -158,7 +165,9 @@ class AdminController extends Controller
         ->with('data1',$data1)
         ->with('data2',$data2)
         ->with('data3',$data3)
-        ->with('data4',$data4)->with('preguntas',$preguntas)->with('respuestas',$respuestas);
+        ->with('data4',$data4)->with('preguntas',$preguntas)
+        ->with('respuestas',$respuestas)
+        ->with('asistentes',$asistentes);
     }
 
     public function buscar($tallerista){

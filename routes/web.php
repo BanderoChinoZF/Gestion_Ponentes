@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,34 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
 Route::get('/', function () {
-    return view('auth.login');
+    $login = new LoginController;
+    $ruta = $login->redirectPath();
+    if($ruta != '/'){
+        switch ($ruta){
+            case '/Administrador/inicio':
+                return redirect()->route('Administrador.inicio');
+                break;
+            case '/Tallerista/inicio':
+                return redirect()->route('Tallerista.inicio');
+                break;
+            case '/RecursosHumanos/inicio':
+                return redirect()->route('RecursosHumanos.inicio');
+                break;  
+        }
+    }else{
+        return view('auth.login');
+    }
 });
+
 Route::get('/logout', function () {
     return view('auth.login');
 });
+
 Route::get('/prueba', function () {
     return view('welcome');
 });

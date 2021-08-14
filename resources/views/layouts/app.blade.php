@@ -40,7 +40,7 @@
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #da2c4e">
+            <nav class="navbar navbar-expand-lg" style="background-color: #da2c4e">
                 <!-- Container wrapper -->
                 <div class="container-fluid">
                     <!-- Toggle button -->
@@ -113,7 +113,6 @@
                 </div>
                 <!-- Container wrapper -->
             </nav>
-
             @guest
 
             @else
@@ -163,11 +162,9 @@
                     <!-- Container wrapper -->
                 </nav>
             @endguest
-            
-            <main>
-                <br><br>
+              
+            <main class="min-w-full">
                 @yield('content')
-                <br><br>
             </main>
         </div>
 
