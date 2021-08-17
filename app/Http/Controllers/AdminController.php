@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AsistentesExport;
 use Illuminate\Http\Request;
 
 use App\Models\Datos;
@@ -14,6 +15,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SesionesExport;
 use App\Exports\DatosExport;
+use SebastianBergmann\Environment\Console;
 
 class AdminController extends Controller
 {
@@ -165,12 +167,69 @@ class AdminController extends Controller
         ->with('data1',$data1)
         ->with('data2',$data2)
         ->with('data3',$data3)
-        ->with('data4',$data4)->with('preguntas',$preguntas)
+        ->with('data4',$data4)
+        ->with('preguntas',$preguntas)
         ->with('respuestas',$respuestas)
         ->with('asistentes',$asistentes);
     }
 
     public function buscar($tallerista){
+
+        $resp1 = SesionesModel::where('id',$tallerista)->sum('preg1resp1');
+        $resp2 = SesionesModel::where('id',$tallerista)->sum('preg1resp2');
+        $resp3 = SesionesModel::where('id',$tallerista)->sum('preg1resp3');
+        $resp4 = SesionesModel::where('id',$tallerista)->sum('preg1resp4');
+        $resp5 = SesionesModel::where('id',$tallerista)->sum('preg1resp5');
+
+        $pregunta_1 = [
+            'resp1' => $resp1,
+            'resp2' => $resp2,
+            'resp3' => $resp3,
+            'resp4' => $resp4,
+            'resp5' => $resp5
+        ];
+
+        $resp1 = SesionesModel::where('id',$tallerista)->sum('preg2resp1');
+        $resp2 = SesionesModel::where('id',$tallerista)->sum('preg2resp2');
+        $resp3 = SesionesModel::where('id',$tallerista)->sum('preg2resp3');
+        $resp4 = SesionesModel::where('id',$tallerista)->sum('preg2resp4');
+        $resp5 = SesionesModel::where('id',$tallerista)->sum('preg2resp5');
+
+        $pregunta_2 = [
+            'resp1' => $resp1,
+            'resp2' => $resp2,
+            'resp3' => $resp3,
+            'resp4' => $resp4,
+            'resp5' => $resp5
+        ];
+
+        $resp1 = SesionesModel::where('id',$tallerista)->sum('preg3resp1');
+        $resp2 = SesionesModel::where('id',$tallerista)->sum('preg3resp2');
+        $resp3 = SesionesModel::where('id',$tallerista)->sum('preg3resp3');
+        $resp4 = SesionesModel::where('id',$tallerista)->sum('preg3resp4');
+        $resp5 = SesionesModel::where('id',$tallerista)->sum('preg3resp5');
+
+        $pregunta_3 = [
+            'resp1' => $resp1,
+            'resp2' => $resp2,
+            'resp3' => $resp3,
+            'resp4' => $resp4,
+            'resp5' => $resp5
+        ];
+
+        $resp1 = SesionesModel::where('id',$tallerista)->sum('preg4resp1');
+        $resp2 = SesionesModel::where('id',$tallerista)->sum('preg4resp2');
+        $resp3 = SesionesModel::where('id',$tallerista)->sum('preg4resp3');
+        $resp4 = SesionesModel::where('id',$tallerista)->sum('preg4resp4');
+        $resp5 = SesionesModel::where('id',$tallerista)->sum('preg4resp5');
+
+        $pregunta_4 = [
+            'resp1' => $resp1,
+            'resp2' => $resp2,
+            'resp3' => $resp3,
+            'resp4' => $resp4,
+            'resp5' => $resp5
+        ];
 
         $resultados = SesionesModel::select(
             'idsesion',
@@ -179,11 +238,38 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-            'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(8);
+        'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(8);
+        
+        //total de sesiones
+        $cantidadSesiones = SesionesModel::where('id',$tallerista)->count();
+
+        // Obtener la cantidad de personas por sesión
+        $total = 0;
+        $datos = [];
+        foreach($resultados as $sesion){
+            $id = $sesion->idsesion;
+            $asistentes = Datos::where('idsesion',$id)->count();
+            $datos[$id] = $asistentes;
+            $total = $total + $asistentes;
+        }
+        
+        $preguntas = Pregunta::all();
+        $respuestas = Respuesta::all();
 
         $tallerista = Tallerista::find($tallerista);
-        
-        return view('Administrador.buscar_sesiones')->with('resultados',$resultados)->with('tallerista',$tallerista);
+
+        return view('Administrador.buscar_sesiones')
+            ->with('resultados',$resultados)
+            ->with('tallerista',$tallerista)
+            ->with('data1',$pregunta_1)
+            ->with('data2',$pregunta_2)
+            ->with('data3',$pregunta_3)
+            ->with('data4',$pregunta_4)
+            ->with('cantidad_sesiones',$cantidadSesiones)
+            ->with('total_asistentes',$total)
+            ->with('data4',$pregunta_4)
+            ->with('preguntas',$preguntas)
+            ->with('respuestas',$respuestas);
     }
 
     public function exportpdf(){
@@ -199,6 +285,21 @@ class AdminController extends Controller
 
 
         return view('Administrador.exportar-pdf', compact('resultados'));
+    }
+
+    // Esportar los asistentes de una sesion
+    public function exportAsistentes($id){
+
+        return Excel::download((new AsistentesExport)->fromSesion($id), 'asistentes.xlsx');
+
+        // $asistentes = Datos::select(
+        //     'id_empleado',
+        //     'nombre_completo',
+        //     'ubicacion',
+        //     'departamento',
+        //     'idsesion')->where('idsesion',$id)->orderBy('id_empleado','ASC')->get();
+
+        // return view('Administrador.exportar_asistentes', compact('asistentes'));
     }
 
     public function descargarpdf(){

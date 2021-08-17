@@ -133,7 +133,7 @@ table.dataTable thead .sorting_desc_disabled {
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 .card-container.card {
   max-width: 380px;
-  padding: 40px 40px;
+  /* padding: 40px 40px; */
 }
 
 .btn {
@@ -149,11 +149,11 @@ table.dataTable thead .sorting_desc_disabled {
 * Card component
 */
 .card {
-  background-color: #F7F7F7;
+  background-color: #ffffff;
   /* just in case there no content*/
-  padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
+  /* padding: 20px 25px 30px; */
+  /* margin: 0 auto 25px; */
+  /* margin-top: 50px; */
   /* shadows and rounded borders */
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;

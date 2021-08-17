@@ -64,6 +64,8 @@ Route::get('/Administrador/sesiones/buscar/{tallerista}', [AdminController::clas
 Route::get('/Administrador/sesiones/exportar/sesiones', [AdminController::class, 'exportpdf'])->name('Administrador.sesiones.pdf');
 Route::get('/Administrador/sesiones/descargar/pdf', [AdminController::class, 'descargarpdf'])->name('Administrador.sesiones.pdf.download');
 Route::get('/Administrador/sesiones/descargar/excel', [AdminController::class, 'exportarExcel'])->name('Administrador.sesiones.excel.download');
+    // Descargar los asistentes de x sesión
+Route::get('/Administrador/asistentes/descargar/excel/{id}', [AdminController::class, 'exportAsistentes'])->name('Administrador.asistentes.excel.download');
 
 
 //

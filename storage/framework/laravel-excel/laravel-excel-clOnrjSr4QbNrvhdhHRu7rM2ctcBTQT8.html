@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="csrf-token" content="3U97oovaWPEp4oNbAGKpkSribewKSNjA5gsB3mnJ">
 
         <title>Fresnillo ::: Gestion De Sesiones</title>
 
@@ -31,12 +31,12 @@
         
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
         
-        {{-- tailwind --}}
+        
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
         <!-- Estilos Propios CSS -->
-        <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="http://localhost/Gestion_Ponentes/public/css/login.css" rel="stylesheet">
+        <link href="http://localhost/Gestion_Ponentes/public/css/style.css" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -56,7 +56,7 @@
 
                         <a class="navbar-brand" href="#">
                             <img
-                                src="{{ asset('img/logo-gestion-sinfondo.png')}}"
+                                src="http://localhost/Gestion_Ponentes/public/img/logo-gestion-sinfondo.png"
                                 class="me-2"
                                 height="40"
                                 width="40"
@@ -68,21 +68,7 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
-                            @guest
-                                <!-- @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                @endif
-
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif -->
-
-                            @else
-                                <li class="nav-item dropdown">
+                                                            <li class="nav-item dropdown">
                                     <a
                                         class="nav-link dropdown-toggle text-bold text-light"
                                         href="#"
@@ -91,32 +77,27 @@
                                         data-mdb-toggle="dropdown"
                                         aria-expanded="false"
                                         v-pre
-                                    >{{ Auth::user()->name }}</a>
+                                    >Luis Angel</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            <a class="dropdown-item" href="http://localhost/Gestion_Ponentes/public/logout"
                                                 onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                                 Cerrar Sesión
                                             </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
+                                            <form id="logout-form" action="http://localhost/Gestion_Ponentes/public/logout" method="POST" class="d-none">
+                                                <input type="hidden" name="_token" value="3U97oovaWPEp4oNbAGKpkSribewKSNjA5gsB3mnJ">                                            </form>
                                         </li>
                                         </ul>
                                 </li>         
-                            @endguest
-                        </ul>
+                                                    </ul>
                     </div>
                     <!-- Collapsible wrapper -->
                 </div>
                 <!-- Container wrapper -->
             </nav>
-            @guest
-
-            @else
-                <nav class="navbar fixed-bottom navbar-expand text-light p-0" style="background-color: #da2c4e;">
+                            <nav class="navbar fixed-bottom navbar-expand text-light p-0" style="background-color: #da2c4e;">
                     <!-- Container wrapper -->
                     <div class="container-fluid">
                         <!-- Toggle button -->
@@ -137,21 +118,21 @@
                             <!-- Left links -->
                             <ul class="navbar-nav text-center">
                                 <li class="nav-item">
-                                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800 px-5"
+                                    <a class="nav-link text-light hover:bg-red-800 px-5"
                                         aria-current="page" 
-                                        href="{{ route('Administrador.inicio') }}">
+                                        href="http://localhost/Gestion_Ponentes/public/Administrador/inicio">
                                         <i class="fas fa-home d-inline-block"> </i>
                                         <label class="d-block text-xs">Inicio </label>
-                                        {{-- Home --}}
+                                        
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800 px-5"
+                                    <a class="nav-link text-light hover:bg-red-800 px-5"
                                         aria-current="page" 
-                                        href="{{ route('Administrador.sesiones.index') }}">
+                                        href="http://localhost/Gestion_Ponentes/public/Administrador/sesiones">
                                         <i class="fas fa-object-group d-inline-block"> </i> 
                                         <label class="d-block text-xs">Sesiones </label>
-                                        {{-- Sesiones --}}
+                                        
                                     </a>
                                 </li>
                             </ul>
@@ -161,12 +142,80 @@
                     </div>
                     <!-- Container wrapper -->
                 </nav>
-            @endguest
-              
-            <main class=" min-h-screen">
-                @yield('content')
+                          
+            <main class="min-w-full">
+                  
+<div class="card-header col-12">
+  <div class="table-responsive">
+    <table id="tabla_sesion_asistentes" class="table table-striped">
+      <caption>Asistentes a la sesi&oacute;n</caption>
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Nombre </th>
+              <th>Ubicación </th>
+              <th class="d-none d-md-table-cell">Departamento </th>
+              <th class="d-none d-md-table-cell">Id sesión </th>
+          </tr>
+      </thead>
+      <tbody>
+                  <tr>
+              <th>382 </th>
+              <td>MENDOZA BAEZ FRANCISCO GERARDO</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Suptcia. De Mantenimiento</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>460 </th>
+              <td>LUNA BOCANEGRA LUIS ALONSO</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Centauro Profundo</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>1079 </th>
+              <td>BERNAL ESTRADA GUILLERMO HORACIO</td>
+              <td>Noche Buena</td>
+              <td class="d-none d-md-table-cell">Suptcia. De Mina</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>1268 </th>
+              <td>GUERRA GARCIA MULLER FRANCISCO</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Suptcia. De Mantenimiento</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>1269 </th>
+              <td>IRIBE GARCIA FABIAN</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Almacén</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>1622 </th>
+              <td>SANCHEZ HERNANDEZ FABIAN</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Contraloría</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+                  <tr>
+              <th>2997 </th>
+              <td>GERARDO ROCHIN MARTIN ALFREDO</td>
+              <td>Caborca Son.</td>
+              <td class="d-none d-md-table-cell">Gerencia Penmont</td>
+              <td class="d-none d-md-table-cell">2</td>
+          </tr>
+              </tbody>
+    </table>
+  </div>
+</div>
+
             </main>
         </div>
+
 
         <footer class="bg-light text-center text-white">
             <!-- Copyright -->
@@ -178,9 +227,8 @@
         </footer>
 
         <!-- Scripts -->
-        @yield('scripts')
-        <script src="{{ asset('js/misFunciones.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/forDatatables.js') }}" type="text/javascript"></script>
+                <script src="http://localhost/Gestion_Ponentes/public/js/misFunciones.js" type="text/javascript"></script>
+        <script src="http://localhost/Gestion_Ponentes/public/js/forDatatables.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
@@ -196,6 +244,8 @@
         <!-- DATATABLES -->
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
         </script>
+
+
 
     </body>
 </html>

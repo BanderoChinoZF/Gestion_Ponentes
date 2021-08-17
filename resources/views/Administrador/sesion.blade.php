@@ -18,9 +18,36 @@
   </div>
   <div class="card-body">
     <div class="row">
+      {{-- Preguntas como labesl --}}
+      <div class="card-header">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Cuestionario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{$preguntas[0]->nombre_pregunta}}</td>
+            </tr>
+            <tr>
+              <td>{{$preguntas[1]->nombre_pregunta}}</td>
+            </tr>
+            <tr>
+              <td>{{$preguntas[2]->nombre_pregunta}}</td>
+            </tr>
+            <tr>
+              <td>{{$preguntas[3]->nombre_pregunta}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+
       <div class="card-header p-1 col-lg-12" id="chart1">
           {{-- Aquí van los gráficos --}}
       </div>
+      {{-- Tabla de asistentes --}}
       <div class="card-header col-12">
         <div class="table-responsive">
           <table id="tabla_sesion_asistentes" class="table table-striped">
@@ -46,6 +73,12 @@
               @endforeach
             </tbody>
           </table>
+          <div class="col-12 d-flex justify-content-end p-4">
+            <div class="btn-group" role="group">
+              <a href="{{ route('Administrador.asistentes.excel.download' , $sesion->idsesion)}}" class="btn" style="background-color: aqua">Exportar</a>
+            </div>
+          </div>
+          
         </div>
       </div>
 
@@ -158,7 +191,7 @@
           </table>
         </div>
       </div>
-
+        {{-- comentarios --}}
       <div class="card-header">
         Comentarios
         <div>{{$sesion->comentario1}}</div>
