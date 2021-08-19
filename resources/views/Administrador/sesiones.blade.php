@@ -34,10 +34,8 @@
       <div class="card-footer">
         {{$sesiones->links()}}
       </div>
-      {{-- <div class="card p-1 p-lg-4">
-      </div> --}}
     </div>
-  
+    {{-- Talleristas --}}
     <div class="col col-md-4 col-lg-3 col-xl-2 p-1 p-lg-4">
       <div class="card p-0 p-md-2">
         <div class="card-header text-light text-center" style="background-color: #da2c4e;">

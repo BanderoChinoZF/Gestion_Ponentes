@@ -69,17 +69,17 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <!-- @if (Route::has('login'))
+                                {{-- @if (Route::has('login'))
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
-                                @endif
+                                @endif --}}
 
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="{{ request()->routeIs('register')? 'nav-link active font-sans font-bold':'nav-link'}} text-light" href="{{ route('register') }}">Registrarse</a>
                                     </li>
-                                @endif -->
+                                @endif --}}
 
                             @else
                                 <li class="nav-item dropdown">
@@ -119,25 +119,13 @@
                 <nav class="navbar fixed-bottom navbar-expand text-light p-0" style="background-color: #da2c4e;">
                     <!-- Container wrapper -->
                     <div class="container-fluid">
-                        <!-- Toggle button -->
-                        <button
-                            class="navbar-toggler"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#navbarBottom"
-                            aria-controls="navbarCenteredExample"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation" >
-                            <i class="fas fa-bars"></i>
-                        </button>
-
                         <!-- Collapsible wrapper -->
                         <div class="collapse navbar-collapse justify-content-center"
                             id="navbarBottom" >
                             <!-- Left links -->
                             <ul class="navbar-nav text-center">
-                                <li class="nav-item">
-                                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800 px-5"
+                                <li class="nav-item px-4">
+                                    <a class="{{ request()->routeIs('Administrador.inicio')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
                                         aria-current="page" 
                                         href="{{ route('Administrador.inicio') }}">
                                         <i class="fas fa-home d-inline-block"> </i>
@@ -145,13 +133,30 @@
                                         {{-- Home --}}
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800 px-5"
+                                <li class="nav-item px-4">
+                                    <a class="{{ request()->routeIs('Administrador.sesiones.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
                                         aria-current="page" 
                                         href="{{ route('Administrador.sesiones.index') }}">
                                         <i class="fas fa-object-group d-inline-block"> </i> 
                                         <label class="d-block text-xs">Sesiones </label>
                                         {{-- Sesiones --}}
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item px-4">
+                                    <a class="{{ request()->routeIs('Administrador.asistentes.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
+                                        aria-current="page" 
+                                        href="{{ route('Administrador.asistentes.index') }}">
+                                        <i class="fas fa-user-tie"></i>
+                                        <label class="d-block text-xs">Empleados </label>
+                                    </a>
+                                </li> --}}
+                                <li class="nav-item px-4">
+                                    <a class="{{ request()->routeIs('Administrador.asistentes.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
+                                        aria-current="page" 
+                                        href="#"
+                                        data-mdb-toggle="modal" data-mdb-target="#filtrosModal">
+                                        <i class="fas fa-user-tie"></i>
+                                        <label class="d-block text-xs">Empleados </label>
                                     </a>
                                 </li>
                             </ul>
@@ -167,6 +172,9 @@
                 @yield('content')
             </main>
         </div>
+        {{-- @include('Administrador.modal.filtros') --}}
+        <x-pop-up/>
+        
 
         <footer class="bg-light text-center text-white">
             <!-- Copyright -->

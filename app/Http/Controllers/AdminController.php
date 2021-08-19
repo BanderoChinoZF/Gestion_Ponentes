@@ -50,43 +50,29 @@ class AdminController extends Controller
             'nombre_completo',
             'ubicacion',
             'departamento',
-            'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
+        'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
 
-        return view('Administrador.inicio')->with('empleados',$empleados)->with('empleados_a',$empleados_a);
+        $total_empleados = Datos::all()->count();
+        $total_empleados_na = Datos::where('idsesion','=',0)->count();
+        $total_empleados_a = Datos::where('idsesion','!=',0)->count();
+        $porcentaje_a = ($total_empleados_a * 100) / $total_empleados;
+        $porcentaje_a = round($porcentaje_a,2);
+
+        $porcentaje = [
+            'total' => $total_empleados,
+            'emplados_a' => $total_empleados_a,
+            'emplados_na' => $total_empleados_na,
+            'porcentaje_a' => $porcentaje_a
+        ];
+        
+        return view('Administrador.inicio')
+            ->with('empleados',$empleados)
+            ->with('empleados_a',$empleados_a)
+            ->with('porcentaje',$porcentaje);
+        
+        
     }
-
-    // Muestra el diseño que tendra la tabla al ser exportada
-    public function exportarEmpleados(){
-        $resultados = Datos::select(
-            'id_empleado',
-            'nombre_completo',
-            'ubicacion',
-            'departamento',
-            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
-
-        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
-
-        return view('Administrador.exportar-empleados',compact('resultados'));
-    }
-    //Descargar el archivo pdf
-    public function datosPdf(){
-        $resultados = Datos::select(
-            'id_empleado',
-            'nombre_completo',
-            'ubicacion',
-            'departamento',
-            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
-
-        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
-
-        return $pdf->download('empleados.pdf');
-    }
-
-    //Descargar el archivo excel de empleados 
-    public function datosExcel(){
-        return Excel::download(new DatosExport, 'datos.xlsx');
-    }
-
+    // Sesiones
     public function sesiones(){
 
         $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
@@ -270,6 +256,61 @@ class AdminController extends Controller
             ->with('data4',$pregunta_4)
             ->with('preguntas',$preguntas)
             ->with('respuestas',$respuestas);
+    }
+    // Asistentes
+    public function asistentes(Request $request ){
+        //Recibir el campo por el cual filtrar
+        $filtro = $request->filtro;
+        $valor = $request->valor;
+        return $request->all();
+        $empleados = Datos::where($filtro, $valor)->paginate(10);
+        return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
+        // if($request->filtro){
+        // }else{
+        //     return view('Administrador.empleados');
+        // }
+        
+
+    }
+
+    public function asistentesFiltros($filtro, $valor){
+        //Recibir el campo por el cual filtrar
+        $valor = str_replace('+', ' ', $valor);
+        $empleados = Datos::where($filtro, $valor)->paginate(10);
+
+        return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
+    }
+
+    // Muestra el diseño que tendra la tabla al ser exportada
+    public function exportarEmpleados(){
+        $resultados = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
+
+        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
+
+        return view('Administrador.exportar-empleados',compact('resultados'));
+    }
+    //Descargar el archivo pdf
+    public function datosPdf(){
+        $resultados = Datos::select(
+            'id_empleado',
+            'nombre_completo',
+            'ubicacion',
+            'departamento',
+            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->get();
+
+        $pdf = PDF::loadView('Administrador.exportar-empleados',compact('resultados'));
+
+        return $pdf->download('empleados.pdf');
+    }
+
+    //Descargar el archivo excel de empleados 
+    public function datosExcel(){
+        return Excel::download(new DatosExport, 'datos.xlsx');
     }
 
     public function exportpdf(){
