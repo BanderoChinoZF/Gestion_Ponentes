@@ -22,7 +22,9 @@
                   <small class="text-muted">{{ $a->fecha }}</small>
                 </div>
                 <div class="card-footer">
-                  <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block" style="background-color: #da2c4e"> detalles</a>
+                  <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block text-white normal-case" style="background-color: #da2c4e">
+                    Detalles
+                  </a>
                 </div>
               </div>
             </div>
@@ -52,10 +54,15 @@
     </div>
   </div>
 
+  {{-- Botones para descargas --}}
   <div class="col-12 col-md-8 col-lg-9 col-xl-10 d-flex justify-content-end p-4">
     <div class="btn-group" role="group">
-      <a href="{{ route('Administrador.sesiones.pdf.download') }}" class="btn" style="background-color: #da2c4e"> PDF </a>
-      <a href="{{ route('Administrador.sesiones.excel.download') }}" class="btn" style="background-color: aqua"> Excel</a>
+      <a href="{{ route('Administrador.sesiones.pdf.download') }}" class="btn text-white normal-case" style="background-color: #da2c4e">
+        <i class="far fa-file-pdf"></i> PDF 
+      </a>
+      <a href="{{ route('Administrador.sesiones.excel.download') }}" class="btn text-white normal-case" style="background-color: #107c41">
+        <i class="fas fa-file-excel"></i> Excel
+      </a>
     </div>
   </div>
 </div>

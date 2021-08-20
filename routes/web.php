@@ -68,6 +68,7 @@ Route::get('/Administrador/sesiones/descargar/excel', [AdminController::class, '
 Route::get('/Administrador/asistentes/descargar/excel/{id}', [AdminController::class, 'exportAsistentes'])->name('Administrador.asistentes.excel.download');
 //Asistentes
 Route::get('/Administrador/asistentes', [AdminController::class, 'asistentes'])->name('Administrador.asistentes.index');
+Route::get('/Administrador/asistentes/{id}', [AdminController::class, 'asistente'])->name('Administrador.asistentes.show');
 Route::get('/Administrador/asistentes/{filtro}/{valor}', [AdminController::class, 'asistentesFiltros'])->name('Administrador.asistentes.filtros');
 
 

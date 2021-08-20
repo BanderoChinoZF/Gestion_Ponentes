@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container  gy-8">
   <div class="row justify-content-center">
     {{-- Label Buscar asistente --}}
     <div class="card-body font-bold text-lg text-center text-center">
@@ -57,7 +57,6 @@
       </div>
     </div>
     {{-- Barra de porcentaje --}}
-
     <div class="row justify-content-center">
       <!-- Pills navs -->
       <ul class="nav nav-pills mb-3" id="ex1" role="tablist">
@@ -173,14 +172,37 @@
       <!-- Pills content -->
     </div>    
   </div>
-
-  <div class="col-12 col-md-8 col-lg-9 col-xl-10 d-flex justify-content-end p-4">
+    {{-- Botones para descargas --}}
+  <div class="col-12 col-md-8 col-lg-9 col-xl-12 d-flex justify-content-end p-4">
     <div class="btn-group" role="group">
       {{-- <a href="{{ route('Administrador.inicio.pdf') }}" class="btn" style="background-color: #da2c4e"> PDF </a> --}}
-      <a href="{{ route('Administrador.inicio.excel') }}" class="btn" style="background-color: aqua"> Excel</a>
+      <a href="{{ route('Administrador.inicio.excel') }}" class="btn text-white normal-case" style="background-color: #107c41">
+        <i class="fas fa-file-excel"></i> Excel
+      </a>
+    </div>
+  </div>
+  {{-- Talleristas --}}
+  <div class="col-10 offset-1">
+    <div class="py-8 text-center text-xl font-bold uppercase">Talleristas</div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        @foreach ($talleristas as $tallerista)
+            <div class="card h-100">
+                <img class="img-fluid rounded-start" src="{{ asset('img/sin_imagen.png')}}" alt="Card image cap">
+                <div class="card-body">
+                    <div class="capitalize">
+                        {{$tallerista->nombre_tallerista}}
+                    </div>
+                </div>
+                <div class="card-footer p-0">
+                    <a href="{{route('Administrador.sesiones.buscar',$tallerista->id)}}" 
+                        class="btn btn-block normal-case rounded-none bg-blue-600 hover:bg-red-600 text-white">
+                        <i class="fas fa-folder-open"> Detalles</i>
+                    </a>
+                </div>
+            </div>
+        @endforeach
     </div>
   </div>
 </div>
-
-
+<br>
 @endsection

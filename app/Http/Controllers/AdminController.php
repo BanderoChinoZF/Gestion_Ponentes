@@ -34,10 +34,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index(){
         //$empleados = Datos::orderBy('id_empleado','ASC')->paginate(15);
-
+        $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
         $empleados = Datos::select(
             'id_empleado',
             'nombre_completo',
@@ -68,9 +67,8 @@ class AdminController extends Controller
         return view('Administrador.inicio')
             ->with('empleados',$empleados)
             ->with('empleados_a',$empleados_a)
-            ->with('porcentaje',$porcentaje);
-        
-        
+            ->with('talleristas',$talleristas)
+            ->with('porcentaje',$porcentaje);  
     }
     // Sesiones
     public function sesiones(){
@@ -258,25 +256,22 @@ class AdminController extends Controller
             ->with('respuestas',$respuestas);
     }
     // Asistentes
-    public function asistentes(Request $request ){
-        //Recibir el campo por el cual filtrar
-        $filtro = $request->filtro;
-        $valor = $request->valor;
-        return $request->all();
-        $empleados = Datos::where($filtro, $valor)->paginate(10);
+    public function asistentes(){
+        $filtro = null;
+        $valor = null;
+        $empleados = Datos::select('*')->paginate(12);
         return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
-        // if($request->filtro){
-        // }else{
-        //     return view('Administrador.empleados');
-        // }
-        
+    }
 
+    public function asistente( $id ){
+        $empleado = Datos::where('id_empleado',$id)->first();
+        return view('Administrador.empleado', compact('empleado'));
     }
 
     public function asistentesFiltros($filtro, $valor){
         //Recibir el campo por el cual filtrar
-        $valor = str_replace('+', ' ', $valor);
-        $empleados = Datos::where($filtro, $valor)->paginate(10);
+        $valor = str_replace('+', ' ', $valor);//Remmplazar el '+' por un espacio
+        $empleados = Datos::where($filtro, $valor)->paginate(12);
 
         return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
     }

@@ -18,6 +18,7 @@ class PopUp extends Component
         $this->departamentos = Datos::select('departamento')->groupBy('departamento')->get();
         $this->jefes = Datos::select('jefe_inmediato')->groupBy('jefe_inmediato')->get();
         $this->puestos = Datos::select('puesto')->groupBy('puesto')->get();
+        $this->tipos = Datos::select('tipo')->groupBy('tipo')->get();
     }
 
     /**
@@ -31,6 +32,7 @@ class PopUp extends Component
         ->with('ubicaciones', $this->ubicaciones)
         ->with('departamentos', $this->departamentos)
         ->with('jefes', $this->jefes)
-        ->with('puestos', $this->puestos);
+        ->with('puestos', $this->puestos)
+        ->with('tipos', $this->tipos);;
     }
 }

@@ -48,6 +48,9 @@
                 <th>Nombre</th>
                 <th>Ubicaci&oacute;n</th>
                 <th>Departamento</th>
+                <th>Jefe inmediato</th>
+                <th>Puesto</th>
+                <th>Tipo</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +61,9 @@
                     <td>{{$item->nombre_completo}}</td>
                     <td>{{$item->ubicacion}}</td>
                     <td>{{$item->departamento}}</td>
+                    <td>{{$item->jefe_inmediato}}</td>
+                    <td>{{$item->puesto}}</td>
+                    <td>{{$item->tipo}}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -18,12 +18,7 @@ class AsistentesExport implements FromView
     public function view(): View
     {
         return view('Administrador.exportar_asistentes', [
-            'asistentes' => Datos::select(
-                'id_empleado',
-                'nombre_completo',
-                'ubicacion',
-                'departamento',
-                'idsesion')->where('idsesion',$this->id)->orderBy('id_empleado','ASC')->get()
+            'asistentes' => Datos::select('*')->where('idsesion',$this->id)->orderBy('id_empleado','ASC')->get()
         ]);
     }
 }

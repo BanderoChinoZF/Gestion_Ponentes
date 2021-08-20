@@ -2,21 +2,23 @@
 
 @section('content')
 
-<div class="container p-2 p-lg-4">
-  <div class="card-header p-0">
-    <div class="row col-10">
-      <div class="col-5 col-md-3 col-lg-2">
-        <a href="{{ route('Administrador.sesiones.index')}}" 
-          class="btn btn-small text-sm normal-case text-light" 
-          style="background-color: #da2c4e; border-radius: 15px;">
-          <i class="fas fa-caret-left"></i>
-          Volver
-        </a>
-      </div>
-    </div>
-    <div class="text-center text-lg font-bold col-12 col-md-6 col-lg-8">Sesiones de el(la) tallerista {{$tallerista->nombre_tallerista}} </div>
-    {{-- <div class="text-center col-12 col-sm-6 text-lg font-bold">Tallerista: {{$sesion->tallerista}} </div> --}}
+{{-- Encabezado --}}
+<div class="grid grid-cols-6">
+  {{-- Botón back --}}
+  <div class="rounded-full h-20 w-20 flex items-center justify-center">
+    <a href="{{ route('Administrador.sesiones.index')}}" 
+      class="btn rounded-full normal-case text-light" 
+      style="background-color: #da2c4e;">
+      <i class="far fa-arrow-alt-circle-left"></i>
+    </a>
   </div>
+  <div class="text-center text-lg font-bold flex h-20 items-center justify-center col-span-4">
+    Sesiones impartidas por {{$tallerista->nombre_tallerista}} 
+  </div>
+</div>
+
+<div class="container p-2 p-lg-4">
+
   <div class="card-body">
     {{-- cards --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

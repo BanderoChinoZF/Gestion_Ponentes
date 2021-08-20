@@ -1,21 +1,20 @@
 @extends('layouts.app')
 @section('content')
-  
-<div class="card p-2 p-md-4">
-  <div class="card-header p-0">
-    <div class="row col-10">
-      <div class="col-5 col-md-3">
-        <a href="{{ route('Administrador.sesiones.index')}}" 
-          class="btn btn-small text-sm normal-case text-light" 
-          style="background-color: #da2c4e; border-radius: 15px;">
-          <i class="fas fa-caret-left"></i>
-          Volver
-        </a>
-      </div>
-      <div class="text-center text-lg font-bold col-5 col-md-3">Sesion {{$sesion->idsesion}} </div>
-      <div class="text-center col-12 col-md-5 text-lg font-bold">Tallerista: {{$sesion->tallerista}} </div>
-    </div>
+{{-- Encabezado --}}
+<div class="grid grid-cols-2 md:grid-cols-3">
+  {{-- Botón back --}}
+  <div class="rounded-full h-20 w-20 flex items-center justify-center">
+    <a href="{{ route('Administrador.sesiones.index')}}" 
+      class="btn rounded-full normal-case text-light" 
+      style="background-color: #da2c4e;">
+      <i class="far fa-arrow-alt-circle-left"></i>
+    </a>
   </div>
+  <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Sesion {{$sesion->idsesion}} </div>
+  <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Tallerista: {{$sesion->tallerista}} </div>
+</div>
+
+<div class="card p-2 p-md-4">
   <div class="card-body">
     <div class="row">
       {{-- Preguntas como labesl --}}
@@ -73,9 +72,12 @@
               @endforeach
             </tbody>
           </table>
+          {{-- Botó de descarga del archivo excel --}}
           <div class="col-12 d-flex justify-content-end p-4">
             <div class="btn-group" role="group">
-              <a href="{{ route('Administrador.asistentes.excel.download' , $sesion->idsesion)}}" class="btn" style="background-color: aqua">Exportar</a>
+              <a href="{{ route('Administrador.asistentes.excel.download' , $sesion->idsesion)}}" class="btn text-white normal-case" style="background-color: #107c41">
+                <i class="fas fa-file-excel"></i> Excel
+              </a>
             </div>
           </div>
           
@@ -205,35 +207,34 @@
 
 @endsection
 
-@section('scripts')
-  
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<script>
-  Highcharts.chart('chart1', {
-    data: {
-        table: 'datatable'
-    },
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Datos del cuestionario'
-    },
-    yAxis: {
-        allowDecimals: false,
-        title: {
-            text: 'Cantidad de respuestas'
-        }
-    },
-    tooltip: {
-        formatter: function () {
-            return '<b>' + this.series.name + '</b><br/>' +
-                this.point.y + ' ' + this.point.name.toLowerCase();
-        }
-    }
-  });
-</script>
+@section('scripts')  
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+    Highcharts.chart('chart1', {
+      data: {
+          table: 'datatable'
+      },
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Datos del cuestionario'
+      },
+      yAxis: {
+          allowDecimals: false,
+          title: {
+              text: 'Cantidad de respuestas'
+          }
+      },
+      tooltip: {
+          formatter: function () {
+              return '<b>' + this.series.name + '</b><br/>' +
+                  this.point.y + ' ' + this.point.name.toLowerCase();
+          }
+      }
+    });
+  </script>
 @endsection
