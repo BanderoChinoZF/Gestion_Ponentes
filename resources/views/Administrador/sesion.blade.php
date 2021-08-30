@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 {{-- Encabezado --}}
-<div class="grid grid-cols-2 md:grid-cols-3">
+<div class="flex items-center justify-start px-8 py-8 gap-x-8">
   {{-- Botón back --}}
   <div class="rounded-full h-20 w-20 flex items-center justify-center">
     <a href="{{ route('Administrador.sesiones.index')}}" 

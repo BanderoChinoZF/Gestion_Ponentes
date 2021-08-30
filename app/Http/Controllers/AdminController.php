@@ -37,19 +37,20 @@ class AdminController extends Controller
     public function index(){
         //$empleados = Datos::orderBy('id_empleado','ASC')->paginate(15);
         $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
-        $empleados = Datos::select(
-            'id_empleado',
-            'nombre_completo',
-            'ubicacion',
-            'departamento',
-            'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->paginate(15);
 
-        $empleados_a = Datos::select(
-            'id_empleado',
-            'nombre_completo',
-            'ubicacion',
-            'departamento',
-        'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
+        // $empleados = Datos::select(
+        //     'id_empleado',
+        //     'nombre_completo',
+        //     'ubicacion',
+        //     'departamento',
+        // 'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->paginate(15);
+
+        // $empleados_a = Datos::select(
+        //     'id_empleado',
+        //     'nombre_completo',
+        //     'ubicacion',
+        //     'departamento',
+        // 'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
 
         $total_empleados = Datos::all()->count();
         $total_empleados_na = Datos::where('idsesion','=',0)->count();
@@ -57,17 +58,26 @@ class AdminController extends Controller
         $porcentaje_a = ($total_empleados_a * 100) / $total_empleados;
         $porcentaje_a = round($porcentaje_a,2);
 
+        $total_sesiones = SesionesModel::all()->count();
+        $sesiones_faltantes = round(($total_empleados_na/15),0);
+        $sobrantes = $total_empleados_na % 15;
+        if($sobrantes >= 1){
+            $sesiones_faltantes = $sesiones_faltantes+1;
+        }
+
         $porcentaje = [
             'total' => $total_empleados,
-            'emplados_a' => $total_empleados_a,
-            'emplados_na' => $total_empleados_na,
+            'empleados_a' => $total_empleados_a,
+            'empleados_na' => $total_empleados_na,
             'porcentaje_a' => $porcentaje_a
         ];
         
         return view('Administrador.inicio')
-            ->with('empleados',$empleados)
-            ->with('empleados_a',$empleados_a)
+            // ->with('empleados',$empleados)
+            // ->with('empleados_a',$empleados_a)
             ->with('talleristas',$talleristas)
+            ->with('total_sesiones',$total_sesiones)
+            ->with('sesiones_faltantes',$sesiones_faltantes)
             ->with('porcentaje',$porcentaje);  
     }
     // Sesiones
@@ -272,8 +282,16 @@ class AdminController extends Controller
         //Recibir el campo por el cual filtrar
         $valor = str_replace('+', ' ', $valor);//Remmplazar el '+' por un espacio
         $empleados = Datos::where($filtro, $valor)->paginate(12);
+        $title = 'empleados_by_'.$filtro.'.xlsx';
 
-        return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
+        return Excel::download((new DatosExport)->condicion($filtro,'=',$valor), $title);
+
+        // return view('Administrador.empleados', compact('empleados'))->with('filtro',$filtro)->with('valor',$valor);
+    }
+    //Talleritas
+    public function talleristas(){
+        $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
+        return view('Administrador.talleristas',compact('talleristas'));
     }
 
     // Muestra el diseño que tendra la tabla al ser exportada
@@ -305,7 +323,12 @@ class AdminController extends Controller
 
     //Descargar el archivo excel de empleados 
     public function datosExcel(){
-        return Excel::download(new DatosExport, 'datos.xlsx');
+        return Excel::download((new DatosExport)->condicion('idsesion','!=','0'), 'empleados_con_asistencia.xlsx');
+    }
+
+    //Descargar el archivo excel de empleados sin asistencia
+    public function empleadosSinAsistenciaExcel(){
+        return Excel::download((new DatosExport)->condicion('idsesion','=','0'), 'empleados_sin_asistencia.xlsx');
     }
 
     public function exportpdf(){
@@ -325,17 +348,7 @@ class AdminController extends Controller
 
     // Esportar los asistentes de una sesion
     public function exportAsistentes($id){
-
         return Excel::download((new AsistentesExport)->fromSesion($id), 'asistentes.xlsx');
-
-        // $asistentes = Datos::select(
-        //     'id_empleado',
-        //     'nombre_completo',
-        //     'ubicacion',
-        //     'departamento',
-        //     'idsesion')->where('idsesion',$id)->orderBy('id_empleado','ASC')->get();
-
-        // return view('Administrador.exportar_asistentes', compact('asistentes'));
     }
 
     public function descargarpdf(){

@@ -45,9 +45,9 @@ function unaTablaAsistente(datos){
       <tr>
         <th scope="row">${datos.id_empleado}</th>
         <td scope="col">${datos.nombre_completo}</td>
-        <td scope="col">${datos.ubicacion}</td>
+        <td scope="col" class="d-none d-md-table-cell">${datos.ubicacion}</td>
         <td scope="col" class="d-none d-md-table-cell">${datos.departamento}</td>
-        <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-success">Con Asistencia</span></td>
+        <td scope="col"><span class="badge bg-success">Con Asistencia</span></td>
       </tr>
     `;
 
@@ -56,9 +56,9 @@ function unaTablaAsistente(datos){
       <tr>
         <th scope="row">${datos.id_empleado}</th>
         <td scope="col">${datos.nombre_completo}</td>
-        <td scope="col">${datos.ubicacion}</td>
+        <td scope="col" class="d-none d-md-table-cell">${datos.ubicacion}</td>
         <td scope="col" class="d-none d-md-table-cell">${datos.departamento}</td>
-        <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-danger">Sin Asistencia</span></td>
+        <td scope="col"><span class="badge bg-danger">Sin Asistencia</span></td>
       </tr>
     `;
 

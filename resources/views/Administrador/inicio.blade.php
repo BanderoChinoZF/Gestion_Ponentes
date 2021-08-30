@@ -4,16 +4,51 @@
 
 <div class="container  gy-8">
   <div class="row justify-content-center">
-    {{-- Label Buscar asistente --}}
-    <div class="card-body font-bold text-lg text-center text-center">
+    <div class="relative pt-1"> {{-- Barra de porcentaje --}}
+      <div class="flex mb-2 items-center justify-between">
+        <div>
+          <span class="text-xs md:tex-lg lg:text-xl font-semibold inline-block py-1 px-2 rounded-full text-red-600">
+            {{$porcentaje['porcentaje_a']}}% del personal atendido
+          </span>
+        </div>
+        <div class="text-right">
+          <span class="text-xs font-semibold inline-block text-red-600">
+            Personas atendidas: {{ $porcentaje['empleados_a'] }}
+          </span>
+        </div>
+      </div>
+      <div class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-red-200">
+        <div style="width:{{ $porcentaje['porcentaje_a'] }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+      </div>
+      <div class="flex mb-2 items-center justify-between">
+        <div>
+          {{-- Necesario para que el el siguiente div sea alineado a la derecha --}}
+        </div>
+        <div class="text-right">
+          <span class="text-xs font-semibold inline-block text-red-600">
+            Personas que faltan ser atendidas: {{ $porcentaje['empleados_na'] }}
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    {{-- Cantidad de sesiones y cantidad faltantes --}}
+    <div class="grid grid-cols-4 text-center md:tex-lg lg:text-xl py-4">
+      <div class="md:col-start-2 col-span-3 sm:col-span-2 md:col-span-1"><strong>Sesiones realizadas</strong></div>
+      <div class="md:text-center">{{$total_sesiones}}</div>
+      <div class="md:col-start-2 col-span-3 sm:col-span-2 md:col-span-1"><strong>Sesiones por realizar</strong></div>
+      <div class="md:text-center">{{$sesiones_faltantes}}</div>
+    </div>
+
+    <div class="card-body font-bold text-lg text-center text-center"> {{-- Label Buscar asistente --}}
       Buscar Asistente
     </div>
-    {{-- Buscar asistente --}}
-    <div class="row">
-      <div class="col-12 col-md-3 offset-md-3">
+
+    <div class="row"> {{-- Buscar asistente --}}
+      <div class="col-12 col-md-4 offset-md-4">
         <input type="text" id="input_asistente" class="form-control">
       </div>
-      <div class="col-6 offset-3 col-md-3 offset-md-0 p-3 p-md-0">
+      <div class="col-6 offset-3 col-md-4 offset-md-4 col-lg-2 offset-lg-5 p-3">
         <button type="button" class="btn btn-block text-light" onclick="obtenerAsistente()" style="background-color: #da2c4e;">Buscar</button>
       </div>
     </div>
@@ -26,9 +61,9 @@
             <tr>
                 <th scope="col">ID Empleado</th>
                 <th scope="col">Nombre Empleado</th>
-                <th scope="col">Ubicación</th>
+                <th scope="col" class="d-none d-md-table-cell">Ubicación</th>
                 <th scope="col" class="d-none d-md-table-cell">Departamento</th>
-                <th scope="col" class="d-none d-md-table-cell">Estatus</th>
+                <th scope="col">Estatus</th>
             </tr>
           </thead>
           <tbody id="table_un_asistente">
@@ -38,171 +73,35 @@
       </div>
     </div>
 
-    {{-- Barra de porcentaje --}}
-    <div class="relative pt-1">
-      <div class="flex mb-2 items-center justify-between">
-        <div>
-          <span class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-red-600 bg-red-200">
-            Personal que ya asistio a una sesión
-          </span>
-        </div>
-        <div class="text-right">
-          <span class="text-xs font-semibold inline-block text-red-600">
-            %{{$porcentaje['porcentaje_a']}}
-          </span>
-        </div>
-      </div>
-      <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-200">
-        <div style="width:{{ $porcentaje['porcentaje_a'] }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-      </div>
-    </div>
-    {{-- Barra de porcentaje --}}
-    <div class="row justify-content-center">
-      <!-- Pills navs -->
-      <ul class="nav nav-pills mb-3" id="ex1" role="tablist">
-        <li class="nav-item col-12 col-sm-6" role="presentation">
-          <a
-            class="nav-link active"
-            id="ex1-tab-1"
-            data-mdb-toggle="pill"
-            href="#ex1-pills-1"
-            role="tab"
-            aria-controls="ex1-pills-1"
-            aria-selected="true"
-            >Empleados Asistieron</a
-          >
-        </li>
-        <li class="nav-item col-12 col-sm-6" role="presentation">
-          <a
-            class="nav-link"
-            id="ex1-tab-2"
-            data-mdb-toggle="pill"
-            href="#ex1-pills-2"
-            role="tab"
-            aria-controls="ex1-pills-2"
-            aria-selected="false"
-            >Empleados No Asistieron</a
-          >
-        </li>
-      </ul>
-      <!-- Pills navs -->
-
-      <!-- Pills content -->
-      <div class="tab-content" id="ex1-content">
-        <div
-          class="tab-pane fade show active"
-          id="ex1-pills-1"
-          role="tabpanel"
-          aria-labelledby="ex1-tab-1"
-          >
-          <div class="table-responsive">
-            <table class="table table-striped table-hover" id="tabla_asistieron">
-
-              <thead>
-                <tr>
-                  <th scope="col">ID Empleado</th>
-                  <th scope="col">Nombre Empleado</th>
-                  <th scope="col">Ubicación</th>
-                  <th scope="col" class="d-none d-md-table-cell">Departamento</th>
-                  <th scope="col" class="d-none d-md-table-cell">Status</th>
-                </tr>
-              </thead>
-              <tbody id="contenido_asistieron">
-                @foreach ($empleados_a as $a)
-                  <tr>
-                      <td>{{ $a->id_empleado }}</td>
-                      <td>{{ $a->nombre_completo }}</td>
-                      <td>{{ $a->ubicacion }}</td>
-                      <td class="d-none d-md-table-cell">{{ $a->departamento }}</td>
-                      <td class="d-none d-md-table-cell">
-                      
-                        @if($a->idsesion != 0)
-                          <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-success">Con Asistencia</span></td>
-                        @endif
-
-                      </td>
-                  </tr>
-
-                @endforeach
-
-              </tbody>
-            </table>
-          </div>
-
-          {!! $empleados_a->render() !!}
-
-        </div>
-
-        <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-          <div class="table-responsive">
-            <table class="table table-striped table-hover" id="tabla_no_asistieron">
-              <thead>
-                <tr>
-                  <th scope="col">ID Empleado</th>
-                  <th scope="col">Nombre Empleado</th>
-                  <th scope="col">Ubicación</th>
-                  <th scope="col" class="d-none d-md-table-cell">Departamento</th>
-                  <th scope="col" class="d-none d-md-table-cell">Status</th>
-                </tr>
-              </thead>
-              <tbody id="contenido_no_asistieron">
-              @foreach ($empleados as $e)
-                <tr>
-                    <td>{{ $e->id_empleado }}</td>
-                    <td>{{ $e->nombre_completo }}</td>
-                    <td>{{ $e->ubicacion }}</td>
-                    <td class="d-none d-md-table-cell">{{ $e->departamento }}</td>
-                    <td class="d-none d-md-table-cell">
-                    
-                      @if($e->idsesion == 0)
-                        <td scope="col" class="d-none d-md-table-cell"><span class="badge bg-danger">Sin Asistencia</span></td>
-                      @endif
-
-                    </td>
-                </tr>
-
-                @endforeach 
-
-              </tbody>
-            </table>
-          </div>
-          {!! $empleados->render() !!}
-        </div>
-      </div>
-      <!-- Pills content -->
-    </div>    
-  </div>
     {{-- Botones para descargas --}}
-  <div class="col-12 col-md-8 col-lg-9 col-xl-12 d-flex justify-content-end p-4">
-    <div class="btn-group" role="group">
-      {{-- <a href="{{ route('Administrador.inicio.pdf') }}" class="btn" style="background-color: #da2c4e"> PDF </a> --}}
-      <a href="{{ route('Administrador.inicio.excel') }}" class="btn text-white normal-case" style="background-color: #107c41">
-        <i class="fas fa-file-excel"></i> Excel
-      </a>
+    <div class="grid grid-cols-7 gap-y-5">
+      <div class="col-span-7 md:col-span-3 lg:col-span-2 lg:col-start-2">
+        <a href="{{ route('Administrador.inicio.excel.b') }}" class="btn btn-block text-white normal-case" style="background-color: #107c41">
+          <i class="fas fa-file-excel"></i> Personal sin asistencia
+        </a>
+      </div>
+      <div class="col-span-7 md:col-span-3 lg:col-span-2 md:col-start-5 lg:col-start-5">
+        <a href="{{ route('Administrador.inicio.excel') }}" class="btn btn-block text-white normal-case" style="background-color: #107c41">
+          <i class="fas fa-file-excel"></i> Personal con asistencia
+        </a>
+      </div>
     </div>
-  </div>
-  {{-- Talleristas --}}
-  <div class="col-10 offset-1">
-    <div class="py-8 text-center text-xl font-bold uppercase">Talleristas</div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-        @foreach ($talleristas as $tallerista)
-            <div class="card h-100">
-                <img class="img-fluid rounded-start" src="{{ asset('img/sin_imagen.png')}}" alt="Card image cap">
-                <div class="card-body">
-                    <div class="capitalize">
-                        {{$tallerista->nombre_tallerista}}
-                    </div>
-                </div>
-                <div class="card-footer p-0">
-                    <a href="{{route('Administrador.sesiones.buscar',$tallerista->id)}}" 
-                        class="btn btn-block normal-case rounded-none bg-blue-600 hover:bg-red-600 text-white">
-                        <i class="fas fa-folder-open"> Detalles</i>
-                    </a>
-                </div>
-            </div>
-        @endforeach
+    <div class="col-12 col-md-8 col-lg-9 col-xl-12 py-4 d-flex justify-content-center">
+      <div class="btn-group" role="group">
+        <a href="#" class="btn text-white normal-case"
+            data-mdb-toggle="modal" 
+            data-mdb-target="#filtrosModal" 
+            style="background-color: #da2c4e">
+          Filtrar personal
+        </a>
+      </div>
     </div>
+
   </div>
+
 </div>
-<br>
+<br><br>
+{{-- Componente --}}
+<x-pop-up/>
+
 @endsection

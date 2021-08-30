@@ -55,7 +55,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/Administrador/inicio', [AdminController::class, 'index'])->name('Administrador.inicio');
 Route::get('/Administrador/inicio/exportar/empleados', [AdminController::class, 'exportarEmpleados'])->name('Administrador.inicio.exportar');
 Route::get('/Administrador/inicio/descargar/pdf', [AdminController::class, 'datosPdf'])->name('Administrador.inicio.pdf');
-Route::get('/Administrador/inicio/descargar/excel', [AdminController::class, 'datosExcel'])->name('Administrador.inicio.excel');
+Route::get('/Administrador/inicio/descargar/excel/a', [AdminController::class, 'datosExcel'])->name('Administrador.inicio.excel');
+Route::get('/Administrador/inicio/descargar/excel/b', [AdminController::class, 'empleadosSinAsistenciaExcel'])->name('Administrador.inicio.excel.b');
 // Sesiones
 Route::get('/Administrador/sesiones', [AdminController::class, 'sesiones'])->name('Administrador.sesiones.index');
 Route::get('/Administrador/sesiones/{id}', [AdminController::class, 'showSesion'])->name('Administrador.sesiones.showSesion');
@@ -70,6 +71,8 @@ Route::get('/Administrador/asistentes/descargar/excel/{id}', [AdminController::c
 Route::get('/Administrador/asistentes', [AdminController::class, 'asistentes'])->name('Administrador.asistentes.index');
 Route::get('/Administrador/asistentes/{id}', [AdminController::class, 'asistente'])->name('Administrador.asistentes.show');
 Route::get('/Administrador/asistentes/{filtro}/{valor}', [AdminController::class, 'asistentesFiltros'])->name('Administrador.asistentes.filtros');
+//Talleristas
+Route::get('/Administrador/talleristas', [AdminController::class, 'talleristas'])->name('Administrador.talleristas.index');
 
 
 

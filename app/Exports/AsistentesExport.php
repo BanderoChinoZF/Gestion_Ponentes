@@ -8,8 +8,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class AsistentesExport implements FromView
 {
-    public function fromSesion(int $id)
-    {
+    public function fromSesion(int $id){
         $this->id = $id;
         
         return $this;

@@ -3,34 +3,36 @@
 @section('content')
 
 {{-- Encabezado --}}
-<div class="grid grid-cols-6">
-  {{-- Botón back --}}
-  <div class="rounded-full h-20 w-20 flex items-center justify-center">
-    <a href="{{ route('Administrador.sesiones.index')}}" 
-      class="btn rounded-full normal-case text-light" 
-      style="background-color: #da2c4e;">
-      <i class="far fa-arrow-alt-circle-left"></i>
-    </a>
+<div class="flex items-center justify-start px-8 py-8 gap-x-8">
+  <div class="rounded-full h-20 w-20">
+    <img src="{{ asset('img/sin_imagen.png') }}" alt=""  class="rounded-full h-20 w-20">
   </div>
-  <div class="text-center text-lg font-bold flex h-20 items-center justify-center col-span-4">
-    Sesiones impartidas por {{$tallerista->nombre_tallerista}} 
+  <div class="text-center text-lg lg:text-xl font-bold flex h-20 items-center justify-center">
+    {{$tallerista->nombre_tallerista}} 
   </div>
 </div>
 
 <div class="container p-2 p-lg-4">
-
+  {{-- cards --}}
   <div class="card-body">
-    {{-- cards --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       @foreach ($resultados as $a)
         <div class="col">
           <div class="card h-100 p-0">
-            {{-- <img src="{{ $a->imagen }}" class="card-img-top" alt=""> --}}
+            {{-- <img src="{{ asset($a->imagen) }}" class="card-img-top" alt=""> --}}
             <img src="{{ asset('img/sin_imagen.png') }}" class="card-img-top" alt="Sesion sin imagen">
             <div class="card-body">
-              <h5 class="card-title"><strong>Sesi&oacute;n</strong> {{ $a->idsesion }}</h5>
-              <strong>Tallerista</strong> {{ $a->tallerista }}
-              <small class="text-muted">{{ $a->fecha }}</small>
+              <div class="d-flex justify-content-between">
+                <label class="py-2"><strong>Sesi&oacute;n</strong></label>
+                <label class="py-2">{{ $a->idsesion }}</label>
+              </div>
+              <div class="d-flex justify-content-between">
+                <label class="py-2"><strong>Tallerista</strong></label>
+                <label class="py-2">{{ $a->tallerista }}</label>
+              </div>
+              <div class="d-flex justify-content-end">
+                <label class="py-2">{{ $a->fecha }}</label>
+              </div>
             </div>
             <div class="card-footer">
               <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block" style="background-color: #da2c4e"> detalles</a>
@@ -39,14 +41,12 @@
         </div>
       @endforeach
     </div>
-    {{-- cards --}}
   </div>
+  {{-- cards --}}
   <br><br><br>
   <div class="card-footer">
     {{$resultados->links()}}
   </div>
-    {{-- <div class="card p-1">
-    </div> --}}
 </div>
 
 {{-- Gráficas --}}
@@ -61,24 +61,24 @@
 
 {{-- tablas para graficar --}}
 {{-- Tabla de datos con eje x => Respuestas y eje y=>Preguntas --}}
-<div class="row col-11">
-  <div class="col-12 col-lg-6 invisible">
+<div class="row col-11 invisible">
+  <div class="col-12 col-lg-6 ">
     <div class="table-responsive">
-      <table id="datatable" class="table table-striped table-sm">
+      <table id="datatable" class="p-0">
         <thead>
             <tr>
                 <th></th>
-                <th>{{$respuestas[0]->respuesta}} </th>
-                <th>{{$respuestas[1]->respuesta}} </th>
-                <th>{{$respuestas[2]->respuesta}} </th>
-                <th>{{$respuestas[3]->respuesta}} </th>
-                <th>{{$respuestas[4]->respuesta}} </th>
+                <th><small>{{$respuestas[0]->respuesta}}</small> </th>
+                <th><small>{{$respuestas[1]->respuesta}}</small> </th>
+                <th><small>{{$respuestas[2]->respuesta}}</small> </th>
+                <th><small>{{$respuestas[3]->respuesta}}</small> </th>
+                <th><small>{{$respuestas[4]->respuesta}}</small> </th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 {{-- <th>{{$preguntas[0]->nombre_pregunta}} </th> --}}
-                <th>{{$preguntas[0]->nombre_pregunta}}</th>
+                <th><small>{{$preguntas[0]->nombre_pregunta}}</small></th>
                 <td>{{$data1['resp1']}}</td>
                 <td>{{$data1['resp2']}}</td>
                 <td>{{$data1['resp3']}}</td>
@@ -89,21 +89,21 @@
       </table>
     </div>
     <div class="table-responsive">
-      <table id="pregunta2" class="table table-striped table-sm">
+      <table id="pregunta2" class="table-sm">
         <thead>
             <tr>
                 <th></th>
-                <th>{{$respuestas[0]->respuesta}} </th>
-                <th>{{$respuestas[1]->respuesta}} </th>
-                <th>{{$respuestas[2]->respuesta}} </th>
-                <th>{{$respuestas[3]->respuesta}} </th>
-                <th>{{$respuestas[4]->respuesta}} </th>
+                <th><small>{{$respuestas[0]->respuesta}} </small></th>
+                <th><small>{{$respuestas[1]->respuesta}} </small></th>
+                <th><small>{{$respuestas[2]->respuesta}} </small></th>
+                <th><small>{{$respuestas[3]->respuesta}} </small></th>
+                <th><small>{{$respuestas[4]->respuesta}} </small></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 {{-- <th>{{$preguntas[1]->nombre_pregunta}} </th> --}}
-                <th>{{$preguntas[1]->nombre_pregunta}}</th>
+                <th><small>{{$preguntas[1]->nombre_pregunta}}</small></th>
                 <td>{{$data2['resp1']}}</td>
                 <td>{{$data2['resp2']}}</td>
                 <td>{{$data2['resp3']}}</td>
@@ -115,23 +115,23 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-6 invisible">
+  <div class="col-12 col-lg-6 ">
     <div class="table-responsive">
-      <table id="pregunta3" class="table table-striped table-sm">
+      <table id="pregunta3" class="table-sm">
         <thead>
             <tr>
                 <th></th>
-                <th>{{$respuestas[0]->respuesta}} </th>
-                <th>{{$respuestas[1]->respuesta}} </th>
-                <th>{{$respuestas[2]->respuesta}} </th>
-                <th>{{$respuestas[3]->respuesta}} </th>
-                <th>{{$respuestas[4]->respuesta}} </th>
+                <th><small>{{$respuestas[0]->respuesta}}</small></th>
+                <th><small>{{$respuestas[1]->respuesta}}</small></th>
+                <th><small>{{$respuestas[2]->respuesta}}</small></th>
+                <th><small>{{$respuestas[3]->respuesta}}</small></th>
+                <th><small>{{$respuestas[4]->respuesta}}</small></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 {{-- <th> </th> --}}
-                <th>{{$preguntas[2]->nombre_pregunta}}</th>
+                <th><small>{{$preguntas[2]->nombre_pregunta}}</small></th>
                 <td>{{$data3['resp1']}}</td>
                 <td>{{$data3['resp2']}}</td>
                 <td>{{$data3['resp3']}}</td>
@@ -142,21 +142,21 @@
       </table>
     </div>
     <div class="table-responsive">
-      <table id="pregunta4" class="table table-striped table-sm">
+      <table id="pregunta4" class="table-sm">
         <thead>
             <tr>
                 <th></th>
-                <th>{{$respuestas[0]->respuesta}} </th>
-                <th>{{$respuestas[1]->respuesta}} </th>
-                <th>{{$respuestas[2]->respuesta}} </th>
-                <th>{{$respuestas[3]->respuesta}} </th>
-                <th>{{$respuestas[4]->respuesta}} </th>
+                <th><small>{{$respuestas[0]->respuesta}}</small></th>
+                <th><small>{{$respuestas[1]->respuesta}}</small></th>
+                <th><small>{{$respuestas[2]->respuesta}}</small></th>
+                <th><small>{{$respuestas[3]->respuesta}}</small></th>
+                <th><small>{{$respuestas[4]->respuesta}}</small></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 {{-- <th></th> --}}
-                <th>{{$preguntas[3]->nombre_pregunta}}</th>
+                <th><small>{{$preguntas[3]->nombre_pregunta}}</small></th>
                 <td>{{$data4['resp1']}}</td>
                 <td>{{$data4['resp2']}}</td>
                 <td>{{$data4['resp3']}}</td>
@@ -168,9 +168,9 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-6 invisible">
+  <div class="col-12 col-lg-6 ">
     <div class="table-responsive">
-      <table id="total_asistentes" class="table table-striped table-sm">
+      <table id="total_asistentes" class="table-sm">
         <thead>
             <tr>
                 <th></th>
@@ -187,9 +187,9 @@
       </table>
     </div>
   </div>
-  <div class="col-12 col-lg-6 invisible">
+  <div class="col-12 col-lg-6 ">
     <div class="table-responsive">
-      <table id="total_sesiones" class="table table-striped table-sm">
+      <table id="total_sesiones" class="table-sm">
         <thead>
             <tr>
                 <th></th>

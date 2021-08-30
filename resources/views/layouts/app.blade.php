@@ -151,12 +151,11 @@
                                     </a>
                                 </li> --}}
                                 <li class="nav-item px-4">
-                                    <a class="{{ request()->routeIs('Administrador.asistentes.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
+                                    <a class="{{ request()->routeIs('Administrador.talleristas.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
                                         aria-current="page" 
-                                        href="#"
-                                        data-mdb-toggle="modal" data-mdb-target="#filtrosModal">
+                                        href="{{ route('Administrador.talleristas.index')}}">
                                         <i class="fas fa-user-tie"></i>
-                                        <label class="d-block text-xs">Empleados </label>
+                                        <label class="d-block text-xs">Talleristas </label>
                                     </a>
                                 </li>
                             </ul>
@@ -172,16 +171,15 @@
                 @yield('content')
             </main>
         </div>
-        {{-- @include('Administrador.modal.filtros') --}}
-        <x-pop-up/>
+        
         
 
         <footer class="bg-light text-center text-white">
             <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            {{-- <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2020 Copyright:
                 <a class="text-white" href="#">Fresnillo</a>
-            </div>
+            </div> --}}
             <!-- Copyright -->
         </footer>
 
