@@ -38,20 +38,6 @@ class AdminController extends Controller
         //$empleados = Datos::orderBy('id_empleado','ASC')->paginate(15);
         $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
 
-        // $empleados = Datos::select(
-        //     'id_empleado',
-        //     'nombre_completo',
-        //     'ubicacion',
-        //     'departamento',
-        // 'idsesion')->where('idsesion','0')->orderBy('id_empleado','ASC')->paginate(15);
-
-        // $empleados_a = Datos::select(
-        //     'id_empleado',
-        //     'nombre_completo',
-        //     'ubicacion',
-        //     'departamento',
-        // 'idsesion')->where('idsesion','!=',0)->orderBy('id_empleado','ASC')->paginate(15);
-
         $total_empleados = Datos::all()->count();
         $total_empleados_na = Datos::where('idsesion','=',0)->count();
         $total_empleados_a = Datos::where('idsesion','!=',0)->count();
@@ -92,13 +78,17 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-            'imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(12);
+            'imagen', 'ruta_imagen')->join('tallerista','tallerista.id','sesiones.id')->orderBy('idsesion','ASC')->paginate(12);
 
 
         return view('Administrador.sesiones')->with('sesiones',$resultados)->with('talleristas',$talleristas)->with('busqueda',$resultados);
     }
 
     public function showSesion($id){
+        
+        $preguntas = Pregunta::all();
+        $respuestas = Respuesta::all();
+        
         $sesion = SesionesModel::select(
             'idsesion',
             'fecha',
@@ -110,7 +100,8 @@ class AdminController extends Controller
             'comentario1',
             'comentario2',
             'comentario3',
-            'comentario4')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
+            'comentario4',
+            'imagen', 'ruta_imagen')->join('tallerista','tallerista.id','sesiones.id')->where('idsesion',$id)->get();
 
         $datas1 = SesionesModel::select(
             'preg1resp1 AS respuesta_1',
@@ -118,6 +109,16 @@ class AdminController extends Controller
             'preg1resp3 AS respuesta_3',
             'preg1resp4 AS respuesta_4',
             'preg1resp5 AS respuesta_5')->where('idsesion',$id)->get();
+
+        
+        $pregunta_1 = "['".$respuestas[0]['respuesta']."', ".$datas1[0]['respuesta_1'].
+                "],['".$respuestas[1]['respuesta']."',".$datas1[0]['respuesta_2'].
+                "],['".$respuestas[2]['respuesta']."', ".$datas1[0]['respuesta_3'].
+                "],['".$respuestas[3]['respuesta']."', ".$datas1[0]['respuesta_4'].
+                "],['".$respuestas[4]['respuesta']."', ".$datas1[0]['respuesta_5']."]";
+        $arr['chartData1'] = $pregunta_1;
+        $arr['chartTitle1'] = $preguntas[0]['nombre_pregunta'];
+        
             
         $datas2 = SesionesModel::select(
             'preg2resp1 AS respuesta_1',
@@ -125,6 +126,14 @@ class AdminController extends Controller
             'preg2resp3 AS respuesta_3',
             'preg2resp4 AS respuesta_4',
             'preg2resp5 AS respuesta_5')->where('idsesion',$id)->get();
+
+        $pregunta_2 = "['".$respuestas[0]['respuesta']."', ".$datas2[0]['respuesta_1'].
+            "],['".$respuestas[1]['respuesta']."',".$datas2[0]['respuesta_2'].
+            "],['".$respuestas[2]['respuesta']."', ".$datas2[0]['respuesta_3'].
+            "],['".$respuestas[3]['respuesta']."', ".$datas2[0]['respuesta_4'].
+            "],['".$respuestas[4]['respuesta']."', ".$datas2[0]['respuesta_5']."]";
+        $arr['chartData2'] = $pregunta_2;
+        $arr['chartTitle2'] = $preguntas[0]['nombre_pregunta'];
         
         $datas3 = SesionesModel::select(
             'preg3resp1 AS respuesta_1',
@@ -133,6 +142,14 @@ class AdminController extends Controller
             'preg3resp4 AS respuesta_4',
             'preg3resp5 AS respuesta_5')->where('idsesion',$id)->get();
 
+        $pregunta_3 = "['".$respuestas[0]['respuesta']."', ".$datas3[0]['respuesta_1'].
+            "],['".$respuestas[1]['respuesta']."',".$datas3[0]['respuesta_2'].
+            "],['".$respuestas[2]['respuesta']."', ".$datas3[0]['respuesta_3'].
+            "],['".$respuestas[3]['respuesta']."', ".$datas3[0]['respuesta_4'].
+            "],['".$respuestas[4]['respuesta']."', ".$datas3[0]['respuesta_5']."]";
+        $arr['chartData3'] = $pregunta_3;
+        $arr['chartTitle3'] = $preguntas[0]['nombre_pregunta'];
+
         $datas4 = SesionesModel::select(
             'preg4resp1 AS respuesta_1',
             'preg4resp2 AS respuesta_2',
@@ -140,9 +157,14 @@ class AdminController extends Controller
             'preg4resp4 AS respuesta_4',
             'preg4resp5 AS respuesta_5')->where('idsesion',$id)->get();
 
-        $preguntas = Pregunta::all();
-        $respuestas = Respuesta::all();
-
+        $pregunta_4 = "['".$respuestas[0]['respuesta']."', ".$datas4[0]['respuesta_1'].
+            "],['".$respuestas[1]['respuesta']."',".$datas4[0]['respuesta_2'].
+            "],['".$respuestas[2]['respuesta']."', ".$datas4[0]['respuesta_3'].
+            "],['".$respuestas[3]['respuesta']."', ".$datas4[0]['respuesta_4'].
+            "],['".$respuestas[4]['respuesta']."', ".$datas4[0]['respuesta_5']."]";
+        $arr['chartData4'] = $pregunta_4;
+        $arr['chartTitle4'] = $preguntas[0]['nombre_pregunta'];
+        
         $asistentes = Datos::select(
             'id_empleado',
             'nombre_completo',
@@ -150,18 +172,10 @@ class AdminController extends Controller
             'departamento',
             'idsesion')->where('idsesion',$id)->orderBy('id_empleado','ASC')->get();
 
-        $data1 = $datas1[0];
-        $data2 = $datas2[0];
-        $data3 = $datas3[0];
-        $data4 = $datas4[0];
-
         $sesion = $sesion[0];
         
-        return view('Administrador.sesion',compact('sesion'))
-        ->with('data1',$data1)
-        ->with('data2',$data2)
-        ->with('data3',$data3)
-        ->with('data4',$data4)
+        return view('Administrador.sesion',$arr)
+        ->with(compact('sesion'))
         ->with('preguntas',$preguntas)
         ->with('respuestas',$respuestas)
         ->with('asistentes',$asistentes);
@@ -169,19 +183,23 @@ class AdminController extends Controller
 
     public function buscar($tallerista){
 
+        $preguntas = Pregunta::all();
+
+        $respuestas = Respuesta::all();
+
         $resp1 = SesionesModel::where('id',$tallerista)->sum('preg1resp1');
         $resp2 = SesionesModel::where('id',$tallerista)->sum('preg1resp2');
         $resp3 = SesionesModel::where('id',$tallerista)->sum('preg1resp3');
         $resp4 = SesionesModel::where('id',$tallerista)->sum('preg1resp4');
         $resp5 = SesionesModel::where('id',$tallerista)->sum('preg1resp5');
 
-        $pregunta_1 = [
-            'resp1' => $resp1,
-            'resp2' => $resp2,
-            'resp3' => $resp3,
-            'resp4' => $resp4,
-            'resp5' => $resp5
-        ];
+        $pregunta_1 = "['".$respuestas[0]['respuesta']."', ".$resp1.
+                      "],['".$respuestas[1]['respuesta']."',".$resp2.
+                      "],['".$respuestas[2]['respuesta']."', ".$resp3.
+                      "],['".$respuestas[3]['respuesta']."', ".$resp4.
+                      "],['".$respuestas[4]['respuesta']."', ".$resp5."]";
+        $arr['chartData1'] = $pregunta_1;
+        $arr['chartTitle1'] = $preguntas[0]['nombre_pregunta'];
 
         $resp1 = SesionesModel::where('id',$tallerista)->sum('preg2resp1');
         $resp2 = SesionesModel::where('id',$tallerista)->sum('preg2resp2');
@@ -189,13 +207,14 @@ class AdminController extends Controller
         $resp4 = SesionesModel::where('id',$tallerista)->sum('preg2resp4');
         $resp5 = SesionesModel::where('id',$tallerista)->sum('preg2resp5');
 
-        $pregunta_2 = [
-            'resp1' => $resp1,
-            'resp2' => $resp2,
-            'resp3' => $resp3,
-            'resp4' => $resp4,
-            'resp5' => $resp5
-        ];
+        $pregunta_2 = "['".$respuestas[0]['respuesta']."', ".$resp1.
+                        "],['".$respuestas[1]['respuesta']."',".$resp2.
+                        "],['".$respuestas[2]['respuesta']."', ".$resp3.
+                        "],['".$respuestas[3]['respuesta']."', ".$resp4.
+                        "],['".$respuestas[4]['respuesta']."', ".$resp5."]";
+        $arr['chartData2'] = $pregunta_2;
+        $arr['chartTitle2'] = $preguntas[1]['nombre_pregunta'];
+        
 
         $resp1 = SesionesModel::where('id',$tallerista)->sum('preg3resp1');
         $resp2 = SesionesModel::where('id',$tallerista)->sum('preg3resp2');
@@ -203,13 +222,13 @@ class AdminController extends Controller
         $resp4 = SesionesModel::where('id',$tallerista)->sum('preg3resp4');
         $resp5 = SesionesModel::where('id',$tallerista)->sum('preg3resp5');
 
-        $pregunta_3 = [
-            'resp1' => $resp1,
-            'resp2' => $resp2,
-            'resp3' => $resp3,
-            'resp4' => $resp4,
-            'resp5' => $resp5
-        ];
+        $pregunta_3 = "['".$respuestas[0]['respuesta']."', ".$resp1.
+                        "],['".$respuestas[1]['respuesta']."',".$resp2.
+                        "],['".$respuestas[2]['respuesta']."', ".$resp3.
+                        "],['".$respuestas[3]['respuesta']."', ".$resp4.
+                        "],['".$respuestas[4]['respuesta']."', ".$resp5."]";
+        $arr['chartData3'] = $pregunta_3;
+        $arr['chartTitle3'] = $preguntas[2]['nombre_pregunta'];
 
         $resp1 = SesionesModel::where('id',$tallerista)->sum('preg4resp1');
         $resp2 = SesionesModel::where('id',$tallerista)->sum('preg4resp2');
@@ -217,13 +236,13 @@ class AdminController extends Controller
         $resp4 = SesionesModel::where('id',$tallerista)->sum('preg4resp4');
         $resp5 = SesionesModel::where('id',$tallerista)->sum('preg4resp5');
 
-        $pregunta_4 = [
-            'resp1' => $resp1,
-            'resp2' => $resp2,
-            'resp3' => $resp3,
-            'resp4' => $resp4,
-            'resp5' => $resp5
-        ];
+        $pregunta_4 = "['".$respuestas[0]['respuesta']."', ".$resp1.
+                        "],['".$respuestas[1]['respuesta']."',".$resp2.
+                        "],['".$respuestas[2]['respuesta']."', ".$resp3.
+                        "],['".$respuestas[3]['respuesta']."', ".$resp4.
+                        "],['".$respuestas[4]['respuesta']."', ".$resp5."]";
+        $arr['chartData4'] = $pregunta_4;
+        $arr['chartTitle4'] = $preguntas[3]['nombre_pregunta'];      
 
         $resultados = SesionesModel::select(
             'idsesion',
@@ -232,7 +251,7 @@ class AdminController extends Controller
             'tallerista.nombre_tallerista AS tallerista',
             'num_asistentes',
             'tiposesion',
-        'imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(8);
+        'imagen', 'ruta_imagen')->join('tallerista','tallerista.id','sesiones.id')->where('tallerista.id',$tallerista)->paginate(8);
         
         //total de sesiones
         $cantidadSesiones = SesionesModel::where('id',$tallerista)->count();
@@ -246,24 +265,27 @@ class AdminController extends Controller
             $datos[$id] = $asistentes;
             $total = $total + $asistentes;
         }
-        
-        $preguntas = Pregunta::all();
-        $respuestas = Respuesta::all();
 
         $tallerista = Tallerista::find($tallerista);
 
-        return view('Administrador.buscar_sesiones')
+        return view('Administrador.talleristas_sesiones', $arr)
             ->with('resultados',$resultados)
             ->with('tallerista',$tallerista)
-            ->with('data1',$pregunta_1)
-            ->with('data2',$pregunta_2)
-            ->with('data3',$pregunta_3)
-            ->with('data4',$pregunta_4)
             ->with('cantidad_sesiones',$cantidadSesiones)
             ->with('total_asistentes',$total)
-            ->with('data4',$pregunta_4)
             ->with('preguntas',$preguntas)
             ->with('respuestas',$respuestas);
+    }
+
+    public function buscar_fecha(Request $request){
+
+        return $request->all();
+        
+        $resultados = SesionesModel::where('fecha', $request->fecha)->get();
+        $talleristas = Tallerista::all();
+
+        return view('Administrador.buscar_sesiones', compact('resultados', 'talleristas'));
+        
     }
     // Asistentes
     public function asistentes(){

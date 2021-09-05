@@ -1,53 +1,34 @@
 @extends('layouts.app')
 @section('content')
-{{-- Encabezado --}}
-<div class="flex items-center justify-start px-8 py-8 gap-x-8">
-  {{-- Botón back --}}
-  <div class="rounded-full h-20 w-20 flex items-center justify-center">
-    <a href="{{ route('Administrador.sesiones.index')}}" 
-      class="btn rounded-full normal-case text-light" 
-      style="background-color: #da2c4e;">
-      <i class="far fa-arrow-alt-circle-left"></i>
-    </a>
+  {{-- Encabezado --}}
+  <div class="flex items-center justify-start px-8 py-8 gap-x-8">
+    {{-- Botón back --}}
+    <div class="rounded-full h-20 w-20 flex items-center justify-center">
+      <a href="{{ url()->previous() }}" 
+        class="btn rounded-full normal-case text-light" 
+        style="background-color: #da2c4e;">
+        <i class="far fa-arrow-alt-circle-left"></i>
+      </a>
+    </div>
+    <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Sesion {{$sesion->idsesion}} </div>
+    <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Tallerista: {{$sesion->tallerista}} </div>
   </div>
-  <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Sesion {{$sesion->idsesion}} </div>
-  <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Tallerista: {{$sesion->tallerista}} </div>
-</div>
 
-<div class="card p-2 p-md-4">
-  <div class="card-body">
-    <div class="row">
-      {{-- Preguntas como labesl --}}
-      <div class="card-header">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Cuestionario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{$preguntas[0]->nombre_pregunta}}</td>
-            </tr>
-            <tr>
-              <td>{{$preguntas[1]->nombre_pregunta}}</td>
-            </tr>
-            <tr>
-              <td>{{$preguntas[2]->nombre_pregunta}}</td>
-            </tr>
-            <tr>
-              <td>{{$preguntas[3]->nombre_pregunta}}</td>
-            </tr>
-          </tbody>
-        </table>
-        
+  <div class="card p-2 p-md-4 mb-4">
+    <div class="card-body">
+
+        {{-- Gráficas --}}
+      <div class="row col-12">
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart1"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart2"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart3"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart4"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart5"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div>
       </div>
 
-      <div class="card-header p-1 col-lg-12" id="chart1">
-          {{-- Aquí van los gráficos --}}
-      </div>
       {{-- Tabla de asistentes --}}
-      <div class="card-header col-12">
+      <div class="card-header col-12 mb-4">
         <div class="table-responsive">
           <table id="tabla_sesion_asistentes" class="table table-striped">
             <caption>Asistentes a la sesi&oacute;n</caption>
@@ -72,7 +53,7 @@
               @endforeach
             </tbody>
           </table>
-          {{-- Botó de descarga del archivo excel --}}
+          {{-- Boton de descarga del archivo excel --}}
           <div class="col-12 d-flex justify-content-end p-4">
             <div class="btn-group" role="group">
               <a href="{{ route('Administrador.asistentes.excel.download' , $sesion->idsesion)}}" class="btn text-white normal-case" style="background-color: #107c41">
@@ -84,157 +65,88 @@
         </div>
       </div>
 
-      {{-- Tabla de datos con eje x = preguntas y eje y=>respuestas --}}
-      {{-- <div class="">
-        <div class="table-responsive">
-          <table id="datatable" class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>{{$preguntas[0]->nombre_pregunta}} </th>
-                    <th>{{$preguntas[1]->nombre_pregunta}} </th>
-                    <th>{{$preguntas[2]->nombre_pregunta}} </th>
-                    <th>{{$preguntas[3]->nombre_pregunta}} </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>{{$respuestas[0]->respuesta}} </th>
-                    <td>{{$data1->respuesta_1}}</td>
-                    <td>{{$data2->respuesta_1}}</td>
-                    <td>{{$data3->respuesta_1}}</td>
-                    <td>{{$data4->respuesta_1}}</td>
-                </tr>
-                <tr>
-                    <th>{{$respuestas[1]->respuesta}} </th>
-                    <td>{{$data1->respuesta_2}}</td>
-                    <td>{{$data2->respuesta_2}}</td>
-                    <td>{{$data3->respuesta_2}}</td>
-                    <td>{{$data4->respuesta_2}}</td>
-                </tr>
-                <tr>
-                    <th>{{$respuestas[2]->respuesta}} </th>
-                    <td>{{$data1->respuesta_3}}</td>
-                    <td>{{$data2->respuesta_3}}</td>
-                    <td>{{$data3->respuesta_3}}</td>
-                    <td>{{$data4->respuesta_3}}</td>
-                </tr>
-                <tr>
-                    <th>{{$respuestas[3]->respuesta}} </th>
-                    <td>{{$data1->respuesta_4}}</td>
-                    <td>{{$data2->respuesta_4}}</td>
-                    <td>{{$data3->respuesta_4}}</td>
-                    <td>{{$data4->respuesta_4}}</td>
-                </tr>
-                <tr>
-                    <th>{{$respuestas[4]->respuesta}}</th>
-                    <td>{{$data1->respuesta_5}}</td>
-                    <td>{{$data2->respuesta_5}}</td>
-                    <td>{{$data3->respuesta_5}}</td>
-                    <td>{{$data4->respuesta_5}}</td>
-                </tr>
-            </tbody>
-          </table>
+      {{-- comentarios --}}       
+      <div class="bg-body row">
+        <div class="card-header bg-body text-wrap rouded fw-bold">Lo mejor de la sesi&oacute;n</div>
+        <div class="card-body text-wrap bg-body px-8 pt-0">
+          <p>{{$sesion->comentario1}}</p>
         </div>
-      </div> --}}
+      </div>
+      <div class="bg-body row">
+        <div class="card-header bg-body text-wrap rouded fw-bold">¿Qu&eacute; &aacute;reas de oportunidad se presentaron?</div>
+        <div class="card-body text-wrap bg-body px-8 pt-0">
+          <p>{{$sesion->comentario2}}</p>
+        </div>
+      </div>
+      <div class="bg-body row">
+        <div class="card-header text-wrap bg-body fw-bold">¿Qu&eacute; situaciones de AHLS se expresaron?</div>
+        <div class="card-body text-wrap bg-body px-8 pt-0">
+          <p>{{$sesion->comentario3}}</p>
+        </div>
+      </div>
+      <div class="bg-body row">
+        <div class="card-header text-wrap bg-body fw-bold">¿Qu&eacute; elementos de la cultura organizacional resaltaron?</div>
+        <div class="card-body text-wrap bg-body px-8 pt-0">
+          <p>{{$sesion->comentario4}}</p>
+        </div>
+      </div>
 
-      {{-- Tabla de datos con eje x => Respuestas y eje y=>Preguntas --}}
-      <div class="invisible">
-        <div class="table-responsive">
-          <table id="datatable" class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>{{$respuestas[0]->respuesta}} </th>
-                    <th>{{$respuestas[1]->respuesta}} </th>
-                    <th>{{$respuestas[2]->respuesta}} </th>
-                    <th>{{$respuestas[3]->respuesta}} </th>
-                    <th>{{$respuestas[4]->respuesta}} </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {{-- <th>{{$preguntas[0]->nombre_pregunta}} </th> --}}
-                    <th>Pregunta_1</th>
-                    <td>{{$data1->respuesta_1}}</td>
-                    <td>{{$data1->respuesta_2}}</td>
-                    <td>{{$data1->respuesta_3}}</td>
-                    <td>{{$data1->respuesta_4}}</td>
-                    <td>{{$data1->respuesta_5}}</td>
-                </tr>
-                <tr>
-                    {{-- <th>{{$preguntas[1]->nombre_pregunta}} </th> --}}
-                    <th>Pregunta_2</th>
-                    <td>{{$data2->respuesta_1}}</td>
-                    <td>{{$data2->respuesta_2}}</td>
-                    <td>{{$data2->respuesta_3}}</td>
-                    <td>{{$data2->respuesta_4}}</td>
-                    <td>{{$data2->respuesta_5}}</td>
-                </tr>
-                <tr>
-                    {{-- <th>{{$preguntas[2]->nombre_pregunta}} </th> --}}
-                    <th>Pregunta_3</th>
-                    <td>{{$data3->respuesta_1}}</td>
-                    <td>{{$data3->respuesta_2}}</td>
-                    <td>{{$data3->respuesta_3}}</td>
-                    <td>{{$data3->respuesta_4}}</td>
-                    <td>{{$data3->respuesta_5}}</td>
-                </tr>
-                <tr>
-                    {{-- <th>{{$preguntas[3]->nombre_pregunta}} </th> --}}
-                    <th>Pregunta_4</th>
-                    <td>{{$data4->respuesta_1}}</td>
-                    <td>{{$data4->respuesta_2}}</td>
-                    <td>{{$data4->respuesta_3}}</td>
-                    <td>{{$data4->respuesta_4}}</td>
-                    <td>{{$data4->respuesta_5}}</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-        {{-- comentarios --}}
-      <div class="card-header">
-        Comentarios
-        <div>{{$sesion->comentario1}}</div>
-        <div>{{$sesion->comentario2}}</div>
-        <div>{{$sesion->comentario3}}</div>
-        <div>{{$sesion->comentario4}}</div>
-      </div>
     </div>
   </div>
-</div>
 
 @endsection
 
-@section('scripts')  
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/data.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  <script>
-    Highcharts.chart('chart1', {
-      data: {
-          table: 'datatable'
-      },
-      chart: {
-          type: 'column'
-      },
-      title: {
-          text: 'Datos del cuestionario'
-      },
-      yAxis: {
-          allowDecimals: false,
-          title: {
-              text: 'Cantidad de respuestas'
-          }
-      },
-      tooltip: {
-          formatter: function () {
-              return '<b>' + this.series.name + '</b><br/>' +
-                  this.point.y + ' ' + this.point.name.toLowerCase();
-          }
-      }
-    });
+@section('scripts')
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      //Grafica 1
+      var data = google.visualization.arrayToDataTable([
+        ['Respuesta', 'Cantidad de respuestas'],
+        <?php echo $chartData1 ?>
+      ]);
+
+      var options = { 
+        title: "<?php echo $chartTitle1 ?>"
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+      chart.draw(data, options);
+
+      //Grafica 2
+      var data = google.visualization.arrayToDataTable([
+        ['Respuesta', 'Cantidad de respuestas'],
+        <?php echo $chartData2 ?>
+      ]);
+
+      var options = { title: "<?php echo $chartTitle2 ?>" };
+      var chart = new google.visualization.PieChart(document.getElementById('chart2'));
+      chart.draw(data, options);
+
+      //Grafica 3
+      var data = google.visualization.arrayToDataTable([
+        ['Respuesta', 'Cantidad de respuestas'],
+        <?php echo $chartData3 ?>
+      ]);
+
+      var options = { title: "<?php echo $chartTitle3 ?>" };
+      var chart = new google.visualization.PieChart(document.getElementById('chart3'));
+      chart.draw(data, options);
+
+      //Grafica 4
+      var data = google.visualization.arrayToDataTable([
+        ['Respuesta', 'Cantidad de respuestas'],
+        <?php echo $chartData4 ?>
+      ]);
+
+      var options = { title: "<?php echo $chartTitle4 ?>" };
+      var chart = new google.visualization.PieChart(document.getElementById('chart4'));
+      chart.draw(data, options);
+    }
   </script>
+  
 @endsection
+

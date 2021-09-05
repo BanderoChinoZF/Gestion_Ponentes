@@ -185,6 +185,7 @@
 
         <!-- Scripts -->
         @yield('scripts')
+        @livewireScripts
         <script src="{{ asset('js/misFunciones.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/forDatatables.js') }}" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

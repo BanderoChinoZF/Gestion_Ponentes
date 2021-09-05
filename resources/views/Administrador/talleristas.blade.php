@@ -3,7 +3,7 @@
 @section('content')
 
 {{-- Talleristas --}}
-<div class="col-10 offset-1">
+<div class="col-10 offset-1 mb-8">
     <div class="py-8 text-center text-xl font-bold uppercase">Talleristas</div>
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         @foreach ($talleristas as $tallerista)
@@ -27,5 +27,5 @@
         @endforeach
     </div>
 </div>
-<br><br>
+
 @endsection
