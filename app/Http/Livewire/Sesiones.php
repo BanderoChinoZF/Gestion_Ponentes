@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\SesionesModel;
 use App\Models\Tallerista;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Sesiones extends Component
 {
+    use WithPagination;
     public $search = "";
     public $tallerista_id;
 

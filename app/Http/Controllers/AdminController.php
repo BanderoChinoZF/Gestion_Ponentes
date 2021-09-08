@@ -133,7 +133,7 @@ class AdminController extends Controller
             "],['".$respuestas[3]['respuesta']."', ".$datas2[0]['respuesta_4'].
             "],['".$respuestas[4]['respuesta']."', ".$datas2[0]['respuesta_5']."]";
         $arr['chartData2'] = $pregunta_2;
-        $arr['chartTitle2'] = $preguntas[0]['nombre_pregunta'];
+        $arr['chartTitle2'] = $preguntas[1]['nombre_pregunta'];
         
         $datas3 = SesionesModel::select(
             'preg3resp1 AS respuesta_1',
@@ -148,7 +148,7 @@ class AdminController extends Controller
             "],['".$respuestas[3]['respuesta']."', ".$datas3[0]['respuesta_4'].
             "],['".$respuestas[4]['respuesta']."', ".$datas3[0]['respuesta_5']."]";
         $arr['chartData3'] = $pregunta_3;
-        $arr['chartTitle3'] = $preguntas[0]['nombre_pregunta'];
+        $arr['chartTitle3'] = $preguntas[2]['nombre_pregunta'];
 
         $datas4 = SesionesModel::select(
             'preg4resp1 AS respuesta_1',
@@ -163,7 +163,7 @@ class AdminController extends Controller
             "],['".$respuestas[3]['respuesta']."', ".$datas4[0]['respuesta_4'].
             "],['".$respuestas[4]['respuesta']."', ".$datas4[0]['respuesta_5']."]";
         $arr['chartData4'] = $pregunta_4;
-        $arr['chartTitle4'] = $preguntas[0]['nombre_pregunta'];
+        $arr['chartTitle4'] = $preguntas[3]['nombre_pregunta'];
         
         $asistentes = Datos::select(
             'id_empleado',
@@ -266,6 +266,9 @@ class AdminController extends Controller
             $total = $total + $asistentes;
         }
 
+        $arr['asistentes'] = "['Total de asistentes', ".$total."]";
+        $arr['cantidadSesiones'] = "['Cantidad de sesiones', ".$cantidadSesiones."]";
+
         $tallerista = Tallerista::find($tallerista);
 
         return view('Administrador.talleristas_sesiones', $arr)
@@ -277,16 +280,7 @@ class AdminController extends Controller
             ->with('respuestas',$respuestas);
     }
 
-    public function buscar_fecha(Request $request){
-
-        return $request->all();
-        
-        $resultados = SesionesModel::where('fecha', $request->fecha)->get();
-        $talleristas = Tallerista::all();
-
-        return view('Administrador.buscar_sesiones', compact('resultados', 'talleristas'));
-        
-    }
+    
     // Asistentes
     public function asistentes(){
         $filtro = null;

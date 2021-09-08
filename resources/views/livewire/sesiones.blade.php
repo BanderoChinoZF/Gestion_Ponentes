@@ -34,7 +34,7 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                  <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block text-white normal-case" style="background-color: #da2c4e">
+                  <a href="{{ route('Administrador.sesiones.showSesion', $a->idsesion) }}" class="btn btn-block text-white normal-case rounded-pill" style="background-color: #da2c4e">
                     Detalles
                   </a>
                 </div>

@@ -59,11 +59,12 @@
         <table class="table table-sm">
           <thead>
             <tr>
-                <th scope="col">ID Empleado</th>
+                <th scope="col" class="d-none d-md-table-cell">ID Empleado</th>
                 <th scope="col">Nombre Empleado</th>
                 <th scope="col" class="d-none d-md-table-cell">Ubicación</th>
                 <th scope="col" class="d-none d-md-table-cell">Departamento</th>
-                <th scope="col">Estatus</th>
+                <th scope="col">Asistencia</th>
+                <th scope="col" class="d-none d-md-table-cell">Estatus</th>
             </tr>
           </thead>
           <tbody id="table_un_asistente">

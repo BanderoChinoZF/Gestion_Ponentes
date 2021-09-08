@@ -45,7 +45,7 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      //Grafica 1
+     //-------------Grafica 1-------------------//
       var data = google.visualization.arrayToDataTable([
         ['Respuesta', 'Cantidad de respuestas'],
         <?php echo $chartData1 ?>
@@ -57,7 +57,7 @@
       var chart = new google.visualization.PieChart(document.getElementById('chart1'));
       chart.draw(data, options);
 
-      //Grafica 2
+     //-------------Grafica 2
       var data = google.visualization.arrayToDataTable([
         ['Respuesta', 'Cantidad de respuestas'],
         <?php echo $chartData2 ?>
@@ -67,7 +67,7 @@
       var chart = new google.visualization.PieChart(document.getElementById('chart2'));
       chart.draw(data, options);
 
-      //Grafica 3
+     //-------------Grafica 3
       var data = google.visualization.arrayToDataTable([
         ['Respuesta', 'Cantidad de respuestas'],
         <?php echo $chartData3 ?>
@@ -77,7 +77,7 @@
       var chart = new google.visualization.PieChart(document.getElementById('chart3'));
       chart.draw(data, options);
 
-      //Grafica 4
+     //-------------Grafica 4
       var data = google.visualization.arrayToDataTable([
         ['Respuesta', 'Cantidad de respuestas'],
         <?php echo $chartData4 ?>
@@ -85,6 +85,33 @@
 
       var options = { title: "<?php echo $chartTitle4 ?>" };
       var chart = new google.visualization.PieChart(document.getElementById('chart4'));
+      chart.draw(data, options);
+
+     //------------- Grafica 5
+      var data = google.visualization.arrayToDataTable([
+        ['Total de asistentes', 'Cantidad'],
+        <?php echo $asistentes ?>
+      ]);
+
+      var options = {
+        title: "Total de asistentes atendidos" ,
+        pieSliceText: 'label',
+        legend: 'none'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('chart5'));
+      chart.draw(data, options);
+     //------------- Grafica 6
+      var data = google.visualization.arrayToDataTable([
+        ['Total sesiones', 'Cantidad'],
+        <?php echo $cantidadSesiones ?>
+      ]);
+
+      var options = {
+        title: "Total de sesiones imprtidas",
+        pieSliceText: 'label',
+        legend: 'none'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('chart6'));
       chart.draw(data, options);
     }
   </script>
