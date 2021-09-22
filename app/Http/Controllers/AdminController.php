@@ -43,7 +43,19 @@ class AdminController extends Controller
         $total_empleados_a = Datos::where('idsesion','!=',0)->count();
         $porcentaje_a = ($total_empleados_a * 100) / $total_empleados;
         $porcentaje_a = round($porcentaje_a,2);
-
+        // 
+        $emp_sindicalizados = 441;
+        $emp_sindicalizados_a = SesionesModel::where('tiposesion', 'sindicalizado')->sum('num_asistentes');
+        $emp_sindicalizados_na = $emp_sindicalizados - $emp_sindicalizados_a;
+        $porcentaje_sindicalizados_a = ($emp_sindicalizados_a * 100) / $emp_sindicalizados;
+        $porcentaje_sindicalizados_a = round($porcentaje_sindicalizados_a,2);
+        // 
+        $emp = 173;
+        $emp_a = SesionesModel::where('tiposesion', 'empleado')->sum('num_asistentes');
+        $emp_na = $emp - $emp_a;
+        $porcentaje_emp_a = ($emp_a * 100) / $emp;
+        $porcentaje_emp_a = round($porcentaje_emp_a,2);
+        // 
         $total_sesiones = SesionesModel::all()->count();
         $sesiones_faltantes = round(($total_empleados_na/15),0);
         $sobrantes = $total_empleados_na % 15;
@@ -57,6 +69,20 @@ class AdminController extends Controller
             'empleados_na' => $total_empleados_na,
             'porcentaje_a' => $porcentaje_a
         ];
+
+        $porcentaje_sind = [
+            'total' => $emp_sindicalizados,
+            'empleados_a' => $emp_sindicalizados_a,
+            'empleados_na' => $emp_sindicalizados_na,
+            'porcentaje_a' => $porcentaje_sindicalizados_a
+        ];
+
+        $porcentaje_emp = [
+            'total' => $emp,
+            'empleados_a' => $emp_a,
+            'empleados_na' => $emp_na,
+            'porcentaje_a' => $porcentaje_emp_a
+        ];
         
         return view('Administrador.inicio')
             // ->with('empleados',$empleados)
@@ -64,7 +90,9 @@ class AdminController extends Controller
             ->with('talleristas',$talleristas)
             ->with('total_sesiones',$total_sesiones)
             ->with('sesiones_faltantes',$sesiones_faltantes)
-            ->with('porcentaje',$porcentaje);  
+            ->with('porcentaje',$porcentaje)
+            ->with('porcentaje_sind',$porcentaje_sind)
+            ->with('porcentaje_emp',$porcentaje_emp);
     }
     // Sesiones
     public function sesiones(){
@@ -173,6 +201,11 @@ class AdminController extends Controller
             'idsesion')->where('idsesion',$id)->orderBy('id_empleado','ASC')->get();
 
         $sesion = $sesion[0];
+
+        $countAsistentes = Datos::where('idsesion',$id)->count();
+        
+        $arr['cantidad_asistentes'] = "['Total de asistentes', ".$countAsistentes."]";
+
         
         return view('Administrador.sesion',$arr)
         ->with(compact('sesion'))

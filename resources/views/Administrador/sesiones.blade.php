@@ -16,11 +16,13 @@
           <h2 class="font-sans text-lg"> Talleristas </h2>
         </div>
         @foreach ($talleristas as $tallerista)
-        <div class="card-header hover:bg-red-50">
-          <a href="{{ route('Administrador.sesiones.buscar',$tallerista->id)}}" class="text-sm">
-            {{$tallerista->nombre_tallerista}}
-          </a>
-        </div>
+          @if ($tallerista->id)
+            <div class="card-header hover:bg-red-50">
+              <a href="{{ route('Administrador.sesiones.buscar',$tallerista->id)}}" class="text-sm">
+                {{$tallerista->nombre_tallerista}}
+              </a>
+            </div>
+          @endif
         @endforeach
       </div>
     </div>

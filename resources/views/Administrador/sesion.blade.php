@@ -24,7 +24,7 @@
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart3"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart4"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart5"></div>
-        <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div>
+        {{-- <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div> --}}
       </div>
 
       {{-- Tabla de asistentes --}}
@@ -105,46 +105,60 @@
 
     function drawChart() {
       //Grafica 1
-      var data = google.visualization.arrayToDataTable([
-        ['Respuesta', 'Cantidad de respuestas'],
-        <?php echo $chartData1 ?>
-      ]);
+        var data = google.visualization.arrayToDataTable([
+          ['Respuesta', 'Cantidad de respuestas'],
+          <?php echo $chartData1 ?>
+        ]);
 
-      var options = { 
-        title: "<?php echo $chartTitle1 ?>"
-      };
-      var chart = new google.visualization.PieChart(document.getElementById('chart1'));
-      chart.draw(data, options);
+        var options = { 
+          title: "<?php echo $chartTitle1 ?>"
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+        chart.draw(data, options);
 
       //Grafica 2
-      var data = google.visualization.arrayToDataTable([
-        ['Respuesta', 'Cantidad de respuestas'],
-        <?php echo $chartData2 ?>
-      ]);
+        var data = google.visualization.arrayToDataTable([
+          ['Respuesta', 'Cantidad de respuestas'],
+          <?php echo $chartData2 ?>
+        ]);
 
-      var options = { title: "<?php echo $chartTitle2 ?>" };
-      var chart = new google.visualization.PieChart(document.getElementById('chart2'));
-      chart.draw(data, options);
+        var options = { title: "<?php echo $chartTitle2 ?>" };
+        var chart = new google.visualization.PieChart(document.getElementById('chart2'));
+        chart.draw(data, options);
 
       //Grafica 3
-      var data = google.visualization.arrayToDataTable([
-        ['Respuesta', 'Cantidad de respuestas'],
-        <?php echo $chartData3 ?>
-      ]);
+        var data = google.visualization.arrayToDataTable([
+          ['Respuesta', 'Cantidad de respuestas'],
+          <?php echo $chartData3 ?>
+        ]);
 
-      var options = { title: "<?php echo $chartTitle3 ?>" };
-      var chart = new google.visualization.PieChart(document.getElementById('chart3'));
-      chart.draw(data, options);
+        var options = { title: "<?php echo $chartTitle3 ?>" };
+        var chart = new google.visualization.PieChart(document.getElementById('chart3'));
+        chart.draw(data, options);
 
       //Grafica 4
-      var data = google.visualization.arrayToDataTable([
-        ['Respuesta', 'Cantidad de respuestas'],
-        <?php echo $chartData4 ?>
-      ]);
+        var data = google.visualization.arrayToDataTable([
+          ['Respuesta', 'Cantidad de respuestas'],
+          <?php echo $chartData4 ?>
+        ]);
 
-      var options = { title: "<?php echo $chartTitle4 ?>" };
-      var chart = new google.visualization.PieChart(document.getElementById('chart4'));
-      chart.draw(data, options);
+        var options = { title: "<?php echo $chartTitle4 ?>" };
+        var chart = new google.visualization.PieChart(document.getElementById('chart4'));
+        chart.draw(data, options);
+      //Grafica 5
+        var data = google.visualization.arrayToDataTable([
+          ['Total de asistentes', 'Cantidad'],
+          <?php echo $cantidad_asistentes ?>
+        ]);
+
+        var options = {
+          title: "Total de asistentes atendidos" ,
+          pieSliceText: 'label',
+          legend: 'none'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('chart5'));
+        chart.draw(data, options);
+      
     }
   </script>
   

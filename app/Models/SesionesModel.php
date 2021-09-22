@@ -20,4 +20,7 @@ class SesionesModel extends Model
     //AQUI LOS ELEMENTOS DE LA TABLA.
     protected $guarded = [];
 
+    public function tallerista(){
+        return $this->belongsTo('App\Models\Tallerista', 'id');
+    }
 }

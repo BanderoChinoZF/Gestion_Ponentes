@@ -12,8 +12,6 @@
           @foreach ($sesiones as $a)
             <div class="col">
               <div class="card h-100 p-0">
-                {{-- Se coloca la imagen sin imagen por default --}}
-                {{-- <img src="{{ asset('img/sin_imagen.png') }}" class="card-img-top" alt="Sesion sin imagen"> --}}
                 <img src="@if ($a->ruta_imagen)
                   {{ asset($a->ruta_imagen) }}
                 @else
@@ -26,7 +24,13 @@
                   </div>
                   <div class="d-flex justify-content-between">
                     <label class="py-2"><strong>Tallerista</strong></label>
-                    <label class="py-2">{{ $a->tallerista }}</label>
+                    <label class="py-2">
+                      @if ($a->tallerista)
+                        {{ $a->tallerista->nombre_tallerista }}
+                      @else
+                          Sin Tallerista
+                      @endif
+                    </label>
                   </div>
                   
                   <div class="d-flex justify-content-end">
