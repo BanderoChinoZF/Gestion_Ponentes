@@ -23,7 +23,11 @@
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart2"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart3"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart4"></div>
-        <div class="col-12 col-md-6 px-0 mx-auto" id="chart5"></div>
+        <div class="col-12 col-md-6 px-0 mx-auto" id="chart5">
+          <div class="py-8 mx-auto my-8 text-center">
+            <strong>Total de asistentes atendidos: </strong> <label class="font-bold text-xl"> {{$total_asistentes}}</label>
+          </div>
+        </div>
         {{-- <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div> --}}
       </div>
 
@@ -146,18 +150,18 @@
         var chart = new google.visualization.PieChart(document.getElementById('chart4'));
         chart.draw(data, options);
       //Grafica 5
-        var data = google.visualization.arrayToDataTable([
-          ['Total de asistentes', 'Cantidad'],
-          <?php echo $cantidad_asistentes ?>
-        ]);
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Total de asistentes', 'Cantidad'],
+        //   <?php echo $cantidad_asistentes ?>
+        // ]);
 
-        var options = {
-          title: "Total de asistentes atendidos" ,
-          pieSliceText: 'label',
-          legend: 'none'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('chart5'));
-        chart.draw(data, options);
+        // var options = {
+        //   title: "Total de asistentes atendidos" ,
+        //   pieSliceText: 'label',
+        //   legend: 'none'
+        // };
+        // var chart = new google.visualization.PieChart(document.getElementById('chart5'));
+        // chart.draw(data, options);
       
     }
   </script>

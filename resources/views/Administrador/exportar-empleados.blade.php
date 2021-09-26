@@ -51,6 +51,9 @@
                 <th>Jefe inmediato</th>
                 <th>Puesto</th>
                 <th>Tipo</th>
+                <th>ID de Sesion</th>
+                <th>Área</th>
+                <th>Sucursal</th>
             </tr>
         </thead>
         <tbody>
@@ -64,6 +67,9 @@
                     <td>{{$item->jefe_inmediato}}</td>
                     <td>{{$item->puesto}}</td>
                     <td>{{$item->tipo}}</td>
+                    <td>{{$item->idsesion}}</td>
+                    <td>{{$item->area}}</td>
+                    <td>{{$item->sucursal}}</td>
                 </tr>
             @endforeach
         </tbody>

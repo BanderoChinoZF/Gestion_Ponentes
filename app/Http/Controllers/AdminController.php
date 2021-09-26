@@ -15,6 +15,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SesionesExport;
 use App\Exports\DatosExport;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Environment\Console;
 
 class AdminController extends Controller
@@ -211,6 +212,7 @@ class AdminController extends Controller
         ->with(compact('sesion'))
         ->with('preguntas',$preguntas)
         ->with('respuestas',$respuestas)
+        ->with('total_asistentes',$countAsistentes)
         ->with('asistentes',$asistentes);
     }
 
@@ -310,7 +312,9 @@ class AdminController extends Controller
             ->with('cantidad_sesiones',$cantidadSesiones)
             ->with('total_asistentes',$total)
             ->with('preguntas',$preguntas)
-            ->with('respuestas',$respuestas);
+            ->with('respuestas',$respuestas)
+            ->with('total_asistentes',$total)
+            ->with('cantidad_sesiones',$cantidadSesiones);
     }
 
     
@@ -420,5 +424,16 @@ class AdminController extends Controller
         return Excel::download(new SesionesExport, 'sesiones.xlsx');
     }
     //------------------------------------------------------------------------------------------------------------
-    
+    public function asiganrDatosRanndom(){
+        $datos = Datos::where('area', '')->take(10)->get();
+        foreach($datos as $dato){
+            
+            $registro = Datos::where('id_empleado', $dato['id_empleado'])->first();
+            $id = $dato['id_empleado'];
+            DB::update("update datos set area = 'contraloría' where id_empleado = '$id'");
+            // echo $dato['id_empleado'];
+        }
+
+        return 'Datos actualizados';
+    }
 }

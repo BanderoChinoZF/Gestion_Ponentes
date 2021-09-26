@@ -12,83 +12,51 @@
         {{-- Buttons --}}
         <div class="grid grid-cols-3 gap-x-1 gap-y-2">
           <button class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseUbicacion" aria-expanded="false" aria-controls="collapseExample">
-            Ubicaci&oacute;n
+            Sucursal
           </button>
           <button class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseDepartamento" aria-expanded="false" aria-controls="collapseExample">
-            Departamentos
-          </button>
-          <button class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseJefe" aria-expanded="false" aria-controls="collapseExample">
-            Jefe directo
-          </button>
-          <button class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTipos" aria-expanded="false" aria-controls="collapseExample">
-            Tipos
+            &Aacute;reas
           </button>
           <button class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapsePuestos" aria-expanded="false" aria-controls="collapseExample">
             Puestos
           </button>
-          <a href="{{ route('Administrador.asistentes.index') }}" class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case">
+          {{-- <a href="{{ route('Administrador.asistentes.index') }}" class="btn bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold normal-case">
             Sin filtros
-          </a>
+          </a> --}}
         </div>
         {{--Collapses --}}
-        <div class="py-1 px-2">  
+        <div class="py-1 px-2"> 
+           {{-- Filtro por sucursal --}}
           <div class="collapse py-4" id="collapseUbicacion">
             <div class="overflow-y-auto h-62">
-              @foreach ($ubicaciones as $item)
-                @if ($item->ubicacion != null)
-                <a href="{{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{$item->ubicacion}}</a>  
-                {{-- @else
-                  <a href=" {{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mostrar todos</a>   --}}
-                @endif
-              @endforeach
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal mina')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal mina</a>
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal contraloría')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal contraloría</a>
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal contraloría event')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal contraloría event</a>
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal distribuibles min')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal distribuibles min</a>
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal planta concentrad')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal planta concentrad</a>
+              <a href="{{ route('Administrador.asistentes.filtros',['sucursal',str_replace(' ', '+', 'semanal soporte a la oper')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Semanal soporte a la oper</a>
             </div>
           </div>
-          {{-- Filtro por departamento --}}
+          {{-- Filtro por área --}}
           <div class="collapse py-4" id="collapseDepartamento">
             <div class="overflow-y-auto h-62">
-              @foreach ($departamentos as $item)
-                @if ($item->departamento != null)
-                  <a href=" {{ route('Administrador.asistentes.filtros',['departamento',str_replace(' ', '+', $item->departamento)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{$item->departamento}}</a>  
-                {{-- @else
-                  <a href=" {{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mostrar todos</a>   --}}
-                @endif
-              @endforeach
-            </div>
-          </div>
-          {{-- Filtro por jefe-inmediato --}}
-          <div class="collapse py-4" id="collapseJefe">
-            <div class="overflow-y-auto h-62">
-              @foreach ($jefes as $item)
-                @if ($item->jefe_inmediato != null)
-                  <a href=" {{ route('Administrador.asistentes.filtros',['jefe_inmediato',str_replace(' ', '+', $item->jefe_inmediato)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{$item->jefe_inmediato}}</a>  
-                {{-- @else
-                  <a href=" {{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mostrar todos</a>   --}}
-                @endif
-              @endforeach
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Contraloría')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Contraloría</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Geología')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Geología</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Mantenimiento')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mantenimiento</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Mina')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mina</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Planeación')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Planeación</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Planta de beneficio')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Planta de beneficio</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Seguridad')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Seguridad</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['area',str_replace(' ', '+', 'Sistemas')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Sistemas</a>
             </div>
           </div>
           {{-- Filtro por puesto --}}
           <div class="collapse py-4" id="collapsePuestos">
             <div class="overflow-y-auto h-62">
-              @foreach ($puestos as $item)
-                @if ($item->puesto != null)
-                  <a href=" {{ route('Administrador.asistentes.filtros',['puesto',str_replace(' ', '+', $item->puesto)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{$item->puesto}}</a>  
-                {{-- @else
-                  <a href=" {{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mostrar todos</a>   --}}
-                @endif
-              @endforeach
-            </div>
-          </div>
-          {{-- Filtro por tipos --}}
-          <div class="collapse py-4" id="collapseTipos">
-            <div class="overflow-y-auto h-62">
-              @foreach ($tipos as $item)
-                @if ($item->tipo != null)
-                  <a href=" {{ route('Administrador.asistentes.filtros',['tipo',str_replace(' ', '+', $item->tipo)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{$item->tipo}}</a>  
-                {{-- @else
-                  <a href=" {{ route('Administrador.asistentes.filtros',['ubicacion',str_replace(' ', '+', $item->ubicacion)]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Mostrar todos</a>   --}}
-                @endif
-              @endforeach
+              <a href=" {{ route('Administrador.asistentes.filtros',['puesto',str_replace(' ', '+', 'Operador A')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Operador a</a>  
+              <a href=" {{ route('Administrador.asistentes.filtros',['puesto',str_replace(' ', '+', 'Operador B')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Operador b</a>  
+              <a href=" {{ route('Administrador.asistentes.filtros',['puesto',str_replace(' ', '+', 'Misceláneo')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Miscel&aacute;neo</a>
+              <a href=" {{ route('Administrador.asistentes.filtros',['puesto',str_replace(' ', '+', 'Obrero general')]) }} " class="btn-block bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-blue-700 py-2 px-4 border border-blue-500 hover:border-transparent rounded">Obrero general</a>  
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-
+    <hr>
     <div class="relative pt-1"> {{-- Barra de porcentaje --}}
       <div class="flex mb-2 items-center justify-between">
         <div>
@@ -60,17 +60,17 @@
         </div>
       </div>
     </div>
-
+    <hr>
     <div class="relative pt-1"> {{-- Barra de porcentaje --}}
       <div class="flex mb-2 items-center justify-between">
         <div>
           <span class="text-xs md:tex-lg lg:text-xl font-semibold inline-block py-1 px-2 rounded-full text-green-600">
-            {{$porcentaje_emp['porcentaje_a']}}% de los empleados atendido
+            {{$porcentaje_emp['porcentaje_a']}}% de los empleados atendidow
           </span>
         </div>
         <div class="text-right">
           <span class="text-xs font-semibold inline-block text-green-600">
-            Empleados atendidas: {{ $porcentaje_emp['empleados_a'] }}
+            Empleados atendidos: {{ $porcentaje_emp['empleados_a'] }}
           </span>
         </div>
       </div>
@@ -88,19 +88,20 @@
         </div>
       </div>
     </div>
-    
+    <hr>
     {{-- Cantidad de sesiones y cantidad faltantes --}}
-    <div class="grid grid-cols-4 text-center md:tex-lg lg:text-xl py-4">
+    <div class="grid grid-cols-4 text-center md:tex-lg lg:text-xl py-4 mx-auto">
       <div class="md:col-start-2 col-span-3 sm:col-span-2 md:col-span-1"><strong>Sesiones realizadas</strong></div>
       <div class="md:text-center">{{$total_sesiones}}</div>
       <div class="md:col-start-2 col-span-3 sm:col-span-2 md:col-span-1"><strong>Sesiones por realizar</strong></div>
       <div class="md:text-center">{{$sesiones_faltantes}}</div>
     </div>
-    <hr>
+    {{--  --}}
+    @livewire('empleados')
     {{--  --}}
     @livewire('salones')
     {{--  --}}
-    <hr>
+    
     <div class="card-body font-bold text-lg text-center text-center"> {{-- Label Buscar asistente --}}
       Buscar Asistente
     </div>
@@ -154,6 +155,11 @@
           data-mdb-target="#filtrosModal" 
           style="background-color: #da2c4e">
         Filtrar personal
+      </a>
+
+      <a href="{{route('Administrador.fakeData')}}" class="btn text-white normal-case rounded-pill"
+          style="background-color: #da2c4e">
+        Fake data
       </a>
     </div>
 

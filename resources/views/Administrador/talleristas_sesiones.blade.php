@@ -29,8 +29,16 @@
     <div class="col-12 col-md-6 px-0 mx-auto" id="chart2"></div>
     <div class="col-12 col-md-6 px-0 mx-auto" id="chart3"></div>
     <div class="col-12 col-md-6 px-0 mx-auto" id="chart4"></div>
-    <div class="col-12 col-md-6 px-0 mx-auto" id="chart5"></div>
-    <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div>
+    <div class="col-12 col-md-6 px-0 mx-auto" id="chart5">
+      <div class="card-header py-8 mx-auto my-8 text-center">
+        <strong>Total de asistentes atendidos: </strong> <label class="font-bold text-xl"> {{$total_asistentes}}</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 px-0 mx-auto" id="chart6">
+      <div class="card-header py-8 mx-auto my-8 text-center">
+        <strong>Total de sesiones impartidas: </strong> <label class="font-bold text-xl"> {{$cantidad_sesiones}}</label> 
+      </div>
+    </div>
   </div>
 
   <br>
@@ -88,31 +96,31 @@
       chart.draw(data, options);
 
      //------------- Grafica 5
-      var data = google.visualization.arrayToDataTable([
-        ['Total de asistentes', 'Cantidad'],
-        <?php echo $asistentes ?>
-      ]);
+      // var data = google.visualization.arrayToDataTable([
+      //   ['Total de asistentes', 'Cantidad'],
+      //   <?php echo $asistentes ?>
+      // ]);
 
-      var options = {
-        title: "Total de asistentes atendidos" ,
-        pieSliceText: 'label',
-        legend: 'none'
-      };
-      var chart = new google.visualization.PieChart(document.getElementById('chart5'));
-      chart.draw(data, options);
+      // var options = {
+      //   title: "Total de asistentes atendidos" ,
+      //   pieSliceText: 'label',
+      //   legend: 'none'
+      // };
+      // var chart = new google.visualization.PieChart(document.getElementById('chart5'));
+      // chart.draw(data, options);
      //------------- Grafica 6
-      var data = google.visualization.arrayToDataTable([
-        ['Total sesiones', 'Cantidad'],
-        <?php echo $cantidadSesiones ?>
-      ]);
+      // var data = google.visualization.arrayToDataTable([
+      //   ['Total sesiones', 'Cantidad'],
+      //   <?php echo $cantidadSesiones ?>
+      // ]);
 
-      var options = {
-        title: "Total de sesiones imprtidas",
-        pieSliceText: 'label',
-        legend: 'none'
-      };
-      var chart = new google.visualization.PieChart(document.getElementById('chart6'));
-      chart.draw(data, options);
+      // var options = {
+      //   title: "Total de sesiones imprtidas",
+      //   pieSliceText: 'label',
+      //   legend: 'none'
+      // };
+      // var chart = new google.visualization.PieChart(document.getElementById('chart6'));
+      // chart.draw(data, options);
     }
   </script>
   

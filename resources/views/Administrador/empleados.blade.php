@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
 @if ($filtro != null)
-<div class="py-8 text-center text-xl font-bold uppercase">{{$filtro}} {{$valor}}</div>
+    <div class="py-8 text-center text-xl font-bold uppercase">{{$filtro}} {{$valor}}</div>
 @else
     <div class="py-8 text-center text-xl font-bold uppercase">Empleados</div>
 @endif
@@ -19,7 +20,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{route('Administrador.asistentes.show', $empleado->id_empleado)}}" 
-                        class="btn btn-block normal-case rounded-none bg-blue-600 hover:bg-red-600 text-white">
+                        class="btn btn-block normal-case rounded-pill bg-blue-600 hover:bg-red-600 text-white">
                         <i class="fas fa-folder-open"> Detalles</i>
                     </a>
                 </div>
@@ -28,8 +29,9 @@
     </div>
 </div>
 
-<div class="py-4 px-2 col-10">
-    <small> {{ $empleados->onEachSide(1)->links()}} </small>
+<div class="py-4 my-8 px-auto mx-auto overflow-auto text-center">
+    {{ $empleados->onEachSide(1)->links()}}
 </div>
-
+<hr>
+<br>
 @endsection

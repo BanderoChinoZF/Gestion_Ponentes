@@ -73,8 +73,10 @@ Route::get('/Administrador/asistentes/{id}', [AdminController::class, 'asistente
 Route::get('/Administrador/asistentes/{filtro}/{valor}', [AdminController::class, 'asistentesFiltros'])->name('Administrador.asistentes.filtros');
 //Talleristas
 Route::get('/Administrador/talleristas', [AdminController::class, 'talleristas'])->name('Administrador.talleristas.index');
+// Para editar registros
 
 
+Route::get('/Administrador/faka/data', [AdminController::class, 'asiganrDatosRanndom'])->name('Administrador.fakeData');
 
 //
 Route::get('/Tallerista/inicio', [App\Http\Controllers\TalleristaController::class, 'index'])->name('Tallerista.inicio');

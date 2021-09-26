@@ -22,8 +22,8 @@ class Datos extends Model
         'jefe_inmediato',
         'puesto',
         'tipo',
-        'idsesion'
-
+        'idsesion',
+        'area'
     ];
 
 }
