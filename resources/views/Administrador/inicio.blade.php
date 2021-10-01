@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('headers')
+  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  --}}
+@endsection
+
 @section('content')
 
 <div class="container  gy-8">
@@ -65,7 +69,7 @@
       <div class="flex mb-2 items-center justify-between">
         <div>
           <span class="text-xs md:tex-lg lg:text-xl font-semibold inline-block py-1 px-2 rounded-full text-green-600">
-            {{$porcentaje_emp['porcentaje_a']}}% de los empleados atendidow
+            {{$porcentaje_emp['porcentaje_a']}}% de los empleados atendidos
           </span>
         </div>
         <div class="text-right">
@@ -96,6 +100,23 @@
       <div class="md:col-start-2 col-span-3 sm:col-span-2 md:col-span-1"><strong>Sesiones por realizar</strong></div>
       <div class="md:text-center">{{$sesiones_faltantes}}</div>
     </div>
+    {{--  --}}
+    <div class="m-4 p-2">
+      Cuestionario a personal sindicalizado
+      <x-progress-bar titulo="¿Consideras que los objetivos del taller se cumplierón?" r1="{{$p1['pr1']}}" r2="{{$p1['pr2']}}" r3="{{$p1['pr3']}}" r4="{{$p1['pr4']}}" r5="{{$p1['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cómo calificarias la información recibida durante el taller?" r1="{{$p2['pr1']}}" r2="{{$p2['pr2']}}" r3="{{$p2['pr3']}}" r4="{{$p2['pr4']}}" r5="{{$p2['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cómo calificarias las dinámicas que se realizaron durante el taller?" r1="{{$p3['pr1']}}" r2="{{$p3['pr2']}}" r3="{{$p3['pr3']}}" r4="{{$p3['pr4']}}" r5="{{$p3['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cúal es tu opinión del protocolo?" r1="{{$p4['pr1']}}" r2="{{$p4['pr2']}}" r3="{{$p4['pr3']}}" r4="{{$p4['pr4']}}" r5="{{$p4['pr5']}}"></x-progress-bar>
+    </div>
+
+    <div class="m-4 p-2">
+      Cuestionario a personal empleados
+      <x-progress-bar titulo="¿Consideras que los objetivos del taller se cumplierón?" r1="{{$ep1['pr1']}}" r2="{{$ep1['pr2']}}" r3="{{$ep1['pr3']}}" r4="{{$ep1['pr4']}}" r5="{{$ep1['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cómo calificarias la información recibida durante el taller?" r1="{{$ep2['pr1']}}" r2="{{$ep2['pr2']}}" r3="{{$ep2['pr3']}}" r4="{{$ep2['pr4']}}" r5="{{$ep2['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cómo calificarias las dinámicas que se realizaron durante el taller?" r1="{{$ep3['pr1']}}" r2="{{$ep3['pr2']}}" r3="{{$ep3['pr3']}}" r4="{{$ep3['pr4']}}" r5="{{$ep3['pr5']}}"></x-progress-bar>
+      <x-progress-bar titulo="¿Cúal es tu opinión del protocolo?" r1="{{$ep4['pr1']}}" r2="{{$ep4['pr2']}}" r3="{{$ep4['pr3']}}" r4="{{$ep4['pr4']}}" r5="{{$ep4['pr5']}}"></x-progress-bar>
+    </div>
+    
     {{--  --}}
     @livewire('empleados')
     {{--  --}}
@@ -157,10 +178,10 @@
         Filtrar personal
       </a>
 
-      <a href="{{route('Administrador.fakeData')}}" class="btn text-white normal-case rounded-pill"
+      {{-- <a href="{{route('Administrador.fakeData')}}" class="btn text-white normal-case rounded-pill"
           style="background-color: #da2c4e">
         Fake data
-      </a>
+      </a> --}}
     </div>
 
   </div>

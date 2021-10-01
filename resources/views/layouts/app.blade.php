@@ -3,9 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        {{-- Para cuando el sitio tenga htps --}}
+        {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  --}}
 
         <title>Fresnillo ::: Gestion De Sesiones</title>
 
@@ -37,6 +40,8 @@
         <!-- Estilos Propios CSS -->
         <link href="{{ asset('css/login.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+        @yield('headers')
     </head>
     <body>
         <div id="app">
@@ -142,14 +147,6 @@
                                         {{-- Sesiones --}}
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item px-4">
-                                    <a class="{{ request()->routeIs('Administrador.asistentes.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
-                                        aria-current="page" 
-                                        href="{{ route('Administrador.asistentes.index') }}">
-                                        <i class="fas fa-user-tie"></i>
-                                        <label class="d-block text-xs">Empleados </label>
-                                    </a>
-                                </li> --}}
                                 <li class="nav-item px-4">
                                     <a class="{{ request()->routeIs('Administrador.talleristas.*')? 'nav-link active font-sans font-bold':'nav-link'}} text-light hover:bg-red-800"
                                         aria-current="page" 

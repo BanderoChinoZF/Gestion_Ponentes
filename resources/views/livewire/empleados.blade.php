@@ -6,42 +6,53 @@
             aria-controls="navbarToggle"  aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span> <strong>Filtros</strong>
         </button>
-        <label class="mx-4">Empleados</label>
+        <button wire:click="buscarTodos()" class="btn btn-danger">Buscar todos</button>
+        {{-- <label class="mx-4">Empleados</label> --}}
         </nav>
         <div class="collapse" id="navbarToggle">
-            <div class="form-group m-md-4">
-                <label for="fecha" class="">Fecha</label>
-                <input wire:model="fecha" type="text" name="fecha" class="form-control">
-            </div>
-            <div class="form-group m-md-4">
-                <label for="salon">Salon</label>
-                <input wire:model="salon" type="text" name="salon" class="form-control">
+            <div class="row">
+
+                <div class="form-group m-md-4 col-12 col-md-5">
+                    <label for="fecha" class="">Fecha</label>
+                    <input wire:model.defer="fecha" type="text" name="fecha" class="form-control">
+                </div>
+    
+                <div class="form-group m-md-4 col-12 col-md-5">
+                    <label for="salon">Salon</label>
+                    <input wire:model.defer="salon" type="text" name="salon" class="form-control">
+                </div>
+
+                <div class="input-group my-4 col-12 col-md-4">
+                    <select wire:model.defer="horario" name="horario" class="custom-select mx-auto col-4 p-2 bg-gray-100 rounded-lg">
+                        <option value="" disabled>Horario</option>
+                        <option value="7:00-11:00">7:00-11:00</option>
+                        <option value="7:00-13:00">7:00-13:00</option>
+                        <option value="15:00-19:00">15:00-19:00</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+    
+                <div class="form-grop m-4 col-12">
+                    <div class="row">
+                        <label class="form-control bg-light col">
+                            <input wire:model.defer="tipo" type="radio" value="empleado" name="tipo" id="e">
+                            Empleado
+                        </label>
+                        <label class="form-control bg-light col">
+                            <input wire:model.defer="tipo" type="radio" value="sindicalizado" name="tipo" id="s">
+                            Sindicalizado
+                        </label>
+                    </div>
+                    <div class="input-group">
+                    </div>
+                </div>
+                
             </div>
 
-            <div class="input-group my-4 mx-auto">
-                <select wire:model="horario" name="horario" class="custom-select p-2 bg-gray-200 rounded-lg w-100">
-                    <option value="" disabled>Horario</option>
-                    <option value="7:00-11:00">7:00-11:00</option>
-                    <option value="7:00-13:00">7:00-13:00</option>
-                    <option value="15:00-19:00">15:00-19:00</option>
-                    <option value="otro">Otro</option>
-                </select>
-            </div>
+            <button wire:click="search" class="mx-auto btn btn-success">
+                <label class="mx-8 my-auto"> <i class="fas fa-search"></i> Aplicar filtros</label>
+            </button>
 
-            <div class="form-grop m-4">
-                <div class="input-group mb-2">
-                    <label>
-                        <input wire:model="tipo" type="radio" value="empleado" name="tipo" id="e">
-                        Empleado
-                    </label>
-                </div>
-                <div class="input-group">
-                    <label>
-                        <input wire:model="tipo" type="radio" value="sindicalizado" name="tipo" id="s">
-                        Sindicalizado
-                    </label>
-                </div>
-            </div>
         </div>
     </div>
 

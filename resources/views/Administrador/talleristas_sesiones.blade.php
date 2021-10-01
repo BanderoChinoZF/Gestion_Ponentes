@@ -40,6 +40,10 @@
       </div>
     </div>
   </div>
+  {{-- Tabla de respuestas --}}
+  <div>
+    
+  </div>
 
   <br>
 

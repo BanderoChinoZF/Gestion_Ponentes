@@ -23,14 +23,16 @@
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart2"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart3"></div>
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart4"></div>
+        @livewire('encuesta', ['id' => $sesion->idsesion])
         <div class="col-12 col-md-6 px-0 mx-auto" id="chart5">
           <div class="py-8 mx-auto my-8 text-center">
             <strong>Total de asistentes atendidos: </strong> <label class="font-bold text-xl"> {{$total_asistentes}}</label>
           </div>
         </div>
-        {{-- <div class="col-12 col-md-6 px-0 mx-auto" id="chart6"></div> --}}
+        <div>
+        </div>
       </div>
-
+      
       {{-- Tabla de asistentes --}}
       <div class="card-header col-12 mb-4">
         <div class="table-responsive">
@@ -40,7 +42,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre </th>
-                    <th>Ubicación </th>
+                    <th>&Aacute;rea </th>
                     <th class="d-none d-md-table-cell">Departamento </th>
                     <th class="d-none d-md-table-cell">Id sesión </th>
                 </tr>
@@ -50,7 +52,7 @@
                 <tr>
                     <th>{{$asistente->id_empleado}} </th>
                     <td>{{$asistente->nombre_completo}}</td>
-                    <td>{{$asistente->ubicacion}}</td>
+                    <td>{{$asistente->area}}</td>
                     <td class="d-none d-md-table-cell">{{$asistente->departamento}}</td>
                     <td class="d-none d-md-table-cell">{{$asistente->idsesion}}</td>
                 </tr>

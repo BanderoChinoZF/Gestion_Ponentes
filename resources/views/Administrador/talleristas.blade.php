@@ -20,7 +20,7 @@
                 <div class="card-footer">
                     <a href="{{route('Administrador.sesiones.buscar',$tallerista->id)}}" 
                         class="btn btn-block normal-case text-white rounded-pill" style="background-color: #da2c4e;">
-                        <i class="fas fa-folder-open"> Detalles</i>
+                        <i class="fas fa-folder-open"> Ver m&aacute;s</i>
                     </a>
                 </div>
             </div>

@@ -39,19 +39,21 @@ class AdminController extends Controller
         //$empleados = Datos::orderBy('id_empleado','ASC')->paginate(15);
         $talleristas = Tallerista::select('*')->orderBy('nombre_tallerista','ASC')->get();
 
-        $total_empleados = Datos::all()->count();
-        $total_empleados_na = Datos::where('idsesion','=',0)->count();
+        // $total_empleados = Datos::all()->count();
+        // $total_empleados_na = Datos::where('idsesion','=',0)->count();
+        $total_empleados = 597;
         $total_empleados_a = Datos::where('idsesion','!=',0)->count();
+        $total_empleados_na = $total_empleados - $total_empleados_a;
         $porcentaje_a = ($total_empleados_a * 100) / $total_empleados;
         $porcentaje_a = round($porcentaje_a,2);
         // 
-        $emp_sindicalizados = 441;
+        $emp_sindicalizados = 440;
         $emp_sindicalizados_a = SesionesModel::where('tiposesion', 'sindicalizado')->sum('num_asistentes');
         $emp_sindicalizados_na = $emp_sindicalizados - $emp_sindicalizados_a;
         $porcentaje_sindicalizados_a = ($emp_sindicalizados_a * 100) / $emp_sindicalizados;
         $porcentaje_sindicalizados_a = round($porcentaje_sindicalizados_a,2);
         // 
-        $emp = 173;
+        $emp = 157;
         $emp_a = SesionesModel::where('tiposesion', 'empleado')->sum('num_asistentes');
         $emp_na = $emp - $emp_a;
         $porcentaje_emp_a = ($emp_a * 100) / $emp;
@@ -84,10 +86,148 @@ class AdminController extends Controller
             'empleados_na' => $emp_na,
             'porcentaje_a' => $porcentaje_emp_a
         ];
-        
+
+        // 
+        $p1['r1'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg1resp1');
+        $p1['r2'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg1resp2');
+        $p1['r3'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg1resp3');
+        $p1['r4'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg1resp4');
+        $p1['r5'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg1resp5');
+        $p1['total'] = $p1['r1'] + $p1['r2'] +$p1['r3']+$p1['r4']+$p1['r5'];
+        $p1['pr1'] = round(($p1['r1'] * 100) / $p1['total']);
+        $p1['pr2'] = round(($p1['r2'] * 100) / $p1['total']);
+        $p1['pr3'] = round(($p1['r3'] * 100) / $p1['total']);
+        $p1['pr4'] = round(($p1['r4'] * 100) / $p1['total']);
+        $p1['pr5'] = round(($p1['r5'] * 100) / $p1['total']);
+
+        $p2['r1'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg2resp1');
+        $p2['r2'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg2resp2');
+        $p2['r3'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg2resp3');
+        $p2['r4'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg2resp4');
+        $p2['r5'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg2resp5');
+        $p2['total'] = $p2['r1'] + $p2['r2'] +$p2['r3']+$p2['r4']+$p2['r5'];
+        $p2['pr1'] = round(($p2['r1'] * 100) / $p2['total']);
+        $p2['pr2'] = round(($p2['r2'] * 100) / $p2['total']);
+        $p2['pr3'] = round(($p2['r3'] * 100) / $p2['total']);
+        $p2['pr4'] = round(($p2['r4'] * 100) / $p2['total']);
+        $p2['pr5'] = round(($p2['r5'] * 100) / $p2['total']);
+
+        $p3['r1'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg3resp1');
+        $p3['r2'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg3resp2');
+        $p3['r3'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg3resp3');
+        $p3['r4'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg3resp4');
+        $p3['r5'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg3resp5');
+        $p3['total'] = $p3['r1'] + $p3['r2'] +$p3['r3']+$p3['r4']+$p3['r5'];
+        $p3['pr1'] = round(($p3['r1'] * 100) / $p3['total']);
+        $p3['pr2'] = round(($p3['r2'] * 100) / $p3['total']);
+        $p3['pr3'] = round(($p3['r3'] * 100) / $p3['total']);
+        $p3['pr4'] = round(($p3['r4'] * 100) / $p3['total']);
+        $p3['pr5'] = round(($p3['r5'] * 100) / $p3['total']);
+
+        $p4['r1'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg4resp1');
+        $p4['r2'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg4resp2');
+        $p4['r3'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg4resp3');
+        $p4['r4'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg4resp4');
+        $p4['r5'] = SesionesModel::where('tiposesion', 'sindicalizado')->sum('preg4resp5');
+        $p4['total'] = $p4['r1'] + $p4['r2'] +$p4['r3']+$p4['r4']+$p4['r5'];
+        $p4['pr1'] = round(($p4['r1'] * 100) / $p4['total']);
+        $p4['pr2'] = round(($p4['r2'] * 100) / $p4['total']);
+        $p4['pr3'] = round(($p4['r3'] * 100) / $p4['total']);
+        $p4['pr4'] = round(($p4['r4'] * 100) / $p4['total']);
+        $p4['pr5'] = round(($p4['r5'] * 100) / $p4['total']);
+
+        // --------------------------------------------------------------------------
+
+        $ep1['r1'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg1resp1');
+        $ep1['r2'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg1resp2');
+        $ep1['r3'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg1resp3');
+        $ep1['r4'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg1resp4');
+        $ep1['r5'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg1resp5');
+        $ep1['total'] = $ep1['r1'] + $ep1['r2'] +$ep1['r3']+$ep1['r4']+$ep1['r5'];
+        if($ep1['total'] > 0){
+            $ep1['pr1'] = round(($ep1['r1'] * 100) / $ep1['total']);
+            $ep1['pr2'] = round(($ep1['r2'] * 100) / $ep1['total']);
+            $ep1['pr3'] = round(($ep1['r3'] * 100) / $ep1['total']);
+            $ep1['pr4'] = round(($ep1['r4'] * 100) / $ep1['total']);
+            $ep1['pr5'] = round(($ep1['r5'] * 100) / $ep1['total']);
+        }else{
+            $ep1['pr1'] = 0;
+            $ep1['pr2'] = 0;
+            $ep1['pr3'] = 0;
+            $ep1['pr4'] = 0;
+            $ep1['pr5'] = 0;
+        }
+
+        $ep2['r1'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg2resp1');
+        $ep2['r2'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg2resp2');
+        $ep2['r3'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg2resp3');
+        $ep2['r4'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg2resp4');
+        $ep2['r5'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg2resp5');
+        $ep2['total'] = $ep2['r1'] + $ep2['r2'] +$ep2['r3']+$ep2['r4']+$ep2['r5'];
+        if( $ep2['total'] > 0){
+            $ep2['pr1'] = round(($ep2['r1'] * 100) / $ep2['total']);
+            $ep2['pr2'] = round(($ep2['r2'] * 100) / $ep2['total']);
+            $ep2['pr3'] = round(($ep2['r3'] * 100) / $ep2['total']);
+            $ep2['pr4'] = round(($ep2['r4'] * 100) / $ep2['total']);
+            $ep2['pr5'] = round(($ep2['r5'] * 100) / $ep2['total']);
+        }else{
+            $ep2['pr1'] = 0;
+            $ep2['pr2'] = 0;
+            $ep2['pr3'] = 0;
+            $ep2['pr4'] = 0;
+            $ep2['pr5'] = 0;
+        }
+
+        $ep3['r1'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg3resp1');
+        $ep3['r2'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg3resp2');
+        $ep3['r3'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg3resp3');
+        $ep3['r4'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg3resp4');
+        $ep3['r5'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg3resp5');
+        $ep3['total'] = $ep3['r1'] + $ep3['r2'] +$ep3['r3']+$ep3['r4']+$ep3['r5'];
+        if($ep3['total'] > 0){
+            $ep3['pr1'] = round(($ep3['r1'] * 100) / $ep3['total']);
+            $ep3['pr2'] = round(($ep3['r2'] * 100) / $ep3['total']);
+            $ep3['pr3'] = round(($ep3['r3'] * 100) / $ep3['total']);
+            $ep3['pr4'] = round(($ep3['r4'] * 100) / $ep3['total']);
+            $ep3['pr5'] = round(($ep3['r5'] * 100) / $ep3['total']);
+        }else{
+            $ep3['pr1'] = 0;
+            $ep3['pr2'] = 0;
+            $ep3['pr3'] = 0;
+            $ep3['pr4'] = 0;
+            $ep3['pr5'] = 0;
+        }
+
+        $ep4['r1'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg4resp1');
+        $ep4['r2'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg4resp2');
+        $ep4['r3'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg4resp3');
+        $ep4['r4'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg4resp4');
+        $ep4['r5'] = SesionesModel::where('tiposesion', 'empleado')->sum('preg4resp5');
+        $ep4['total'] = $ep4['r1'] + $ep4['r2'] +$ep4['r3']+$ep4['r4']+$ep4['r5'];
+        if($ep4['total'] > 0){
+            $ep4['pr1'] = round(($ep4['r1'] * 100) / $ep4['total']);
+            $ep4['pr2'] = round(($ep4['r2'] * 100) / $ep4['total']);
+            $ep4['pr3'] = round(($ep4['r3'] * 100) / $ep4['total']);
+            $ep4['pr4'] = round(($ep4['r4'] * 100) / $ep4['total']);
+            $ep4['pr5'] = round(($ep4['r5'] * 100) / $ep4['total']);
+        }else{
+            $ep4['pr1'] = 0;
+            $ep4['pr2'] = 0;
+            $ep4['pr3'] = 0;
+            $ep4['pr4'] = 0;
+            $ep4['pr5'] = 0;
+        }
+
+
         return view('Administrador.inicio')
-            // ->with('empleados',$empleados)
-            // ->with('empleados_a',$empleados_a)
+            ->with('p1',$p1)
+            ->with('p2',$p2)
+            ->with('p3',$p3)
+            ->with('p4',$p4)
+            ->with('ep1',$ep1)
+            ->with('ep2',$ep2)
+            ->with('ep3',$ep3)
+            ->with('ep4',$ep4)
             ->with('talleristas',$talleristas)
             ->with('total_sesiones',$total_sesiones)
             ->with('sesiones_faltantes',$sesiones_faltantes)
@@ -207,13 +347,16 @@ class AdminController extends Controller
         
         $arr['cantidad_asistentes'] = "['Total de asistentes', ".$countAsistentes."]";
 
-        
+        // Datas para la tabla de "Lap regunta 5"
+        $pregunta_5 = DB::select("select * from encuesta where idsesiones = '$id'");
+
         return view('Administrador.sesion',$arr)
         ->with(compact('sesion'))
         ->with('preguntas',$preguntas)
         ->with('respuestas',$respuestas)
         ->with('total_asistentes',$countAsistentes)
-        ->with('asistentes',$asistentes);
+        ->with('asistentes',$asistentes)
+        ->with('pregunta_5',$pregunta_5);
     }
 
     public function buscar($tallerista){
