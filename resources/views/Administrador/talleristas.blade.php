@@ -8,7 +8,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         @foreach ($talleristas as $tallerista)
             <div class="card h-100">
-                <img class="img-fluid rounded-start" src="{{ asset('img/sin_imagen.png')}}" alt="Card image cap">
+                <img class="img-fluid rounded-start" src="{{ asset('img/talleristas')}}/{{$tallerista->id}}.png" alt="Card image cap" style="object-fit: cover;">
                 <div class="card-body">
                     <div class="capitalize text-center">
                         <strong> {{$tallerista->nombre_tallerista}} </strong>

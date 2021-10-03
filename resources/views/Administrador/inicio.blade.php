@@ -109,6 +109,34 @@
       <x-progress-bar titulo="¿Cúal es tu opinión del protocolo?" r1="{{$p4['pr1']}}" r2="{{$p4['pr2']}}" r3="{{$p4['pr3']}}" r4="{{$p4['pr4']}}" r5="{{$p4['pr5']}}"></x-progress-bar>
     </div>
 
+    <div class="row p-0 m-0">
+      <label class="text-center col-4 col-md-3 col-lg mb-2">
+        <button class="h-10 w-100 btn btn-sm btn-primary" style="height: 6px">
+        </button> <br>
+        <small class="">Muy de acuerdo</small>
+      </label>
+      <label class="text-center col-4 col-md-3 col-lg mb-2">
+        <button class="h-10 w-100 btn btn-sm btn-success" style="height: 6px">
+        </button> <br>
+        <small class="">De acuerdo</small>
+      </label>
+      <label class="text-center col-4 col-md-3 col-lg mb-2">
+        <button class="h-10 w-100 btn btn-sm btn-info" style="height: 6px">
+        </button> <br>
+        <small class="">Neutral</small>
+      </label>
+      <label class="text-center col-4 col-md-3 col-lg mb-2">
+        <button class="h-10 w-100 btn btn-sm btn-warning" style="height: 6px">
+        </button> <br>
+        <small class="">En desacuerdo</small>
+      </label>
+      <label class="text-center col-4 col-md-3 col-lg mb-2">
+        <button class="h-10 w-100 btn btn-sm btn-danger" style="height: 6px">
+        </button> <br>
+        <small class="">Muy en desacuerdo</small>
+      </label>
+    </div>
+
     <div class="m-4 p-2">
       Cuestionario a personal empleados
       <x-progress-bar titulo="¿Consideras que los objetivos del taller se cumplierón?" r1="{{$ep1['pr1']}}" r2="{{$ep1['pr2']}}" r3="{{$ep1['pr3']}}" r4="{{$ep1['pr4']}}" r5="{{$ep1['pr5']}}"></x-progress-bar>

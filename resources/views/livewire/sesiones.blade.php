@@ -1,9 +1,13 @@
 <div>
     {{-- encabezado --}}
-    <div class="card-header text-center font-sans text-xl font-bold">
-      SESIONES
-      <div class="d-flex justify-content-end">
-        <input wire:model="search" type="text" class="form-control" placeholder="Ingrese la fecha">
+    <div class="text-center font-sans text-xl font-bold">
+      <label class="mb-6">SESIONES</label>
+      <h6><small>Buscar por rango de fechas</small></h6>
+      <div class="d-flex justify-content-end my-2">
+        <label class="mx-2">De</label>
+        <input wire:model="initialdate" type="text" class="form-control mx-1" placeholder="2020/12/31">
+        <label class="mx-2">A</label>
+        <input wire:model="finaldate" type="text" class="form-control mx-1" placeholder="Fecha final">
       </div>
     </div>
     <div class="card-body">

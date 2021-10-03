@@ -5,6 +5,12 @@
                 <input wire:model="search" type="text" class="form-control" placeholder="Salón">
                 <label class="mx-8 my-auto"> <i class="fas fa-search"></i> </label>
             </div>
+            <select wire:model="tallerista" name="talleristas" class="custom-select p-1 rounded my-2 shadow font-sm ">
+                <option class="mx-2 font-serif capitalize" value="">Seleccionar Tallerista</option>
+                @foreach ($talleristas as $t)
+                    <option class="mx-2 font-serif capitalize" value="{{$t->id}}">{{$t->nombre_tallerista}}</option>
+                @endforeach
+            </select>
         </div>
         @if ($assistants->count())
             <div class="car-body overflow-auto">

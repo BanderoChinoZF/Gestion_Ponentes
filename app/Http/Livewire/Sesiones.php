@@ -14,20 +14,41 @@ class Sesiones extends Component
     public $search = "";
     public $tallerista_id;
 
+    public $initialdate = "2021/01/01";
+    public $finaldate = "//";
+
     public function updatingSearch(){
+        $this->resetPage();
+    }
+
+    public function updatingInitialdate(){
+        $this->resetPage();
+    }
+
+    public function updatingFinaldate(){
         $this->resetPage();
     }
 
     public function render()
     {
+        if( $this->finaldate == '//'){
+            $this->finaldate = date('Y/m/d');
+        }
+
         if($this->tallerista_id != null){
-            $sesiones = SesionesModel::where('fecha', 'like', '%'.$this->search.'%')
+            // $sesiones = SesionesModel::where('fecha', 'like', '%'.$this->search.'%')
+            // ->where('id', $this->tallerista_id)
+            // ->latest('id')
+            // ->paginate(12);
+            $sesiones = SesionesModel::where('fecha', '>=', $this->initialdate)
+            ->where('fecha', '<=' ,$this->finaldate)
             ->where('id', $this->tallerista_id)
             ->latest('id')
             ->paginate(12);
-
         }else{
-            $sesiones = SesionesModel::where('fecha', 'like', '%'.$this->search.'%')
+            // $sesiones = SesionesModel::where('fecha', 'like', '%'.$this->search.'%')
+            $sesiones = SesionesModel::where('fecha', '>=', $this->initialdate)
+            ->where('fecha', '<=' ,$this->finaldate)
             ->latest('id')
             ->paginate(12);
         }

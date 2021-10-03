@@ -5,7 +5,7 @@
   {{-- Encabezado --}}
   <div class="flex items-center justify-start px-8 py-8 gap-x-8">
     <div class="rounded-full h-20 w-20">
-      <img src="{{ asset('img/sin_imagen.png') }}" alt=""  class="rounded-full h-20 w-20">
+      <img src="{{ asset('img/talleristas')}}/{{$tallerista->id}}.png" alt=""  class="rounded-full h-20 w-20" style="object-fit: cover;">
     </div>
     <div class="text-center text-lg lg:text-xl font-bold flex h-20 items-center justify-center">
       {{$tallerista->nombre_tallerista}}
@@ -15,7 +15,7 @@
   {{-- Descripcion del tallerista --}}
   <div class="card-body text-wrap bg-body px-8 mx-auto">
     {{-- <p>{{$tallerista->descripcion}} </p> --}}
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, voluptatibus non obcaecati enim odio praesentium fuga earum ducimus saepe sequi asperiores facere dolores nisi exercitationem, nobis dolorem dolorum, corporis dolore.</p>
+    {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, voluptatibus non obcaecati enim odio praesentium fuga earum ducimus saepe sequi asperiores facere dolores nisi exercitationem, nobis dolorem dolorum, corporis dolore.</p> --}}
   </div>
   {{--  --}}
 

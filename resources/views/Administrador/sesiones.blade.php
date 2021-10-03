@@ -10,7 +10,7 @@
       @livewire('sesiones')
     </div>
     {{-- Talleristas --}}
-    <div class="col col-md-4 col-lg-3 col-xl-2 p-1 p-lg-4">
+    {{-- <div class="col col-md-4 col-lg-3 col-xl-2 p-1 p-lg-4">
       <div class="card p-0 p-md-2">
         <div class="card-header text-light text-center" style="background-color: #da2c4e;">
           <h2 class="font-sans text-lg"> Talleristas </h2>
@@ -25,7 +25,7 @@
           @endif
         @endforeach
       </div>
-    </div>
+    </div> --}}
   </div>
 
   {{-- Botones para descargas --}}

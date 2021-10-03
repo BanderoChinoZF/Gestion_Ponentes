@@ -1,19 +1,29 @@
 @extends('layouts.app')
 @section('content')
+
+  {{-- imágen --}}
+  <div class="md:px-8 md:mx-8">
+    @if ($sesion->ruta_imagen)
+      <img src="{{ asset($sesion->ruta_imagen) }}" alt="" 
+          class="img-fluid w-100 md:px-8" style="object-fit: cover; max-height: 600px">
+    @else
+
+    @endif
+  </div>
+
   {{-- Encabezado --}}
   <div class="flex items-center justify-start px-8 py-8 gap-x-8">
     {{-- Botón back --}}
-    <div class="rounded-full h-20 w-20 flex items-center justify-center">
-      <a href="{{ url()->previous() }}" 
-        class="btn rounded-full normal-case text-light" 
-        style="background-color: #da2c4e;">
-        <i class="far fa-arrow-alt-circle-left"></i>
-      </a>
-    </div>
+    <a href="{{ url()->previous() }}" 
+      class="rounded-full normal-case text-dark">
+      <i class="far fa-arrow-alt-circle-left"></i>
+    </a>
+    {{-- <div class="rounded-full flex items-center justify-center">
+    </div> --}}
     <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Sesion {{$sesion->idsesion}} </div>
     <div class="text-center text-lg font-bold flex h-20 items-center justify-center">Tallerista: {{$sesion->tallerista}} </div>
   </div>
-
+  {{--  --}}
   <div class="card p-2 p-md-4 mb-4">
     <div class="card-body">
 

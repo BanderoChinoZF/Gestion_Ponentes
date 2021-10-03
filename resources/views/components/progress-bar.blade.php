@@ -7,26 +7,4 @@
       <div class="progress-bar bg-warning" role="progressbar" style="width: {{$r5}}%" aria-valuenow="{{$r5}}" aria-valuemin="0" aria-valuemax="100">{{$r5}}%</div>
       <div class="progress-bar bg-danger" role="progressbar" style="width: {{$r4}}%" aria-valuenow="{{$r4}}" aria-valuemin="0" aria-valuemax="100">{{$r4}}%</div>
     </div>
-    <div class="row">
-      <label class="mx-4 col">
-        <button  class="btn btn-sm text-normal btn-primary"></button>
-        <small>Totalmente de acuerdo</small>
-      </label>
-      <label class="mx-4 col">
-        <button  class="btn btn-sm text-normal btn-success"></button>
-        <small>De acuerdo</small>
-      </label>
-      <label class="mx-4 col">
-        <button  class="btn btn-sm text-normal btn-info"></button>
-        <small>Neutral</small>
-      </label>
-      <label class="mx-4 col">
-        <button  class="btn btn-sm text-normal btn-warning"></button>
-        <small>En desacuerdo</small>
-      </label>
-      <label class="mx-4 col">
-        <button  class="btn btn-sm text-normal btn-danger"></button>
-        <small>Totalmente en desacuerdo</small>
-      </label>
-    </div>
 </div>
