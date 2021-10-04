@@ -22,9 +22,9 @@
                   {{ asset('img/sin_imagen.png') }}
                 @endif" alt="" class="img-fluid rounded h-40" style="object-fit: cover;">
                 <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <label class="py-2"><strong>Sesi&oacute;n</strong></label>
-                    <label class="py-2">{{ $a->idsesion }}</label>
+                  <div class="d-flex justify-content-start">
+                    <label class="py-2"><strong>Sesi&oacute;n </strong> </label>
+                    <label class="py-2">: {{ $a->idsesion }}</label>
                   </div>
                   <div class="d-flex justify-content-between">
                     <label class="py-2"><strong>Tallerista</strong></label>
@@ -38,7 +38,11 @@
                   </div>
                   
                   <div class="d-flex justify-content-end">
-                    <label class="text-sm text-muted py-2">{{ $a->fecha }}</label>
+                    <label class="text-sm py-2">
+                      <small>{{ $a->fecha }}</small>
+                      <br>
+                      <small>{{ $a->horario }}</small>
+                    </label>
                   </div>
                 </div>
                 <div class="card-footer">

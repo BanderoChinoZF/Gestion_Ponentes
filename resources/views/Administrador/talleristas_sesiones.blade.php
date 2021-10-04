@@ -14,8 +14,7 @@
 
   {{-- Descripcion del tallerista --}}
   <div class="card-body text-wrap bg-body px-8 mx-auto">
-    {{-- <p>{{$tallerista->descripcion}} </p> --}}
-    {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, voluptatibus non obcaecati enim odio praesentium fuga earum ducimus saepe sequi asperiores facere dolores nisi exercitationem, nobis dolorem dolorum, corporis dolore.</p> --}}
+    <p>{{$tallerista->descripcion}} </p>
   </div>
   {{--  --}}
 
