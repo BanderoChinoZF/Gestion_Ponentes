@@ -11,3 +11,105 @@
     animation: fadeInUp;
     animation-duration: 0.5s;
 }
+.dashboard-sesiones {
+	font-family: 'Montserrat', sans-serif;	
+}
+.logo-app {
+	position: absolute;
+	left: 5%;
+	top: 0;
+	z-index: 1;
+	width: 200px;
+	height: auto;
+}
+
+.contain-logo {
+	height: 100px;
+}
+.header-block{
+	background-color: #db3e4e;
+	padding: 3.5rem;
+	text-align: center;
+	font-size: 1.8rem;
+	color: #fff;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 2.5%;
+}
+.header-block span{ 
+	font-size: 3rem;
+	font-weight: 700;
+}
+@media screen and (max-width: 500px) {
+  .header-block .span {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-block .h2{
+    
+    float: none;
+    display: block;
+    text-align: left; 
+  }
+  .header-right {
+    float: none;
+  }
+}
+.number_sesiones{
+	float: left;
+	font-size: 8rem;
+	margin-right: 20px;
+	color: #db3e4e;
+	font-weight: 800;
+	 
+}
+.text_sesiones{
+	font-weight: 500;
+	padding-top: 3.5rem;
+	font-size: 1.5rem;
+	color: #808080;
+	 
+}
+.user_sesiones {
+	font-weight: 500;
+	font-size: 1.5rem;
+	color: #808080;
+	top: 5%;
+	position: absolute;
+	right: 5%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#app {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.area_number{
+	font-size: 3rem;
+	margin-right: 20px;
+	color: #db3e4e;
+	font-weight: 800;
+	 
+}
+.area_number span{
+	font-weight: 400;
+	padding-top: 3.5rem;
+	font-size: 1.2rem;
+	color: #808080;
+	 
+}
+
+@media screen and (max-width: 500px) {
+  .number_sesiones {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .text_sesiones{
+    float: none;
+    display: block;
+    text-align: left; 
+  }
+  
+}

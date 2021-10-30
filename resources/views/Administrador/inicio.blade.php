@@ -6,7 +6,24 @@
 
 @section('content')
 
-<div class="container  gy-8">
+<div class="container dashboard-sesiones gy-8">
+
+  <div class="row">
+	  <div class="col-md-4">
+		  <div class="number_sesiones">{{$total_sesiones}}</div>
+		  <div class="text_sesiones">Sesiones <br> realizadas</div>
+	  </div>
+	  <div class="col-md-4">
+		  <div class="number_sesiones">4</div>
+		  <div class="text_sesiones">Sesiones <br> empleados</div>
+	  </div>
+	  <div class="col-md-4">
+		  <div class="number_sesiones">12</div>
+		  <div class="text_sesiones">Sesiones <br> sindicalizados</div>
+	  </div>
+  </div>
+
+
   <div class="row justify-content-center">
 
     <div class="row my-8">
@@ -14,17 +31,17 @@
         <p class="my-auto text-danger font-bold text-center">{{$porcentaje['porcentaje_a']}}% </p>
       </div>
       <div class="col">
-        <div class="overflow-hidden h-4 mb-0 text-xs flex bg-red-200" style="height: 60px; border-radius: 0px">
+        <div class="overflow-hidden h-4 mb-0 flex bg-red-200" style="height: 60px; border-radius: 0px">
           <div style="width:{{ $porcentaje['porcentaje_a'] }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
         </div>
         <div class="flex mb-4 mt-0 items-center justify-between">
           <div>
-            <span class="text-xs font-semibold inline-block text-red-600">
+            <span class="font-semibold inline-block text-red-600">
               Personas atendidas: {{ $porcentaje['empleados_a'] }}
             </span>
           </div>
           <div class="text-right">
-            <span class="text-xs font-semibold inline-block text-red-600">
+            <span class="font-semibold inline-block text-red-600">
               Faltan: {{ $porcentaje['empleados_na'] }}
             </span>
           </div>
@@ -32,8 +49,53 @@
       </div>
     </div>
 
-    <hr>
-    <div class="relative pt-1"> {{-- Barra de porcentaje --}}
+    <div class="row mb-4">
+      <div class="col-3 col-sm-2 col-xl-2 text-lg sm:text-xl md:text-2xl lg:text-4xl py-2">
+        <p class="my-auto text-blue-600 font-bold text-center">{{$porcentaje_sind['porcentaje_a']}}% </p>
+      </div>
+      <div class="col">
+        <div class="overflow-hidden h-4 mb-0 flex bg-blue-200" style="height: 60px; border-radius: 0px">
+          <div style="width:{{ $porcentaje_sind['porcentaje_a'] }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+        </div>
+        <div class="flex mb-4 mt-0 items-center justify-between">
+          <div>
+            <span class="font-semibold inline-block text-blue-600">
+              Personas atendidas: {{ $porcentaje_sind['empleados_a'] }}
+            </span>
+          </div>
+          <div class="text-right">
+            <span class="font-semibold inline-block text-blue-600">
+              Faltan: {{ $porcentaje_sind['empleados_na'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-3 col-sm-2 col-xl-2 text-lg sm:text-xl md:text-2xl lg:text-4xl py-2">
+        <p class="my-auto text-green-600 font-bold text-center">{{$porcentaje_emp['porcentaje_a']}}% </p>
+      </div>
+      <div class="col">
+        <div class="overflow-hidden h-4 mb-0 flex bg-green-200" style="height: 60px; border-radius: 0px">
+          <div style="width:{{ $porcentaje_emp['porcentaje_a'] }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+        </div>
+        <div class="flex mb-4 mt-0 items-center justify-between">
+          <div>
+            <span class="font-semibold inline-block text-green-600">
+              Personas atendidas: {{ $porcentaje_emp['empleados_a'] }}
+            </span>
+          </div>
+          <div class="text-right">
+            <span class="font-semibold inline-block text-green-600">
+              Faltan: {{ $porcentaje_emp['empleados_na'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- <div class="relative pt-1">
       <div class="flex mb-2 items-center justify-between">
         <div>
           <span class="text-xs md:tex-lg lg:text-xl font-semibold inline-block py-1 px-2 rounded-full text-blue-600">
@@ -51,7 +113,7 @@
       </div>
       <div class="flex mb-4 items-center justify-between">
         <div>
-          {{-- Necesario para que el el siguiente div sea alineado a la derecha --}}
+          
         </div>
         <div class="text-right">
           <span class="text-xs font-semibold inline-block text-blue-600">
@@ -59,9 +121,9 @@
           </span>
         </div>
       </div>
-    </div>
-    <hr>
-    <div class="relative pt-1"> {{-- Barra de porcentaje --}}
+    </div> --}}
+    {{-- <hr> --}}
+    {{-- <div class="relative pt-1">
       <div class="flex mb-2 items-center justify-between">
         <div>
           <span class="text-xs md:tex-lg lg:text-xl font-semibold inline-block py-1 px-2 rounded-full text-green-600">
@@ -79,7 +141,7 @@
       </div>
       <div class="flex mb-4 items-center justify-between">
         <div>
-          {{-- Necesario para que el el siguiente div sea alineado a la derecha --}}
+          
         </div>
         <div class="text-right">
           <span class="text-xs font-semibold inline-block text-green-600">
@@ -87,7 +149,7 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> --}}
     <hr>
     {{-- Cantidad de sesiones y cantidad faltantes --}}
     <div class="grid grid-cols-4 text-center md:tex-lg lg:text-xl py-4 mx-auto">

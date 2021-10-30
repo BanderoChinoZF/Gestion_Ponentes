@@ -21,25 +21,7 @@ Auth::routes();
 //     return view('auth.login');
 // });
 
-Route::get('/', function () {
-    $login = new LoginController;
-    $ruta = $login->redirectPath();
-    if($ruta != '/'){
-        switch ($ruta){
-            case '/Administrador/inicio':
-                return redirect()->route('Administrador.inicio');
-                break;
-            case '/Tallerista/inicio':
-                return redirect()->route('Tallerista.inicio');
-                break;
-            case '/RecursosHumanos/inicio':
-                return redirect()->route('RecursosHumanos.inicio');
-                break;  
-        }
-    }else{
-        return view('auth.login');
-    }
-});
+Route::get('/', [AdminController::class, 'index']);
 
 Route::get('/logout', function () {
     return view('auth.login');
